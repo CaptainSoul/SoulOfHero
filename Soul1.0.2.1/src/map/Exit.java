@@ -7,15 +7,16 @@ public class Exit {
 	private Location destination;
 
 	public Exit(Direction direction, Location destination) {
-
+		this.direction = direction;
+		this.destination = destination;
 	}
 
 	public Direction getDirection() {
-		return null;
+		return direction;
 	}
 
 	public Location getDestination() {
-		return null;
+		return destination;
 	}
 
 }
