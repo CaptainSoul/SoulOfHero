@@ -1,8 +1,0 @@
-scalar: 71
-shift: 7
-AbstractCharacter 1000000
-Item 1010000
-Map 1020000
-Location 1030000
-User 1040000
-Skill 1050000
