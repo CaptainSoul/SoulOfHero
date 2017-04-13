@@ -3,7 +3,8 @@ package archive;
 import dsa.impl.BSTMap;
 
 public class UserManagement {
-	private static BSTMap<String, User> users;
+	private static BSTMap<String, User> users = new BSTMap<String, User>();
+	
 	
 	public static boolean checkPassword(String ID, String password) {
 		User user = users.get(ID);
@@ -11,10 +12,17 @@ public class UserManagement {
 			return false;
 		}
 		if(user.getPassword() == password){
-			//open game
 			return true;
 		}
 		return false;
 	}
 	
+	public static boolean addUser(String ID, String password) {
+		if(users.get(ID) != null) {
+			return false;
+		}
+		User user = new User(ID, password);
+		users.put(ID, user);
+		return true;
+	}
 }

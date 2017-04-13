@@ -6,7 +6,9 @@ public class User {
 	private final int code;
 	private static int numUsers = 0;
 	
-	public User() {
+	public User(String ID, String password) {
+		this.ID = ID;
+		this.password = password;
 		code = Code.getCode(this);
 	}
 	
