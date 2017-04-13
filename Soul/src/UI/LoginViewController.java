@@ -12,8 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
-public class LoginViewController implements ControlledStage, Initializable {
-	private StageController myController;
+public class LoginViewController extends ControlledStage implements Initializable {
 	@FXML private TextField userNameField;
 	@FXML private PasswordField passwordField;
 	
@@ -24,18 +23,10 @@ public class LoginViewController implements ControlledStage, Initializable {
 		UserManagement.addUser(user, password);
 		if(UserManagement.checkPassword(user, password)) {	
 			JOptionPane.showMessageDialog(null, "Log In");
-	//		myController.setStage(MainApp.mainViewID, MainApp.loginViewID);
-			myController.getStage(MainApp.loginViewID).close();
+			myController.setStage(MainApp.mapViewID, MainApp.loginViewID);
+	//		myController.getStage(MainApp.loginViewID).close();
 			myController.unloadStage(MainApp.loginViewID);
 		}
-	}
-	@Override
-	public void setStageController(StageController stageController) {
-		this.myController = stageController;
-	}
-	
-	public void goToMain() {
-		myController.setStage(MainApp.mainViewID);
 	}
 
 	@Override

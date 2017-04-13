@@ -1,5 +1,13 @@
 package UI;
 
-public interface ControlledStage {
-	public void setStageController(StageController stageController);
+public abstract class ControlledStage {
+	protected StageController myController;
+	
+	public void setStageController(StageController stageController) {
+		this.myController = stageController;
+	}
+	
+	public void goToMain() {
+		myController.setStage(MainApp.mainViewID);
+	}
 }
