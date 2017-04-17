@@ -1,5 +1,6 @@
 package skill;
 
+import archive.Code;
 import character.AbstractCharacter;
 
 public class Skill {
@@ -14,16 +15,20 @@ public class Skill {
 
 	private double damage;
 
-	public Skill(String name, String description, double damage) {
-
+	public Skill(String n, String de, double da) {
+		name = n;
+		description = de;
+		damage = da;
+		numSkills++;
+		code = Code.getCode(this);
 	}
 
 	public String getName() {
-		return null;
+		return name;
 	}
 
 	public String getDescription() {
-		return null;
+		return description;
 	}
 	
 	public int getCode() {
@@ -34,8 +39,9 @@ public class Skill {
 		return numSkills;
 	}
 
-	public String attack(AbstractCharacter target, int strength) {
-		return null;
+	public double attack( int strength ) {
+		double skillDamage = damage * strength;
+		return skillDamage;
 	}
 
 }
