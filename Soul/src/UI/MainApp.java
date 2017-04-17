@@ -23,10 +23,7 @@ public class MainApp extends Application {
 			stageController.setPrimaryStage("primaryStage", primaryStage);
 			stageController.loadStage(loginViewID, loginViewRes, StageStyle.UNDECORATED);
 			stageController.addStage(mapViewID, MapCanvas.mapStage());
-	//		stageController.loadStage(mainViewID, mainViewRes);
-			System.out.println(1);
 			stageController.setStage(loginViewID);
-			System.out.println(2);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

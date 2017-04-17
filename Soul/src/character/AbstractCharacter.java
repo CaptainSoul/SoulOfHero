@@ -10,39 +10,23 @@ import inventory.Food;
 public abstract class AbstractCharacter {
 
 	private String name;
-
 	private int hp;
-
 	private int mp;
-
 	private int strength;
-
 	private int defence;
-	
 	private final int code;
-
 	private static int numCharacters = 0;
-
 	private static final int MAX_HP = 100;
-
 	private static final int MIN_HP = 0;
-
 	private static final int MAX_MP = 100;
-
 	private static final int MIN_MP = 0;
-
 	private static final int MIN_DAMAGE = 0;
-
 	private static final int MIN_HEAL = 0;
 
 	private Inventory inventory;
-
 	private Weapon weapon;
-
 	private Armor armor;
-
 	private Location location;
-
 	private SkillBase skillBase;
 
 	public AbstractCharacter(String name, int hp, int mp, int strength, int defence) {
