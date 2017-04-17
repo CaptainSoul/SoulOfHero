@@ -2,6 +2,7 @@ package character;
 
 import inventory.Inventory;
 import inventory.Weapon;
+import archive.Code;
 import inventory.Armor;
 import map.Location;
 import skill.SkillBase;
@@ -30,17 +31,29 @@ public abstract class AbstractCharacter {
 	private Armor armor;
 	private Location location;
 	private SkillBase skillBase;
+<<<<<<< HEAD
 	
 	public AbstractCharacter(String name, int hp, int mp, int strength, int defence) {
 
+=======
+
+	public AbstractCharacter(String n, int h, int m, int s, int d) {
+		name = n;
+		hp = h;
+		mp = m;
+		strength = s;
+		defence = d;
+		code = Code.getCode(this);
+		numCharacters++;
+>>>>>>> 010b0ba9615ece303b5bc8c141f6a38e0f5b8e1e
 	}
 
 	public String getName() {
-		return null;
+		return name;
 	}
 
 	public int getNumCharacters() {
-		return 0;
+		return numCharacters;
 	}
 	
 	public int getCode() {
@@ -48,33 +61,55 @@ public abstract class AbstractCharacter {
 	}
 
 	public int getHp() {
-		return 0;
+		return hp;
 	}
 
 	public int getMp() {
-		return 0;
+		return mp;
 	}
 
 	public Inventory getInventory() {
-		return null;
+		return inventory;
 	}
 
 	public Location getLocation() {
-		return null;
+		return location;
 	}
 
 	public abstract void takeTurn();
 
-	public String attack(AbstractCharacter target) {
-		return null;
+	public void attack(AbstractCharacter target) {
+		// target_hp,defence, AC_strength
+		int damage = strength - target.defence;
+		if ( damage < 0 ){
+			damage = 0;
+		}
+		target.hp = target.hp - damage;
+		//System.out.println("Character "+name+" attacks "+"Character "+target.name++" ! ");
+		//System.out.println("Character "+target.name+" is taken "+damage+"damage! ");
+		if ( target.hp < 0){
+			target.hp = 0;
+			//System.out.println("Character "+target.name+" has died! ");
+		}
+		
 	}
 
-	public String eat(Food food) {
-		return null;
+	public void eat(Food food) {
+		// AC_hp,mp food_hp,mp
+		hp = hp + food.getHp();
+		mp = mp + food.getMp();
+		if (  hp > 100 ){
+			hp = 100;
+		}
+		if (  mp > 100 ){
+			mp = 100;
+		}
+		//System.out.println("Character "+name+" eats "+food.getName++" ! ");
 	}
 
 	public String toString() {
-		return null;
+		String message = name + ":" + name;
+		return message;
 	}
 
 

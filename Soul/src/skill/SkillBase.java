@@ -1,5 +1,6 @@
 package skill;
 
+import dsa.iface.IIterator;
 import dsa.impl.BSTMap;
 
 public class SkillBase {
@@ -8,20 +9,30 @@ public class SkillBase {
 
 	private BSTMap<Integer, Skill> skills;
 
+	public SkillBase(){
+		 skills = new BSTMap<Integer, Skill>();
+	}
+	
 	public void addSkill(Skill skill) {
-
+		numSkills++;
+		skills.put(skill.getCode(), skill);
 	}
 
-	public Skill findSkill(String name) {
-		return null;
+	public Skill findSkill(int code) {
+		return skills.get(code);
 	}
 
-	public Skill removeSkill(String name) {
-		return null;
+	public Skill removeSkill(int code) {
+		return skills.remove(code);
 	}
 
 	public String toString() {
-		return null;
+		IIterator<Skill> iterator = skills.values();
+		String toReturn = "";
+		while(iterator.hasNext()) {
+			toReturn += iterator.next().toString();
+		}
+		return toReturn;
 	}
 
 }
