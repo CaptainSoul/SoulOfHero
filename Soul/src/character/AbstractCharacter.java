@@ -14,6 +14,8 @@ public abstract class AbstractCharacter {
 	private int mp;
 	private int strength;
 	private int defence;
+	private int level = 1;
+	private int gold = 1;
 	private final int code;
 	private static int numCharacters = 0;
 	private static final int MAX_HP = 100;
@@ -28,7 +30,7 @@ public abstract class AbstractCharacter {
 	private Armor armor;
 	private Location location;
 	private SkillBase skillBase;
-
+	
 	public AbstractCharacter(String name, int hp, int mp, int strength, int defence) {
 
 	}
