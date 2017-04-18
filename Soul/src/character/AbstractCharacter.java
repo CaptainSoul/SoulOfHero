@@ -31,11 +31,6 @@ public abstract class AbstractCharacter {
 	private Armor armor;
 	private Location location;
 	private SkillBase skillBase;
-<<<<<<< HEAD
-	
-	public AbstractCharacter(String name, int hp, int mp, int strength, int defence) {
-
-=======
 
 	public AbstractCharacter(String n, int h, int m, int s, int d) {
 		name = n;
@@ -45,7 +40,6 @@ public abstract class AbstractCharacter {
 		defence = d;
 		code = Code.getCode(this);
 		numCharacters++;
->>>>>>> 010b0ba9615ece303b5bc8c141f6a38e0f5b8e1e
 	}
 
 	public String getName() {
