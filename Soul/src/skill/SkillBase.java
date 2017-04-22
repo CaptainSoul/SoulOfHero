@@ -5,10 +5,10 @@ import dsa.impl.BSTMap;
 
 public class SkillBase {
 
-	private BSTMap<Integer, Skill> skills;
+	private BSTMap<String, Skill> skills;
 
 	public SkillBase(){
-		 skills = new BSTMap<Integer, Skill>();
+		 skills = new BSTMap<String, Skill>();
 	}
 	
 	public int getNumSkill() {
@@ -16,15 +16,15 @@ public class SkillBase {
 	}
 	
 	public void addSkill(Skill skill) {
-		skills.put(skill.getCode(), skill);
+		skills.put(skill.getName(), skill);
 	}
 
-	public Skill findSkill(int code) {
-		return skills.get(code);
+	public Skill findSkill(String name) {
+		return skills.get(name);
 	}
 
-	public Skill removeSkill(int code) {
-		return skills.remove(code);
+	public Skill removeSkill(String name) {
+		return skills.remove(name);
 	}
 
 	public String toString() {
