@@ -5,16 +5,17 @@ import dsa.impl.BSTMap;
 
 public class SkillBase {
 
-	private int numSkills;
-
 	private BSTMap<Integer, Skill> skills;
 
 	public SkillBase(){
 		 skills = new BSTMap<Integer, Skill>();
 	}
 	
+	public int getNumSkill() {
+		return skills.size();
+	}
+	
 	public void addSkill(Skill skill) {
-		numSkills++;
 		skills.put(skill.getCode(), skill);
 	}
 

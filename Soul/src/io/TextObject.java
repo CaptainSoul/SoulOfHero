@@ -1,8 +1,9 @@
-package UI;
+package io;
 
 import com.sun.javafx.tk.FontMetrics;
 import com.sun.javafx.tk.Toolkit;
 
+import UI.BaseObject;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
@@ -40,7 +41,7 @@ public class TextObject extends BaseObject {
 	
 	@Override
 	public boolean isCollisionWith(double x, double y) {
-		if(x > getX() && y > getY() - getHeight() && x < getWidth() && y < getY() - getHeight() + getHeight()) {
+		if(x > getX() && y > getY() - getHeight() && x < getX() + getWidth() && y < getY() - getHeight() + getHeight()) {
 			return true;
 		}
 		return false;

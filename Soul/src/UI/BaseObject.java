@@ -10,6 +10,24 @@ public abstract class BaseObject {
 	public abstract void draw(GraphicsContext gContext);
 	public abstract void update();
 	
+	public void moveX(double x) {
+		setX(getX() + x);
+	}
+	
+	public void moveY(double y) {
+		setY(getY() + y);
+	}
+	
+	public void move(double x, double y) {
+		moveX(x);
+		moveY(y);
+	}
+	
+	public void setXY(double x, double y) {
+		setX(x);
+		setY(y);
+	}
+	
 	public double getX() {
 		return x;
 	}

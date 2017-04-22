@@ -5,7 +5,6 @@ import dsa.impl.BSTMap;
 public class UserManagement {
 	private static BSTMap<String, User> users = new BSTMap<String, User>();
 	
-	
 	public static boolean checkPassword(String ID, String password) {
 		User user = users.get(ID);
 		if(user == null) {

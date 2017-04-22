@@ -9,6 +9,10 @@ public class Inventory {
 
 	private BSTMap<Integer, Item> items;
 
+	public Inventory() {
+		this(20);
+	}
+	
 	public Inventory(int maxItem) {
 		this.maxItem = maxItem;
 		items = new BSTMap<Integer, Item>();
