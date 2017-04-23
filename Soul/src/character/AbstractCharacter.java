@@ -5,9 +5,9 @@ import inventory.Weapon;
 
 import java.util.Random;
 
+import UI.fight.FightObject;
 import archive.Code;
 import inventory.Armor;
-import map.Location;
 import skill.Skill;
 import skill.SkillBase;
 import inventory.Food;

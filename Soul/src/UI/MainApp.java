@@ -1,9 +1,9 @@
 package UI;
 
+import UI.fight.FightCanvas;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import map.MapCanvas;
 
 public class MainApp extends Application {
 	public static String mainViewID = "MainView";
@@ -22,7 +22,7 @@ public class MainApp extends Application {
 			stageController = new StageController();
 			stageController.setPrimaryStage("primaryStage", primaryStage);
 			stageController.loadStage(loginViewID, loginViewRes, StageStyle.UNDECORATED);
-			stageController.addStage(mapViewID, MapCanvas.mapStage());
+			stageController.addStage(mapViewID, FightCanvas.mapStage());
 			stageController.setStage(loginViewID);
 		} catch(Exception e) {
 			e.printStackTrace();

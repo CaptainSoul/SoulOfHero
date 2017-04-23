@@ -1,4 +1,4 @@
-package map;
+package UI.fight;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,9 +15,10 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import map.Map;
 import utils.InitCharacter;
 
-public class MapCanvas extends Canvas {
+public class FightCanvas extends Canvas {
 	private Map map;
 	private GraphicsContext gContext;
 	private Image imageMap;
@@ -58,7 +59,7 @@ public class MapCanvas extends Canvas {
 		
 	});
 	
-	public MapCanvas(double width, double height) {
+	public FightCanvas(double width, double height) {
 		super(width, height);
 		imageMap = new Image(getClass().getResourceAsStream("map0.png"));
 		gContext = getGraphicsContext2D();
@@ -96,7 +97,7 @@ public class MapCanvas extends Canvas {
 		for(int i = 0; i < locations.length; i++) {
 			NPC npc = new NPC("npcA");
 			npc.setImage(enemyImage1);
-			npc.setXY(locations[i][0] * MapCanvas.tileWidth, locations[i][1] * MapCanvas.tileHeight);
+			npc.setXY(locations[i][0] * FightCanvas.tileWidth, locations[i][1] * FightCanvas.tileHeight);
 			enemys.add(npc);
 		}
 	}
@@ -105,7 +106,7 @@ public class MapCanvas extends Canvas {
 		Stage stage = new Stage();
 		AnchorPane root = new AnchorPane();
 		Scene scene = new Scene(root, 640, 480);
-		MapCanvas mapCanvas = new MapCanvas(640, 480);
+		FightCanvas mapCanvas = new FightCanvas(640, 480);
 		root.getChildren().add(mapCanvas);
 		stage.setScene(scene);
 		return stage;

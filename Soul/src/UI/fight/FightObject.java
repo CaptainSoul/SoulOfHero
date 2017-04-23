@@ -1,12 +1,12 @@
-package character;
+package UI.fight;
 
 import java.util.List;
 
 import UI.BaseObject;
+import character.AbstractCharacter;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
-import map.MapCanvas;
 
 public class FightObject extends BaseObject {
 	private Image image;
@@ -27,8 +27,8 @@ public class FightObject extends BaseObject {
 
 	public void setImage(Image image) {
 		this.image = image;
-		setWidth(MapCanvas.tileWidth);
-		setHeight(MapCanvas.tileHeight);
+		setWidth(FightCanvas.tileWidth);
+		setHeight(FightCanvas.tileHeight);
 	}
 	
 	public void draw(GraphicsContext gc) {
