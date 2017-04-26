@@ -25,6 +25,7 @@ public class Sprite extends FightObject {
 	private int exp;
 	private int level;
 	private int gold;
+	private int move;
 	private Random random = new Random();
 
 	private final int code;
@@ -34,14 +35,15 @@ public class Sprite extends FightObject {
 	private static final int MAX_HP = 100;
 	private static final int MIN_HP = 0;
 	private static final int MAX_MP = 100;
-	private static final int MIN_MP = 0;
+//	private static final int MIN_MP = 0;
 	private static final int MIN_DAMAGE = 0;
-	private static final int MIN_HEAL = 0;
+//	private static final int MIN_HEAL = 0;
 
 	private Inventory inventory;
 	private Weapon weapon;
 	private Armor armor;
 	private SkillBase skillBase;
+
 
 	public Sprite(String name) {
 		this(name, 100, 100, 70, 15);
@@ -57,6 +59,7 @@ public class Sprite extends FightObject {
 		this.exp = 0;
 		this.level = 1;
 		this.gold = 1;
+		this.move = 4;
 		inventory = new Inventory();
 		weapon = new Weapon();
 		armor = new Armor();
@@ -84,8 +87,8 @@ public class Sprite extends FightObject {
 	public void levelUp() {
 		hp = MAX_HP;
 		mp = MAX_MP;
-		strength += random.nextInt(5);
-		defence += random.nextInt(3);
+		strength += random.nextInt(40);
+		defence += random.nextInt(10);
 		level++;
 		max_exp += level * 50;
 	}
@@ -144,6 +147,14 @@ public class Sprite extends FightObject {
 	
 	public int getGold() {
 		return gold;
+	}
+	
+	public int getMove() {
+		return move;
+	}
+	
+	public void setMove(int move) {
+		this.move = move;
 	}
 	
 	public Skill getSkill(String skillName) {

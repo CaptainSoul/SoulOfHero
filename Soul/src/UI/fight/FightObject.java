@@ -1,9 +1,13 @@
 package UI.fight;
 
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 import UI.BaseObject;
 import character.Sprite;
+import dsa.impl.Point2D;
+import dsa.impl.WNode;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
@@ -19,7 +23,8 @@ public class FightObject extends BaseObject {
 	
 	private int flashCount = 10;
 	private int startCount = 10;
-	private boolean isFlash = false;
+	private boolean isFlash = false;	
+	public LinkedList<WNode> nodeList;
 	
 	public Image getImage() {
 		return image;
@@ -33,30 +38,71 @@ public class FightObject extends BaseObject {
 	
 	public void draw(GraphicsContext gc) {
 		gc.save();
-		if(image != null) {
-			if(isCanAction) {
-				if(isFlash) {
-					if(startCount < flashCount) {
+		if (image != null) {
+			if (isCanAction) {
+				if (isFlash) {
+					if (startCount < flashCount) {
 						gc.setGlobalAlpha(0.3f);
 						gc.setFill(Color.RED);
 						gc.fillRect(getX(), getY(), width, height);
+						startCount ++ ;
 					} else {
 						startCount = 0;
 						isFlash = false;
 					}
 				}
 				gc.setGlobalAlpha(1.0f);
-				gc.drawImage(image, x, y, width, height);
+				gc.drawImage(image, x, y, 32, 32);
 			} else {
 				gc.setGlobalAlpha(0.5f);
-				gc.drawImage(image, x, y, width, height);
+				gc.drawImage(image, x, y, 32, 32);
 			}
 			gc.setGlobalAlpha(1.5f);
-			if(isChoose) {
+			if (isChoose) {
 				gc.strokeRect(x, y, 32, 32);
+				if (nodeList != null && isWaitToMove) {
+					for (Iterator<WNode> node = nodeList.iterator(); node.hasNext();) {
+						WNode wNode = node.next();
+						int drawX = (int) (wNode.getPoint().getX() * width);
+						int drawY = (int) (wNode.getPoint().getY() * height);
+						if (!(drawX == getX() && drawY == getY())) {
+							gc.setGlobalAlpha(0.5f);
+							gc.fillRect(drawX, drawY, width, height);
+						}
+					}
+				}
+				if (isWaitToAttack) {
+					int nodeX = (int) (getX() / width);
+					int nodeY = (int) (getY() / height);
+					gc.setFill(Color.RED);
+					gc.setGlobalAlpha(0.5f);
+					gc.fillRect((nodeX - 1) * width, nodeY * height, width, height);
+					gc.fillRect((nodeX + 1) * width, nodeY * height, width, height);
+					gc.fillRect(nodeX * width, (nodeY - 1) * height, width, height);
+					gc.fillRect(nodeX * width, (nodeY + 1) * height, width, height);
+				}
 			}
 		}
 		gc.restore();
+	}
+
+	/**
+	 * 寻找离自己最近的节点
+	 * 
+	 * @param nodes
+	 *            节点链表
+	 * @return 最近的节点
+	 */
+	public Point2D getNearestNode(LinkedList<WNode> nodes) {
+		Point2D basePoint = new Point2D(x, y);
+		for (int i = 0; i < nodes.size(); i++) {
+			WNode node = nodes.get(i);
+			if (Math.abs(getX() / width - basePoint.getX()) + Math.abs(getY() / height - basePoint.getY()) > Math
+					.abs(getX() / width - node.getPoint().getX()) + Math.abs(getY() / height - node.getPoint().getY())) {
+				basePoint = node.getPoint();
+			}
+		}
+		return basePoint;
 	}
 	
 	public void flash() {

@@ -17,9 +17,9 @@ public class SpriteUI extends Parent {
 	private int width;
 	private int height;
 	private int index = 0;
-	private int indexDiv = 4;
+	private int indexDiv = 3;
 	private ImageView mImageView;
-	private int speed = 6;
+	private int speed = 8;
 	private int column = 4;
 
 	
@@ -34,6 +34,13 @@ public class SpriteUI extends Parent {
 		mImageView.setLayoutX(x);
 		mImageView.setLayoutY(y);
 		getChildren().add(mImageView);
+	}
+	
+	public boolean isCollisionWith(double x, double y) {
+		if (x > mImageView.getLayoutX() && y > mImageView.getLayoutY() && x < mImageView.getLayoutX() + getWidth() && y < mImageView.getLayoutX() + getHeight()) {
+			return true;
+		}
+		return false;
 	}
 
 	public void moveDown() {

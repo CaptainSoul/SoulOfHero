@@ -4,6 +4,8 @@ import UI.common.GamePanel;
 import UI.fight.FightCanvas;
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -22,6 +24,9 @@ public class MainApp extends Application {
 	private StageController stageController;
 	private boolean isRunning = true;
 	private long sleep = 100;
+	private String url = getClass().getResource("Lilliput.mp3").toString();
+	private Media media = new Media(url);
+	private MediaPlayer player = new MediaPlayer(media);
 	
 	private Thread thread = new Thread(new Runnable() {
 
@@ -48,18 +53,30 @@ public class MainApp extends Application {
 	
 	public void update() {
 		if(loginView) {
+			player.play();
 			stageController.loadStage(loginViewID, loginViewRes, StageStyle.DECORATED);
 			stageController.setStage(loginViewID);
 			loginView = false;
 		} else if(mainView) {
+			loadMusic("Can't Take My Eyes Off You.mp3");
 			stageController.addStage(mainViewID, GamePanel.MainStage());
 			stageController.setStage(mainViewID);
 			mainView = false;
 		} else if(fightView) {
-			stageController.addStage(fightViewID, FightCanvas.mapStage());
+			loadMusic("The General's Order.mp3");
+			stageController.addStage(fightViewID, FightCanvas.fightStage());
 			stageController.setStage(fightViewID);
 			fightView = false;
 		}
+		
+	}
+	
+	public void loadMusic(String name) {
+		player.stop();
+		url = getClass().getResource(name).toString();
+		media = new Media(url);
+		player = new MediaPlayer(media);
+		player.play();
 	}
 	
 	@Override
@@ -68,6 +85,9 @@ public class MainApp extends Application {
 			stageController = new StageController();
 			stageController.setPrimaryStage("primaryStage", primaryStage);
 			loginView = true;
+
+			player.setAutoPlay(true);
+			player.setCycleCount(20);
 			thread.start();
 		} catch(Exception e) {
 			e.printStackTrace();

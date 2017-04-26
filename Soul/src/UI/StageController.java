@@ -75,7 +75,7 @@ public class StageController {
 			System.out.println("there is not a stage called " + name + ", please check the name");
 			return false;
 		} else {
-			System.out.print("Close success");
+			System.out.println("Close success");
 			return true;
 		}
 	}
