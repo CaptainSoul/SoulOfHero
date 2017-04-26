@@ -10,7 +10,7 @@
 
 	<padding><Insets top="25" right="25" bottom="10" left="25"/></padding>
 	
-	<Text id = "welcome_text" text = "Welcome"
+	<Text id = "welcome_text" text = "Soul of Hero"
 		GridPane.columnIndex = "0" GridPane.rowIndex = "0"
 		GridPane.columnSpan = "2" />
 		

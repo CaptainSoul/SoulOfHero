@@ -41,6 +41,8 @@ public class StageController {
 			for(StageStyle style: styles) {
 				tempStage.initStyle(style);
 			}
+			tempStage.setWidth(640);
+			tempStage.setHeight(480);
 			
 			this.addStage(name, tempStage);
 			

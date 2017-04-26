@@ -3,9 +3,7 @@ package UI.common;
 import java.util.ArrayList;
 import java.util.List;
 
-import UI.fight.FightCanvas;
 import character.Sprite;
-import io.ActionMenu;
 import io.PropertyMenu;
 import javafx.application.Platform;
 import javafx.scene.Scene;
@@ -15,7 +13,6 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import map.Map;
-import utils.InitCharacter;
 
 public class MainCanvas extends Canvas {
 	private Map map;
@@ -26,11 +23,9 @@ public class MainCanvas extends Canvas {
 	
 	private List<Sprite> players = new ArrayList<>();
 	private List<Sprite> enemys = new ArrayList<>();
-	private InitCharacter initCharacter = new InitCharacter();
 	private boolean isRunning = true;
 	private long sleep = 100;
-	
-	private ActionMenu actionMenu;
+
 	private PropertyMenu propertyMenu;
 	
 	private Thread thread = new Thread(new Runnable() {
@@ -63,21 +58,8 @@ public class MainCanvas extends Canvas {
 		imageMap = new Image(getClass().getResourceAsStream("map0.png"));
 		gContext = getGraphicsContext2D();
 		map = new Map(tileWidth, tileHeight, imageMap);
-		initCharacter.initPlayers(players);
-		initCharacter.initEnemy(enemys);
-		
-		actionMenu = new ActionMenu(new String[] {"move", "attack", "wait"}, 50, 100);
-		actionMenu.setXY(120, 50);
-		actionMenu.setOnMenuItemClickListener(index ->{
-			System.out.println("you click: " + index);
-		});
-		
 		propertyMenu = new PropertyMenu(120, 215);
-		propertyMenu.initPlayer(players.get(0));
-		
-		setOnMousePressed(e ->{
-			actionMenu.onMousePressed(e);
-		});
+//		propertyMenu.initPlayer(players.get(0));
 		
 		thread.start();
 	}
@@ -86,8 +68,8 @@ public class MainCanvas extends Canvas {
 		Stage stage = new Stage();
 		AnchorPane root = new AnchorPane();
 		Scene scene = new Scene(root, 640, 480);
-		FightCanvas mapCanvas = new FightCanvas(640, 480);
-		root.getChildren().add(mapCanvas);
+		MainCanvas mainCanvas = new MainCanvas(640, 480);
+		root.getChildren().add(mainCanvas);
 		stage.setScene(scene);
 		return stage;
 	}
@@ -95,7 +77,6 @@ public class MainCanvas extends Canvas {
 	public void draw() {
 		map.drawMap(gContext);
 		drawCharacter();
-		actionMenu.draw(gContext);
 		propertyMenu.draw(gContext);
 	}
 	
