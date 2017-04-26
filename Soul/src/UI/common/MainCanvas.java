@@ -4,9 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import UI.fight.FightCanvas;
-import character.AbstractCharacter;
-import character.NPC;
-import character.Player;
+import character.Sprite;
 import io.ActionMenu;
 import io.PropertyMenu;
 import javafx.application.Platform;
@@ -26,8 +24,8 @@ public class MainCanvas extends Canvas {
 	public static final int tileWidth = 32;
 	public static final int tileHeight = 32;
 	
-	private List<AbstractCharacter> players = new ArrayList<>();
-	private List<AbstractCharacter> enemys = new ArrayList<>();
+	private List<Sprite> players = new ArrayList<>();
+	private List<Sprite> enemys = new ArrayList<>();
 	private InitCharacter initCharacter = new InitCharacter();
 	private boolean isRunning = true;
 	private long sleep = 100;
@@ -84,25 +82,6 @@ public class MainCanvas extends Canvas {
 		thread.start();
 	}
 	
-	public void initPlayers() {
-		Image playerImage1 = new Image(getClass().getResourceAsStream("player1.png"));
-		Player player1 =  new Player("player1");
-		player1.setImage(playerImage1);
-		player1.setXY(10 * tileWidth,  8 * tileHeight);
-		players.add(player1);
-	}
-	
-	public void initEnemy() {
-		Image enemyImage1 = new Image(getClass().getResourceAsStream("npc1.png"));
-		int[][] locations = {{3,3}, {3,5}, {5,3}};
-		for(int i = 0; i < locations.length; i++) {
-			NPC npc = new NPC("npcA");
-			npc.setImage(enemyImage1);
-			npc.setXY(locations[i][0] * FightCanvas.tileWidth, locations[i][1] * FightCanvas.tileHeight);
-			enemys.add(npc);
-		}
-	}
-	
 	public static Stage mapStage() {
 		Stage stage = new Stage();
 		AnchorPane root = new AnchorPane();
@@ -125,10 +104,10 @@ public class MainCanvas extends Canvas {
 	}
 	
 	public void drawCharacter() {
-		for(AbstractCharacter player: players) {
+		for(Sprite player: players) {
 			player.draw(gContext);
 		}
-		for(AbstractCharacter enemy: enemys) {
+		for(Sprite enemy: enemys) {
 			enemy.draw(gContext);
 		}
 	}

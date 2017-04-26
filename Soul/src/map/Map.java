@@ -1,14 +1,11 @@
 package map;
 
 import archive.Code;
-import dsa.impl.BSTMap;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
 public class Map {
 	private final int code;
-	private BSTMap<Integer, Location> locationBSTMap;
-	private Exit exit[];
 	private static int numMaps = 0;
 	private int tileWidth;
 	private int tileHeight;
@@ -21,8 +18,6 @@ public class Map {
 		this.tileHeight = tileHeight;
 		this.image = image;
 		cols = (int) (image.getWidth() / tileWidth);
-		locationBSTMap = new BSTMap<Integer, Location>();
-		exit = new Exit[numExit];
 		code = Code.getCode(this);
 		setPrimaryMap();
 	}
@@ -77,13 +72,5 @@ public class Map {
 	
 	public int getNumMaps() {
 		return numMaps;
-	}
-
-	public Location getLocation(int code) {
-		return locationBSTMap.get(code);
-	}
-	
-	public Exit[] getExits() {
-		return exit;
 	}
 }

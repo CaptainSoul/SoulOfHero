@@ -10,6 +10,9 @@ import javafx.stage.StageStyle;
 
 public class StageController {
 	private HashMap<String, Stage> stages = new HashMap<String, Stage>();
+	private Stage lastStage;
+	private String lastStageName;
+	
 	
 	public void addStage(String name, Stage stage) {
 		stages.put(name, stage);
@@ -49,7 +52,13 @@ public class StageController {
 	}
 	
 	public boolean setStage(String name) {
-		this.getStage(name).show();
+		if(lastStage != null) {
+			lastStage.close();
+			unloadStage(lastStageName);
+		}
+		lastStage = this.getStage(name);
+		lastStageName = name;
+		lastStage.show();
 		return true;
 	}
 	

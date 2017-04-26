@@ -12,15 +12,19 @@ import skill.Skill;
 import skill.SkillBase;
 import inventory.Food;
 
-public abstract class AbstractCharacter extends FightObject {
+public class Sprite extends FightObject {
+	public enum Group {
+		PLAYER, COMMON, ENEMY;
+	}
+	private Group group;
 	private String name;
 	private int hp;
 	private int mp;
 	private int strength;
 	private int defence;
-	private int exp = 0;
-	private int level = 1;
-	private int gold = 1;
+	private int exp;
+	private int level;
+	private int gold;
 	private Random random = new Random();
 
 	private final int code;
@@ -37,25 +41,32 @@ public abstract class AbstractCharacter extends FightObject {
 	private Inventory inventory;
 	private Weapon weapon;
 	private Armor armor;
-//	private Location location;
 	private SkillBase skillBase;
 
-	public AbstractCharacter(String name) {
+	public Sprite(String name) {
 		this(name, 100, 100, 70, 15);
 	}
 	
-	public AbstractCharacter(String name, int hp, int mp, int strength, int defence) {
+	public Sprite(String name, int hp, int mp, int strength, int defence) {
 		this.name = name;
 		this.hp = hp;
 		this.mp = mp;
 		this.strength = strength;
 		this.defence = defence;
+		this.group = Group.COMMON;
+		this.exp = 0;
+		this.level = 1;
+		this.gold = 1;
 		inventory = new Inventory();
 		weapon = new Weapon();
 		armor = new Armor();
 		skillBase = new SkillBase();
 		code = Code.getCode(this);
 		numCharacters++;
+	}
+	
+	public void setGroup(Group group) {
+		this.group = group;
 	}
 	
 	public void putExp(int exp) {
@@ -142,12 +153,8 @@ public abstract class AbstractCharacter extends FightObject {
 	public Inventory getInventory() {
 		return inventory;
 	}
-	
-/*	public Location getLocation() {
-		return location;
-	} */
 
-	public void attack(AbstractCharacter target) {
+	public void attack(Sprite target) {
 		// target_hp,defence, AC_strength
 		int damage = strength - target.defence;
 		if ( damage < MIN_DAMAGE ){
@@ -187,6 +194,4 @@ public abstract class AbstractCharacter extends FightObject {
 	public int getMaxMp() {
 		return MAX_MP;
 	}
-
-	public abstract void takeTurn();
 }

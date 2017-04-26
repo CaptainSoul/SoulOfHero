@@ -1,8 +1,7 @@
 package archive;
 
-import character.AbstractCharacter;
+import character.Sprite;
 import inventory.Item;
-import map.Location;
 import map.Map;
 import skill.Skill;
 
@@ -12,12 +11,11 @@ public class Code {
 	private static final int addedAbstractCharacter = 1000000;
 	private static final int addedItem = 1010000;
 	private static final int addedMap = 1020000;
-	private static final int addedLocation = 1030000;
 	private static final int addedUser = 1040000;
 	private static final int addedSkill = 1050000;
 	private static final int addedArchive = 1060000;
 
-	public static int getCode(AbstractCharacter character) {
+	public static int getCode(Sprite character) {
 		return character.getNumCharacters() * scalar + shift + addedAbstractCharacter;
 	}
 	
@@ -27,10 +25,6 @@ public class Code {
 	
 	public static int getCode(Map map) {
 		return map.getNumMaps() * scalar + shift + addedMap;
-	}
-	
-	public static int getCode(Location location) {
-		return location.getNumLocations() * scalar + shift + addedLocation;
 	}
 	
 	public static int getCode(User user) {

@@ -3,7 +3,7 @@ package UI.fight;
 import java.util.ArrayList;
 import java.util.List;
 
-import character.AbstractCharacter;
+import character.Sprite;
 import character.NPC;
 import character.Player;
 import io.ActionMenu;
@@ -25,8 +25,8 @@ public class FightCanvas extends Canvas {
 	public static final int tileWidth = 32;
 	public static final int tileHeight = 32;
 	
-	private List<AbstractCharacter> players = new ArrayList<>();
-	private List<AbstractCharacter> enemys = new ArrayList<>();
+	private List<Sprite> players = new ArrayList<>();
+	private List<Sprite> enemys = new ArrayList<>();
 	private InitCharacter initCharacter = new InitCharacter();
 	private boolean isRunning = true;
 	private long sleep = 100;
@@ -124,10 +124,10 @@ public class FightCanvas extends Canvas {
 	}
 	
 	public void drawCharacter() {
-		for(AbstractCharacter player: players) {
+		for(Sprite player: players) {
 			player.draw(gContext);
 		}
-		for(AbstractCharacter enemy: enemys) {
+		for(Sprite enemy: enemys) {
 			enemy.draw(gContext);
 		}
 	}

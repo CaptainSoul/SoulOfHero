@@ -5,7 +5,7 @@ import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-public class MainClass extends Application {
+public class MainView extends Application {
 	//test sprite
 	@Override
 	public void start(Stage stage) throws Exception {
@@ -19,7 +19,7 @@ public class MainClass extends Application {
 	}
 	
 	public static void main(String[] args) {
-		launch(MainClass.class, args);
+		launch(MainView.class, args);
 	}
 
 }

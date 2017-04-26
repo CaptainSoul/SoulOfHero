@@ -5,7 +5,7 @@ import javafx.scene.Parent;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class Sprite extends Parent {
+public class SpriteUI extends Parent {
 	private enum Direction {
 		Left, Right, Up, Down
 	};
@@ -23,7 +23,7 @@ public class Sprite extends Parent {
 	private int column = 4;
 
 	
-	public Sprite(int x, int y, int width, int height, String url) {
+	public SpriteUI(int x, int y, int width, int height, String url) {
 		this.x = x;
 		this.y = y;
 		this.width = width;

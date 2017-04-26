@@ -1,10 +1,10 @@
 package archive;
 
-import character.Player;
+import character.Sprite;
 
 public class Archive {
 	private String name;
-	private Player player;
+	private Sprite player;
 	private static int numArchives = 0;
 	private final int code;
 	
@@ -25,7 +25,7 @@ public class Archive {
 		return code;
 	}
 	
-	public void save(Player player) {
+	public void save(Sprite player) {
 		this.player = player;
 	}
 	

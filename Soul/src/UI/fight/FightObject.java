@@ -3,7 +3,7 @@ package UI.fight;
 import java.util.List;
 
 import UI.BaseObject;
-import character.AbstractCharacter;
+import character.Sprite;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
@@ -64,10 +64,10 @@ public class FightObject extends BaseObject {
 		startCount = 0;
 	}
 	
-	public boolean isHasNearBP(List<AbstractCharacter> players) {
+	public boolean isHasNearBP(List<Sprite> players) {
 		int mx = (int) (getX() / width);
 		int my = (int) (getY() / height);
-		for (AbstractCharacter bp : players) {
+		for (Sprite bp : players) {
 			int x = (int) (bp.getX() / width);
 			int y = (int) (bp.getY() / height);
 			if ((x == mx && y == my + 1) || (x == mx - 1 && y == my) || (x == mx + 1 && y == my)
@@ -78,10 +78,10 @@ public class FightObject extends BaseObject {
 		return false;
 	}
 	
-	public AbstractCharacter getNearestBP(List<AbstractCharacter> players) {
-		AbstractCharacter basePlayer = players.get(0);
+	public Sprite getNearestBP(List<Sprite> players) {
+		Sprite basePlayer = players.get(0);
 		for (int i = 0; i < players.size(); i++) {
-			AbstractCharacter player = players.get(i);
+			Sprite player = players.get(i);
 			if (Math.abs(getX() - basePlayer.getX()) + Math.abs(getY() - basePlayer.getY()) > Math.abs(getX()
 					- player.getX())
 					+ Math.abs(getY() - player.getY())) {

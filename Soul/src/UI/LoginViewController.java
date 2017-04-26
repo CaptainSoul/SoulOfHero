@@ -23,8 +23,7 @@ public class LoginViewController extends ControlledStage implements Initializabl
 		UserManagement.addUser(user, password);
 		if(UserManagement.checkPassword(user, password)) {	
 			JOptionPane.showMessageDialog(null, "Log In");
-			myController.setStage(MainApp.mapViewID, MainApp.loginViewID);
-			myController.unloadStage(MainApp.loginViewID);
+			MainApp.mainView = true;
 		}
 	}
 

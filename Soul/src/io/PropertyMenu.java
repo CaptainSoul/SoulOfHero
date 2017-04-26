@@ -1,7 +1,7 @@
 package io;
 
 import UI.BaseObject;
-import character.AbstractCharacter;
+import character.Sprite;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
@@ -21,7 +21,7 @@ public class PropertyMenu extends BaseObject {
 		}
 	}
 	
-	public void initPlayer(AbstractCharacter player) {
+	public void initPlayer(Sprite player) {
 		setProperty(textObjects[0], "name", player.getName());
 		setProperty(textObjects[1], "level", String.valueOf(player.getLevel()));
 		setProperty(textObjects[2], "hp", String.valueOf(player.getHp() + "/" + player.getMaxHp()));
