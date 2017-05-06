@@ -6,7 +6,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class MainView extends Application {
-	//test sprite
+	
 	@Override
 	public void start(Stage stage) throws Exception {
 		GamePanel mPanel = new GamePanel();

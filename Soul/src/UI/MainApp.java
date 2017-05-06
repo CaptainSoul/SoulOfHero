@@ -18,6 +18,10 @@ public class MainApp extends Application {
 	public static String loginViewRes = "LoginView.fxml";
 	public static boolean loginView = false;
 	
+	public static String signUpViewID = "SignUpView";
+	public static String signUpViewRes = "SignUpView.fxml";
+	public static boolean signUpView = false;
+	
 	public static String fightViewID = "fightView";
 	public static boolean fightView = false;
 	
@@ -57,6 +61,10 @@ public class MainApp extends Application {
 			stageController.loadStage(loginViewID, loginViewRes, StageStyle.DECORATED);
 			stageController.setStage(loginViewID);
 			loginView = false;
+		} else if(signUpView) {
+			stageController.loadStage(signUpViewID, signUpViewRes, StageStyle.DECORATED);
+			stageController.setStage(signUpViewID);
+			signUpView = false;
 		} else if(mainView) {
 			loadMusic("Can't Take My Eyes Off You.mp3");
 			stageController.addStage(mainViewID, GamePanel.MainStage());

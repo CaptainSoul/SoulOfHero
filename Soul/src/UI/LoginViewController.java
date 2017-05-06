@@ -18,13 +18,23 @@ public class LoginViewController extends ControlledStage implements Initializabl
 	
 	@FXML
 	protected void handleSignInAction(ActionEvent event) {
-		String user = userNameField.getText();
+		String userName = userNameField.getText();
 		String password = passwordField.getText();
-		UserManagement.addUser(user, password);
-		if(UserManagement.checkPassword(user, password)) {	
-			JOptionPane.showMessageDialog(null, "Log In");
+		if(userName == null) {
+			JOptionPane.showMessageDialog(null, "Please enter your ID");
+		} else if(password == null) {
+			JOptionPane.showMessageDialog(null, "Please enter your password");
+		} else if(!UserManagement.isDuplication(userName)) {
+			JOptionPane.showMessageDialog(null, "There is no this ID in database");
+		} else if(UserManagement.checkPassword(userName, password)) {	
+			JOptionPane.showMessageDialog(null, "Login success");
 			MainApp.mainView = true;
 		}
+	}
+	
+	@FXML
+	protected void handleToSignUpAction(ActionEvent event) {
+		MainApp.signUpView = true;
 	}
 
 	@Override
