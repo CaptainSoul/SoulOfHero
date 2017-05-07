@@ -43,6 +43,19 @@ public class Map {
 		gc.drawImage(image, 50, 550, 32, 32);
 	}
 	
+	public void drawMapMain(GraphicsContext gc) {
+		int mapWidth = mapIndex[0].length;
+		int mapHeight = mapIndex.length;
+		for(int y = 0; y < mapHeight; y++) {
+			for(int x = 0; x < mapWidth; x++) {
+			int px = mapIndex[y][x] % cols;
+			int py = mapIndex[y][x] / cols;
+			gc.drawImage(image, px * tileWidth, py * tileHeight, tileWidth, tileHeight, x * tileWidth, y
+				* tileHeight, tileWidth, tileHeight);
+			}
+		}
+	}
+	
 	public int[][] getMapIndex() {
 		return mapIndex;
 	}

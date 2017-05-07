@@ -14,10 +14,6 @@ import javafx.stage.Stage;
 import map.Map;
 
 public class MainCanvas extends Canvas {
-	private enum Status {
-		NONE, SHOW_MENU;
-	}
-	private Status nowStatus = Status.NONE;
 	private Map map;
 	private GraphicsContext gContext;
 	private Image imageMap;
@@ -27,8 +23,8 @@ public class MainCanvas extends Canvas {
 	private long sleep = 100;
 
 	private PropertyMenu propertyMenu;
-	private SpriteUI sprite;
-	private Sprite player;
+	private SpriteUI spriteUI;
+	private Sprite sprite;
 	
 	private Thread thread = new Thread(new Runnable() {
 
@@ -55,35 +51,28 @@ public class MainCanvas extends Canvas {
 		
 	});
 	
-	public MainCanvas(double width, double height) {
+	public MainCanvas(double width, double height, Sprite sprite, SpriteUI spriteUI) {
 		super(width, height);
 		imageMap = new Image(getClass().getResourceAsStream("map2.bmp"));
 		gContext = getGraphicsContext2D();
 		map = new Map(tileWidth, tileHeight, imageMap);
+		this.sprite = sprite;
+		this.spriteUI = spriteUI;
 		propertyMenu = new PropertyMenu(120, 215);
-//		propertyMenu.initPlayer(players.get(0));
+		propertyMenu.initPlayer(sprite);
 		thread.start();
 	}
 	public void setPlayer(Sprite player) {
-		this.player = player;
+		this.sprite = player;
 	}
 	
-	public void setPlayerUI(SpriteUI sprite) {
-		this.sprite = sprite;
-	}
-	
-	public static Stage mapStage() {
-		Stage stage = new Stage();
-		AnchorPane root = new AnchorPane();
-		Scene scene = new Scene(root, 800, 600);
-		MainCanvas mainCanvas = new MainCanvas(800, 600);
-		root.getChildren().add(mainCanvas);
-		stage.setScene(scene);
-		return stage;
+	public void setPlayerUI(SpriteUI spriteUI) {
+		this.spriteUI = spriteUI;
 	}
 	
 	public void draw() {
-		map.drawMap(gContext);
+		map.drawMapMain(gContext);
+		propertyMenu.draw(gContext);
 	}
 	
 	public void update() {

@@ -87,11 +87,11 @@ public class FightObject extends BaseObject {
 	}
 
 	/**
-	 * 寻找离自己最近的节点
+	 * find nearest nodes
 	 * 
 	 * @param nodes
-	 *            节点链表
-	 * @return 最近的节点
+	 *            nodes list
+	 * @return nearest nodes
 	 */
 	public Point2D getNearestNode(LinkedList<WNode> nodes) {
 		Point2D basePoint = new Point2D(x, y);

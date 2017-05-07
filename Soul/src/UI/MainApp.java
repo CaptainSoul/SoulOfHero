@@ -2,6 +2,7 @@ package UI;
 
 import UI.common.GamePanel;
 import UI.fight.FightCanvas;
+import archive.UserManagement;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.media.Media;
@@ -90,6 +91,7 @@ public class MainApp extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
+			UserManagement.addUser("Hero", "123");
 			stageController = new StageController();
 			stageController.setPrimaryStage("primaryStage", primaryStage);
 			loginView = true;

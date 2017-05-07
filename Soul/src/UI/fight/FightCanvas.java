@@ -333,7 +333,7 @@ public class FightCanvas extends Canvas {
 	
 	private void initPlayers() {
 		Image player1Image = new Image(getClass().getResourceAsStream("vx025.png"));
-		Sprite player1 = new Sprite("Yao");
+		Sprite player1 = new Sprite("Wang");
 		player1.setImage(player1Image);
 		player1.putExp(150);
 		player1.setXY(18 * tileWidth, 15 * tileHeight);
@@ -347,16 +347,10 @@ public class FightCanvas extends Canvas {
 		Sprite player3 = new Sprite("Chen");
 		player3.setImage(player3Image);
 		player3.setXY(15 * tileWidth, 15 * tileHeight);
-		
-		Image player4Image = new Image(getClass().getResourceAsStream("vx030.png"));
-		Sprite player4 = new Sprite("Wang");
-		player4.setImage(player4Image);
-		player4.setXY(15 * tileWidth, 12 * tileHeight);
 
 		players.add(player1);
 		players.add(player2);
 		players.add(player3);
-		players.add(player4);
 	}
 
 	private void waitToNextPlayer() {

@@ -12,8 +12,6 @@ public class SpriteUI extends Parent {
 	
 	private Direction direction = Direction.Left;
 	private Direction lastDirection;
-	private int x;
-	private int y;
 	private int width;
 	private int height;
 	private int index = 0;
@@ -24,8 +22,6 @@ public class SpriteUI extends Parent {
 
 	
 	public SpriteUI(int x, int y, int width, int height, String url) {
-		this.x = x;
-		this.y = y;
 		this.width = width;
 		this.height = height;
 		Image actor = new Image(getClass().getResourceAsStream(url));
@@ -103,20 +99,20 @@ public class SpriteUI extends Parent {
 		lastDirection = direction;
 	}
 	
-	public int getX() {
-		return x;
+	public double getX() {
+		return mImageView.getLayoutX();
 	}
 	
-	public void setX(int x) {
-		this.x = x;
+	public void setX(double x) {
+		mImageView.getLayoutX();
 	}
 	
-	public int getY() {
-		return y;
+	public double getY() {
+		return mImageView.getLayoutY();
 	}
 	
-	public void setY(int y) {
-		this.y = y;
+	public void setY(double y) {
+		mImageView.setLayoutY(y);
 	}
 	
 	public int getWidth() {

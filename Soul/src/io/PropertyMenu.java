@@ -30,7 +30,6 @@ public class PropertyMenu extends BaseObject {
 		setProperty(textObjects[5], "defence", String.valueOf(player.getDefence()));
 		setProperty(textObjects[6], "exp", String.valueOf(player.getExp()));
 		setProperty(textObjects[7], "gold", String.valueOf(player.getGold()));
-		
 	}
 	
 	public void setProperty(TextObject textObject, String propertyName, String value) {
@@ -46,7 +45,7 @@ public class PropertyMenu extends BaseObject {
 		gContext.fillRect(x, y, width, height);
 		if(textObjects != null) {
 			for(int i = 0; i < textObjects.length; i++) {
-				textObjects[i].setX((getWidth() - textObjects[i].getWidth()) / 2 + getX());
+				textObjects[i].setX(getX() + (getWidth() - textObjects[i].getWidth()) / 2);
 				textObjects[i].setY(getY() + spaceLine * (i + 1) + textObjects[i].getHeight() * (i+1));
 				textObjects[i].draw(gContext);
 			}

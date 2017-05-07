@@ -27,6 +27,8 @@ public class UserManagement {
 	public static boolean addUser(String ID, String password) {
 		if(users.get(ID) != null) {
 			return false;
+		} else if(isDuplication(ID)) {
+			throw new RuntimeException("Cannot add a duplicative account");
 		}
 		User user = new User(ID, password);
 		users.put(ID, user);

@@ -20,15 +20,15 @@ public class LoginViewController extends ControlledStage implements Initializabl
 	protected void handleSignInAction(ActionEvent event) {
 		String userName = userNameField.getText();
 		String password = passwordField.getText();
-		if(userName == null) {
-			JOptionPane.showMessageDialog(null, "Please enter your ID");
-		} else if(password == null) {
-			JOptionPane.showMessageDialog(null, "Please enter your password");
+		if(userName.equals("") || password.equals("")) {
+			JOptionPane.showMessageDialog(null, "Please enter your ID and password");
 		} else if(!UserManagement.isDuplication(userName)) {
 			JOptionPane.showMessageDialog(null, "There is no this ID in database");
 		} else if(UserManagement.checkPassword(userName, password)) {	
 			JOptionPane.showMessageDialog(null, "Login success");
 			MainApp.mainView = true;
+		} else if(!UserManagement.checkPassword(userName, password)) {
+			JOptionPane.showMessageDialog(null, "Please check your password");
 		}
 	}
 	
