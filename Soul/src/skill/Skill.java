@@ -15,12 +15,12 @@ public class Skill {
 
 	private double damage;
 
-	public Skill(String n, String de, double da) {
-		name = n;
-		description = de;
-		damage = da;
-		numSkills++;
-		code = Code.getCode(this);
+	public Skill(String name, String description, double damage) {
+		this.name = name;
+		this.description = description;
+		this.damage = damage;
+		this.numSkills++;
+		this.code = Code.getCode(this);
 	}
 
 	public String getName() {
