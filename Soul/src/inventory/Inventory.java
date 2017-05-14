@@ -21,6 +21,9 @@ public class Inventory {
 	public void addItem(Item item) {
 		if(items.size() < maxItem)
 			items.put(item.getCode(), item);
+		else{
+			System.out.println("Full Inventory!");
+		}
 	}
 
 	public Item findItem(int code) {
@@ -32,7 +35,7 @@ public class Inventory {
 	}
 
 	public Weapon getWeapon(int code) {
-		Item toReturn = items.get(code);
+		Item toReturn = findItem(code);
 		if(toReturn instanceof Weapon)
 			return (Weapon) toReturn;
 		else
@@ -40,7 +43,7 @@ public class Inventory {
 	}
 
 	public Food getFood(int code) {
-		Item toReturn = items.get(code);
+		Item toReturn = findItem(code);
 		if(toReturn instanceof Food)
 			return (Food) toReturn;
 		else
@@ -48,7 +51,7 @@ public class Inventory {
 	}
 
 	public Armor getArmor(int code) {
-		Item toReturn = items.get(code);
+		Item toReturn = findItem(code);
 		if(toReturn instanceof Armor)
 			return (Armor) toReturn;
 		else

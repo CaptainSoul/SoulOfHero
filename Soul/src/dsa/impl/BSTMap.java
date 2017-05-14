@@ -75,6 +75,7 @@ public class BSTMap<K, V> implements IMap<K, V> {
 		IEntry<K, V> temp = new BSTEntry(k, v);
 		if(tree.isExternal(position)) {
 			tree.expandExternal(position, temp);
+			size++;
 			return v;
 		} else {
 			V toReturn = position.element().value();
@@ -89,6 +90,7 @@ public class BSTMap<K, V> implements IMap<K, V> {
 			INode<IEntry<K, V>> next = tree.parent(find(tree.right(position), position.element().key()));
 			tree.replace(position, next.element());
 			IEntry<K, V> removed = tree.remove(next);
+			size--;
 			return removed.value();
 		} else if(tree.isExternal(position)) {
 			throw new RuntimeException("cannot remove an external.");
