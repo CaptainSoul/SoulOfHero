@@ -2,6 +2,7 @@ package UI.common;
 
 import UI.MainApp;
 import character.Sprite;
+import inventory.Inventory;
 import javafx.event.EventHandler;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -27,6 +28,7 @@ public class GamePanel extends Parent {
 		getChildren().add(canvas);
         spriteUI = new SpriteUI(600, 180, SPRITE_WIDTH, SPRITE_HEIGHT, "xpchar51.png");
         getChildren().add(spriteUI);
+        
         getScene().setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
