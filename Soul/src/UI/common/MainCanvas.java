@@ -25,6 +25,7 @@ public class MainCanvas extends Canvas {
 	private PropertyMenu propertyMenu;
 	private SpriteUI spriteUI;
 	private Sprite sprite;
+	private String mapData0 = "./resource/data/map/map0.txt";
 	
 	private Thread thread = new Thread(new Runnable() {
 
@@ -53,9 +54,9 @@ public class MainCanvas extends Canvas {
 	
 	public MainCanvas(double width, double height, Sprite sprite, SpriteUI spriteUI) {
 		super(width, height);
-		imageMap = new Image(getClass().getResourceAsStream("map2.bmp"));
+		imageMap = new Image(getClass().getResourceAsStream("043-Cave01.png"));
 		gContext = getGraphicsContext2D();
-		map = new Map(tileWidth, tileHeight, imageMap);
+		map = new Map(tileWidth, tileHeight, imageMap, mapData0);
 		this.sprite = sprite;
 		this.spriteUI = spriteUI;
 		propertyMenu = new PropertyMenu(120, 215);
