@@ -1,18 +1,25 @@
 package UI.common;
 
 import javafx.application.Application;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -58,11 +65,47 @@ public class InventoryUI extends Application {
 	       hbBtn.setAlignment(Pos.BOTTOM_RIGHT);
 	       hbBtn.getChildren().add(btn);//将按钮控件作为子节点
 	       grid.add(hbBtn, 1, 4);//将HBox pane放到grid中的第1列，第4行
+	       
+	       final Text actiontarget=new Text();//增加用于显示信息的文本
+	       grid.add(actiontarget, 1, 6);
 
-	       Scene scene = new Scene(grid, 300, 275);
+	       btn.setOnAction(new EventHandler<ActionEvent>() {//注册事件handler
+	           @Override
+	           public void handle(ActionEvent e) {
+	               actiontarget.setFill(Color.CHOCOLATE);//将文字颜色变成 firebrick red
+	               actiontarget.setText("Sign in button pressed");
+	           }
+	        });
+	       
+		//一个空Label
+		Label label1 = new Label();
+		//一个带文本元素的Label
+		Label label2 = new Label("Search");
+		//一个带文本和图标的Label
+		//Image image = new Image(getClass().getResourceAsStream("labels.jpg"));
+		//Label label3 = new Label("Search", new ImageView(image));
+		//使用Font类的构造函数来构造Font对象
+		label1.setFont(new Font("Arial", 30));
+		//使用Font类的font静态方法
+		label2.setFont(Font.font("Cambria", 32));
+		label2.setRotate(270);
+		label2.setTranslateY(50);
+		Label label4 = new Label("A label that needs to be wrapped");
+		label4.setWrapText(true);
+		label1.setOnMouseEntered((MouseEvent e) -> {
+		    label1.setScaleX(1.5);
+		    label1.setScaleY(1.5);
+		});
+
+		label1.setOnMouseExited((MouseEvent e) -> {
+		    label1.setScaleX(1);
+		    label1.setScaleY(1);
+		});
+		grid.add(label1, 2, 2);
+	      
+	       Scene scene = new Scene(grid, 300, 500);
 	       primaryStage.setScene(scene);
 	       primaryStage.show();
-  
 	}
 
 }
