@@ -87,8 +87,8 @@ public class Sprite extends FightObject {
 	public void levelUp() {
 		hp = MAX_HP;
 		mp = MAX_MP;
-		strength += random.nextInt(24);
-		defence += random.nextInt(24);
+		strength += random.nextInt(40);
+		defence += random.nextInt(10);
 		level++;
 		max_exp += level * 50;
 	}
@@ -138,11 +138,11 @@ public class Sprite extends FightObject {
 	}
 	
 	public int getAttack() {
-		return (strength + weapon.getStrength());
+		return strength + weapon.getStrength();
 	}
 	
 	public int getDefence() {
-		return (defence + armor.getDefence());
+		return defence + armor.getDefence();
 	}
 	
 	public int getGold() {
@@ -167,9 +167,9 @@ public class Sprite extends FightObject {
 
 	public void attack(Sprite target) {
 		// target_hp,defence, AC_strength
-		int damage = strength + weapon.getStrength() - target.defence - target.armor.getDefence();
+		int damage = strength - target.defence;
 		if ( damage < MIN_DAMAGE ){
-			damage = 1;
+			damage = MIN_DAMAGE;
 		}
 		target.hp = target.hp - damage;
 		//System.out.println("Character "+name+" attacks "+"Character "+target.name++" ! ");

@@ -6,8 +6,8 @@ import map.Map;
 import skill.Skill;
 
 public class Code {
-	private static final int scalar = 114;
-	private static final int shift = 514;
+	private static final int scalar = 71;
+	private static final int shift = 7;
 	private static final int addedAbstractCharacter = 1000000;
 	private static final int addedItem = 1010000;
 	private static final int addedMap = 1020000;

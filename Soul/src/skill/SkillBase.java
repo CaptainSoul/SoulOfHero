@@ -4,14 +4,10 @@ import dsa.iface.IIterator;
 import dsa.impl.BSTMap;
 
 public class SkillBase {
-	private int maxItem;
+
 	private BSTMap<String, Skill> skills;
-	
-	public SkillBase() {
-		this(5);
-	}
-	public SkillBase(int maxItem){
-		this.maxItem = maxItem;
+
+	public SkillBase(){
 		 skills = new BSTMap<String, Skill>();
 	}
 	

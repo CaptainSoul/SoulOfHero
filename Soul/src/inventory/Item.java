@@ -36,7 +36,7 @@ public class Item {
 	}
 
 	public boolean equals(Item item) {
-		if( this.code == item.getCode() ) {
+		if(name.equals(item.getName()) && description.equals(item.getDescription())) {
 			return true;
 		}
 		return false;
