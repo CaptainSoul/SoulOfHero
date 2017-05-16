@@ -7,7 +7,7 @@ import character.Sprite;
 public class Board {
         private int boardWidth;
 		private int boardHeight;
-		private int boardgroundAlpha;
+        private int boardgroundAlpha;
         private boolean isDraging = false;
         private String title;
         private boolean dragable;
@@ -31,9 +31,8 @@ public class Board {
         	
         }
         
-        //----------------------我是分割线，你可以叫我老分-----------------------------//               
- 
-        
+
+//----------------------我是分割线，你可以叫我老分-----------------------------//
 //----------------------下面开始是读写器-----------------------------//                
         public int getBoardWidth() {
  			return boardWidth;
@@ -50,11 +49,11 @@ public class Board {
  		public void setBoardHeight(int boardHeight) {
  			this.boardHeight = boardHeight;
  		}
- 		
+
  		public int getBoardgroundAlpha() {
- 			 	return boardgroundAlpha;
+ 			return boardgroundAlpha;
  		}
- 		
+
  		public void setBoardgroundAlpha(int boardgroundAlpha) {
  			this.boardgroundAlpha = boardgroundAlpha;
  		}
@@ -63,7 +62,6 @@ public class Board {
  			return title;
  		}
 
- 		
  		public void setTitle(String title) {
  			this.title = title;
  		}
