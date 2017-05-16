@@ -1,14 +1,15 @@
 package skill;
 
 import dsa.iface.IIterator;
-import dsa.impl.BSTMap;
+import dsa.iface.INode;
+import dsa.impl.SLinkedList;
 
 public class SkillBase {
 
-	private BSTMap<String, Skill> skills;
+	private SLinkedList<Skill> skills;
 
 	public SkillBase(){
-		 skills = new BSTMap<String, Skill>();
+		 skills = new SLinkedList<>();
 	}
 	
 	public int getNumSkill() {
@@ -16,19 +17,31 @@ public class SkillBase {
 	}
 	
 	public void addSkill(Skill skill) {
-		skills.put(skill.getName(), skill);
+		if(skills.first() == null)
+			skills.insertLast(skill);
+		else
+			skills.insertAfter(skills.last(), skill);
 	}
 
-	public Skill findSkill(String name) {
-		return skills.get(name);
+	public Skill findSkill(int code) {
+		IIterator<Skill> iterator = skills.iterator();
+		Skill skill = iterator.next();
+		while(iterator.hasNext() && code != skill.getCode()) {
+			skill = iterator.next();
+		}
+		return skill;
 	}
 
 	public Skill removeSkill(String name) {
-		return skills.remove(name);
+		INode<Skill> node = skills.first();
+		while(skills.next(node) != null) {
+			node = skills.next(node);
+		}
+		return skills.remove(node);
 	}
 
 	public String toString() {
-		IIterator<Skill> iterator = skills.values();
+		IIterator<Skill> iterator = skills.iterator();
 		String toReturn = "";
 		while(iterator.hasNext()) {
 			toReturn += iterator.next().toString();

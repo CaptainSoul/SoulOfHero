@@ -2,12 +2,13 @@ package inventory;
 
 import archive.Code;
 import dsa.iface.IIterator;
-import dsa.impl.BSTMap;
+import dsa.iface.INode;
+import dsa.impl.SLinkedList;
 
 public class Inventory {
 
 	private int maxItem;
-	private BSTMap<Integer, Item> items;
+	private SLinkedList<Item> items;
 	private static int numInventories = 0;
 	private final int code;
 
@@ -17,7 +18,7 @@ public class Inventory {
 	
 	public Inventory(int maxItem) {
 		this.maxItem = maxItem;
-		items = new BSTMap<Integer, Item>();
+		items = new SLinkedList<>();
 		numInventories++;
 		code = Code.getCode(this);
 	}
@@ -27,20 +28,33 @@ public class Inventory {
 	}
 
 	public void addItem(Item item) {
-		if(items.size() < maxItem)
-			items.put(item.getCode(), item);
+		if(items.size() >= maxItem)
+			throw new RuntimeException("cannot add item");
+		if(items.first() == null)
+			items.insertLast(item);
+		else
+			items.insertAfter(items.last(), item);
 	}
 
 	public Item findItem(int code) {
-		return items.get(code);
+		IIterator<Item> iterator = items.iterator();
+		Item item = iterator.next();
+		while(iterator.hasNext() && code != item.getCode()) {
+			item = iterator.next();
+		}
+		return item;
 	}
 
 	public Item removeItem(int code) {
-		return items.remove(code);
+		INode<Item> node = items.first();
+		while(items.next(node) != null) {
+			node = items.next(node);
+		}
+		return items.remove(node);
 	}
 
 	public Weapon getWeapon(int code) {
-		Item toReturn = items.get(code);
+		Item toReturn = findItem(code);
 		if(toReturn instanceof Weapon)
 			return (Weapon) toReturn;
 		else
@@ -48,7 +62,7 @@ public class Inventory {
 	}
 
 	public Food getFood(int code) {
-		Item toReturn = items.get(code);
+		Item toReturn = findItem(code);
 		if(toReturn instanceof Food)
 			return (Food) toReturn;
 		else
@@ -56,7 +70,7 @@ public class Inventory {
 	}
 
 	public Armor getArmor(int code) {
-		Item toReturn = items.get(code);
+		Item toReturn = findItem(code);
 		if(toReturn instanceof Armor)
 			return (Armor) toReturn;
 		else
@@ -68,7 +82,7 @@ public class Inventory {
 	}
 	
 	public String toString() {
-		IIterator<Item> iterator = items.values();
+		IIterator<Item> iterator = items.iterator();
 		String toReturn = "";
 		while(iterator.hasNext()) {
 			toReturn += iterator.next().toString();

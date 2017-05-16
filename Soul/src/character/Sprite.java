@@ -157,8 +157,8 @@ public class Sprite extends FightObject {
 		this.move = move;
 	}
 	
-	public Skill getSkill(String skillName) {
-		return skillBase.findSkill(skillName);
+	public Skill getSkill(int skillCode) {
+		return skillBase.findSkill(skillCode);
 	}
 	
 	public Inventory getInventory() {
