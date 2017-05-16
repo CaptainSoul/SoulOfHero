@@ -5,7 +5,7 @@ public class Weapon extends Item {
 	private int strength;
 
 	public Weapon() {
-		this("sword", "a common sword", 19);
+		this("sword", "a common sword", 15);
 	}
 	
 	public Weapon(String name, String description, int strength) {
