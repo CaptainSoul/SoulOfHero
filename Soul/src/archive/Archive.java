@@ -11,6 +11,7 @@ public class Archive {
 	public Archive(String name) {
 		this.name = name;
 		code = Code.getCode(this);
+		numArchives++;
 	}
 	
 	public String getName() {
