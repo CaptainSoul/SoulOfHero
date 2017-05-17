@@ -1,19 +1,18 @@
 package UI.common;
 
 import character.Sprite;
+import dsa.iface.IIterator;
+import dsa.iface.INode;
+import dsa.impl.SLinkedList;
 import io.PropertyMenu;
 import javafx.application.Platform;
-import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import javafx.scene.input.MouseButton;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.text.Font;
-import javafx.stage.Stage;
 import map.Map;
 
 public class MainCanvas extends Canvas {
+	private SLinkedList<Map> layers;
 	private Map map;
 	private GraphicsContext gContext;
 	private Image imageMap;
@@ -25,7 +24,9 @@ public class MainCanvas extends Canvas {
 	private PropertyMenu propertyMenu;
 	private SpriteUI spriteUI;
 	private Sprite sprite;
-	private String mapData0 = "./resource/data/map/map0.txt";
+	private String mapData1 = "./resource/data/map/map1.txt";
+	private String mapData2 = "./resource/data/map/map2.txt";
+	private String mapData3 = "./resource/data/map/map3.txt";
 	
 	private Thread thread = new Thread(new Runnable() {
 
@@ -56,7 +57,9 @@ public class MainCanvas extends Canvas {
 		super(width, height);
 		imageMap = new Image(getClass().getResourceAsStream("043-Cave01.png"));
 		gContext = getGraphicsContext2D();
-		map = new Map(tileWidth, tileHeight, imageMap, mapData0);
+		layers = new SLinkedList<>();
+		addLayer(mapData1);
+		addLayer(mapData2);
 		this.sprite = sprite;
 		this.spriteUI = spriteUI;
 		propertyMenu = new PropertyMenu(120, 215);
@@ -71,8 +74,49 @@ public class MainCanvas extends Canvas {
 		this.spriteUI = spriteUI;
 	}
 	
+	public int getNumLayers() {
+		return layers.size();
+	}
+	
+	public void addLayer(Map map) {
+		if(layers.first() == null)
+			layers.insertLast(map);
+		else
+			layers.insertAfter(layers.last(), map);
+	}
+	
+	public void addLayer(String mapData) {
+		Map map = new Map(tileWidth, tileHeight, imageMap, mapData);
+		addLayer(map);
+	}
+	
+	public Map findMap(int mapCode) {
+		IIterator<Map> iterator = layers.iterator();
+		Map map = iterator.next();
+		while(iterator.hasNext() && map.getCode() != mapCode) {
+			map = iterator.next();
+		}
+		return map;
+	}
+	
+	public Map removeIterator(int mapCode) {
+		INode<Map> node = layers.first();
+		while(layers.next(node) != null && node.element().getCode() != mapCode) {
+			node = layers.next(node);
+		}
+		return layers.remove(node);
+	}
+	
+	public IIterator<Map> iterator() {
+		return layers.iterator();
+	}
+	
 	public void draw() {
-		map.drawMapMain(gContext);
+		IIterator<Map> iterator = iterator();
+		iterator.next().drawMapMain(gContext);
+		while(iterator.hasNext()) {
+			iterator.next().drawMapLayer(gContext);
+		}
 		propertyMenu.draw(gContext);
 	}
 	

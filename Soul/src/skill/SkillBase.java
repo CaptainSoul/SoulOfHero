@@ -24,10 +24,10 @@ public class SkillBase {
 			skills.insertAfter(skills.last(), skill);
 	}
 
-	public Skill findSkill(int code) {
+	public Skill findSkill(int skillCode) {
 		IIterator<Skill> iterator = skills.iterator();
 		Skill skill = iterator.next();
-		while(iterator.hasNext() && code != skill.getCode()) {
+		while(iterator.hasNext() && skill.getCode() != skillCode) {
 			skill = iterator.next();
 		}
 		return skill;
