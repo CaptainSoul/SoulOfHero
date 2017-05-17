@@ -36,11 +36,6 @@ public class LoginViewController extends ControlledStage implements Initializabl
 	protected void handleToSignUpAction(ActionEvent event) {
 		MainApp.signUpView = true;
 	}
-	
-	@FXML
-	protected void handleNewDatabaseAction(ActionEvent event) {
-		
-	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {

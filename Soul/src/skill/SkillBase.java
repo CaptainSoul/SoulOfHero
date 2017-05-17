@@ -1,16 +1,22 @@
 package skill;
 
+import archive.Code;
 import dsa.iface.IIterator;
 import dsa.iface.INode;
 import dsa.impl.SLinkedList;
 
 public class SkillBase {
 
+	private final int code;
+	private static int numSkillBase = 0;
+	
 	private SLinkedList<Skill> skills;
 	private IIterator<Skill> iterator;
 
 	public SkillBase(){
 		 skills = new SLinkedList<>();
+		 numSkillBase++;
+		 code = Code.getCode(this);
 	}
 	
 	public int getNumSkill() {
@@ -24,10 +30,10 @@ public class SkillBase {
 			skills.insertAfter(skills.last(), skill);
 	}
 
-	public Skill findSkill(int skillCode) {
+	public Skill findSkill(int code) {
 		IIterator<Skill> iterator = skills.iterator();
 		Skill skill = iterator.next();
-		while(iterator.hasNext() && skill.getCode() != skillCode) {
+		while(iterator.hasNext() && code != skill.getCode()) {
 			skill = iterator.next();
 		}
 		return skill;
@@ -52,6 +58,18 @@ public class SkillBase {
 			toReturn += iterator.next().toString();
 		}
 		return toReturn;
+	}
+
+	public static int getNumSkillBase() {
+		return numSkillBase;
+	}
+
+	public static void setNumSkillBase(int numSkills) {
+		SkillBase.numSkillBase = numSkills;
+	}
+
+	public int getCode() {
+		return code;
 	}
 
 }
