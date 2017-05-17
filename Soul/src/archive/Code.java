@@ -5,6 +5,7 @@ import inventory.Inventory;
 import inventory.Item;
 import map.Map;
 import skill.Skill;
+import skill.SkillBase;
 
 public class Code {
 	private static final int scalar = 71;
@@ -16,6 +17,7 @@ public class Code {
 	private static final int addedUser = 1040000;
 	private static final int addedSkill = 1050000;
 	private static final int addedArchive = 1060000;
+	private static final int addedSkillBase = 1070000;
 
 	public static int getCode(Sprite character) {
 		return character.getNumCharacters() * scalar + shift + addedAbstractCharacter;
@@ -39,6 +41,10 @@ public class Code {
 	
 	public static int getCode(Skill skill) {
 		return skill.getNumSkills() * scalar + shift + addedSkill;
+	}
+	
+	public static int getCode(SkillBase skillBase){
+		return SkillBase.getNumSkillBase() * scalar + shift + addedSkillBase;
 	}
 	
 	public static int getCode(Archive archive) {

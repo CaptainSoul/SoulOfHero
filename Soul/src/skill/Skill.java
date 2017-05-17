@@ -38,6 +38,10 @@ public class Skill {
 	public int getNumSkills() {
 		return numSkills;
 	}
+	
+	public double getDamage(){
+		return damage;
+	}
 
 	public double attack( int strength ) {
 		double skillDamage = damage * strength;
