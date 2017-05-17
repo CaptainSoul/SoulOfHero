@@ -62,6 +62,10 @@ public class GamePanel extends Parent {
 			spriteUI.moveDown(canvas);
 		}else if(event.getCode() == KeyCode.ENTER) {
 			MainApp.fightView = true;
+		}else if(event.getCode() == KeyCode.I){
+			new InventoryUI();
+		}else if(event.getCode() == KeyCode.S){
+			new SkillBaseUI();
 		}
 		System.out.println("Sprite X: " + spriteUI.getX());
 		System.out.println("Sprite Y: " + spriteUI.getY());
