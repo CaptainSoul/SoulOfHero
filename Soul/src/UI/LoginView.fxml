@@ -38,7 +38,7 @@
 	</HBox>
 	
 	<HBox spacing = "10" alignment = "bottom_left"
-		GridPane.columnIndex = "1" GridPane.rowIndex = "5" >
+		GridPane.columnIndex = "0" GridPane.rowIndex = "5" >
 		<Button text = "New Database" onAction = "#handleNewDatabaseAction"/>
 	</HBox>
 
