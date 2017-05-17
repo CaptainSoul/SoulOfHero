@@ -37,21 +37,21 @@ public class SaveAndLoad {
 			//create table Armor to save information of armors in inventories
 			stmt.execute("CREATE TABLE Armor("
 					+ "code INT PRIMARY KEY, "
-					+ "name VARCHAR(20), "
-					+ "description VARCHAR(100)"
+					+ "name VARCHAR(20) NOT NULL, "
+					+ "description VARCHAR(100), "
 					+ "defence INT"
 					+ ");");
 			//create table Weapon to save information of weapon in inventories
 			stmt.execute("CREATE TABLE Weapon("
 					+ "code INT PRIMARY KEY, "
-					+ "name VARCHAR(20), "
+					+ "name VARCHAR(20) NOT NULL, "
 					+ "description VARCHAR(100),"
 					+ "strength INT"
 					+ ");");
 			//create table Food to save information of food in inventories
 			stmt.execute("CREATE TABLE Food("
 					+ "code INT PRIMARY KEY, "
-					+ "name VARCHAR(20),"
+					+ "name VARCHAR(20) NOT NULL,"
 					+ "description VARCHAR(100),"
 					+ "hp INT NOT NULL,"
 					+ "mp INT NOT NULL"
@@ -63,8 +63,6 @@ public class SaveAndLoad {
 					+ "weaponCode INT, "
 					+ "foodCode INT, "
 					//create connection between inventory and other items
-					+ "FOREIGN KEY (code) REFERENCES Item(code) "
-					+ "ON DELETE SET NULL ON UPDATE CASCADE, "
 					+ "FOREIGN KEY (armorCode) REFERENCES Armor(code) "
 					+ "ON DELETE SET NULL ON UPDATE CASCADE, "
 					+ "FOREIGN KEY (weaponCode) REFERENCES Weapon(code) "
