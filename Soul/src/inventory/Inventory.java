@@ -47,7 +47,7 @@ public class Inventory {
 
 	public Item removeItem(int code) {
 		INode<Item> node = items.first();
-		while(items.next(node) != null) {
+		while(items.next(node) != null && node.element().getCode() != code) {
 			node = items.next(node);
 		}
 		return items.remove(node);
