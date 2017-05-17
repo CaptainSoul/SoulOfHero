@@ -7,6 +7,7 @@ import dsa.impl.SLinkedList;
 public class SkillBase {
 
 	private SLinkedList<Skill> skills;
+	private IIterator<Skill> iterator;
 
 	public SkillBase(){
 		 skills = new SLinkedList<>();
@@ -32,12 +33,16 @@ public class SkillBase {
 		return skill;
 	}
 
-	public Skill removeSkill(String name) {
+	public Skill removeSkill(int skillCode) {
 		INode<Skill> node = skills.first();
-		while(skills.next(node) != null) {
+		while(skills.next(node) != null && node.element().getCode() != skillCode) {
 			node = skills.next(node);
 		}
 		return skills.remove(node);
+	}
+	
+	public IIterator<Skill> iterator() {
+		return skills.iterator();
 	}
 
 	public String toString() {

@@ -137,11 +137,19 @@ public class Sprite extends FightObject {
 		return mp;
 	}
 	
+	public int getStrength(){
+		return strength;
+	}
+	
 	public int getAttack() {
 		return strength + weapon.getStrength();
 	}
 	
-	public int getDefence() {
+	public int getDefence(){
+		return defence;
+	}
+	
+	public int getSheild() {
 		return defence + armor.getDefence();
 	}
 	

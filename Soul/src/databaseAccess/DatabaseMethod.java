@@ -73,20 +73,22 @@ public class DatabaseMethod {
 	}
 	
 	//method used to insert values into table inventory
-	public void InsertInventory(Inventory inventory){
+	public void InsertInventory(Inventory inventory, int armorCode, int weaponCode, int foodCode ){
 		sql = "INSERT INTO Inventory ("
 				+ "code, "
 				+ "armorCode, "
 				+ "weaponCode, "
 				+ "foodCode"
 				+ ") VALUES ("
-				+ inventory.getCode()
-				+ ","  
+				+ inventory.getCode() + ", "
+				+ inventory.getArmor(armorCode) + ", "
+				+ inventory.getWeapon(weaponCode) + ", "
+				+ inventory.getFood(foodCode)
 				+ ");";
 	}
 	
 	//method used to insert values into table Sprite
-	public void InsertSprite(Sprite sprite){
+	public void InsertSprite(Sprite sprite, int skillCode){
 		sql = "INSERT INTO Sprite ("
 				+ "code, "
 				+ "name, "
@@ -104,7 +106,7 @@ public class DatabaseMethod {
 				+ "gold"
 				+ ") VALUES ("
 				+ sprite.getCode() + ", "
-				+ sprite.getName() + ", "
+				+ "'" + sprite.getName() + "', "
 				+ sprite.getHp() + ", "
 				+ sprite.getMaxHp() + ", "
 				+ sprite.getMp() + ", "
@@ -112,8 +114,9 @@ public class DatabaseMethod {
 				+ sprite.getLevel() + ", "
 				+ sprite.getDefence() + ", "
 				+ sprite.getStrength() + ", "
-				+ sprite.getSkill() + ", "
-				+
+				+ sprite.getSkill(skillCode) + ", "
+				+ sprite.getArmor() + ", "
+				+ sprite.getWeapon() + ", "
 				+ sprite.getGold()
 				+ ");";
 	}
