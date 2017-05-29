@@ -13,8 +13,8 @@ public class Map {
 	private static int numMaps = 0;
 	public static final int MAP_WIDTH = 25;
 	public static final int MAP_HEIGHT = 14;
-	private int tileWidth;
-	private int tileHeight;
+	public static int tileWidth;
+	public static int tileHeight;
 	private int cols;
 	private Image image;
 	private int[][] mapIndex = new int[MAP_HEIGHT][MAP_WIDTH];
@@ -106,7 +106,6 @@ public class Map {
 	public void setMapIndex(String url) {
 		String[] map = new String[MAP_HEIGHT];
 		try(BufferedReader br = new BufferedReader(new FileReader(url))) {
-			int num;
 			int locEnd;
 			int locStart = 0;
 			for(int y = 0; y < MAP_HEIGHT; y++) {

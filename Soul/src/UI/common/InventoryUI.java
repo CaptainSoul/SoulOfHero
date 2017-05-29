@@ -22,7 +22,7 @@ public class InventoryUI extends JFrame{
 	
 	public InventoryUI(){
 		//"Package"
-		super("ÒùÃÎ´ó¼Ò×å");
+		super("inventory");
 		
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setSize(400,600);

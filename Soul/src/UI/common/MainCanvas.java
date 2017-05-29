@@ -99,10 +99,12 @@ public class MainCanvas extends Canvas {
 		return map;
 	}
 	
-	public Map removeIterator(int mapCode) {
+	public Map removeMap(int mapCode) {
 		INode<Map> node = layers.first();
-		while(layers.next(node) != null && node.element().getCode() != mapCode) {
-			node = layers.next(node);
+		INode<Map> n = layers.next(node);
+		while(n != null && node.element().getCode() != mapCode) {
+			node = n;
+			n = layers.next(node);
 		}
 		return layers.remove(node);
 	}

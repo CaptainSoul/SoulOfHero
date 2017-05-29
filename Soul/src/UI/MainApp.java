@@ -29,7 +29,7 @@ public class MainApp extends Application {
 	private StageController stageController;
 	private boolean isRunning = true;
 	private long sleep = 100;
-	private String url = getClass().getResource("Lilliput.mp3").toString();
+	private String url = getClass().getResource("¡÷”—…˘ - –°µ∂ª·–Ú«˙.mp3").toString();
 	private Media media = new Media(url);
 	private MediaPlayer player = new MediaPlayer(media);
 	
@@ -94,7 +94,7 @@ public class MainApp extends Application {
 			UserManagement.addUser("Hero", "123");
 			stageController = new StageController();
 			stageController.setPrimaryStage("primaryStage", primaryStage);
-			loginView = true;
+			mainView = true;
 
 			player.setAutoPlay(true);
 			player.setCycleCount(20);

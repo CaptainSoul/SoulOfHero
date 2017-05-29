@@ -1,7 +1,6 @@
 package UI.common;
 
 import dsa.iface.IIterator;
-import dsa.impl.SLinkedList;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.image.Image;
@@ -18,9 +17,9 @@ public class SpriteUI extends Parent {
 	private int width;
 	private int height;
 	private int index = 0;
-	private int indexDiv = 3;
+	private int indexDiv = 2;
 	private ImageView mImageView;
-	private int speed = 8;
+	private double speed = 10;
 	private int column = 4;
 
 	
@@ -34,45 +33,14 @@ public class SpriteUI extends Parent {
 		mImageView.setLayoutY(y);
 		getChildren().add(mImageView);
 	}
-	
-	public boolean canMove(Direction dir, double x, double y) {
-		switch(dir) {
-			case Down:
-				if(isCollisionWith(x,y - speed)) {
-					System.out.println("no");
-					return false;
-				}
-				return true;
-			case Up:
-				if(isCollisionWith(x,y + speed)) {
-					System.out.println("no");
-					return false;
-				}
-				return true;
-			case Left:
-				if(isCollisionWith(x + speed,y)) {
-					System.out.println("no");
-					return false;
-				}
-				return true;
-			case Right:
-				if(isCollisionWith(x - speed,y)) {
-					System.out.println("no");
-					return false;
-				}
-				return true;
-		}
-		return false;
-	}
-	
+
 	public boolean isCollisionWith(double x, double y) {
 		if (x > mImageView.getLayoutX() && y > mImageView.getLayoutY() && x < mImageView.getLayoutX() + getWidth() && y < mImageView.getLayoutX() + getHeight()) {
 			return true;
 		}
 		return false;
 	}
-
-	public void moveDown(MainCanvas mainCanvas) {
+	public void moveDown(IIterator<Map> layers) {
 		direction = Direction.Down;
 		if(lastDirection != direction) {
 			index = 0;
@@ -83,26 +51,29 @@ public class SpriteUI extends Parent {
 		}
 		mImageView.setViewport(new Rectangle2D(((index / indexDiv) % column) * width, ((index / indexDiv) / column) * height, width,
 				height));
-		lastDirection = direction;
-		IIterator<Map> layersIterator = mainCanvas.iterator();
-		int[][][] index;
-		while(layersIterator.hasNext()) {
-			layersIterator.next();
-			index = layersIterator.next().coordinate();
-			for(int i = 1; i<index.length; i++) {
-				for(int y = 0; y < Map.MAP_HEIGHT; y++) {
-					for(int x = 0; x < Map.MAP_WIDTH; x++) {
-						if(!canMove(direction, index[y][x][0], index[y][x][1]) && index[y][x][0] != 0 && index[y][x][1] != 0) {
-							return ;
-						}
-					}
-				}
-			}
+		layers.next();
+		boolean canMove = true;
+		while(layers.hasNext()) {
+			Map layer = layers.next();
+			int[][] index = layer.getMapIndex();
+			int x = (int) (mImageView.getLayoutX() / (2*Map.tileWidth));
+			int y = (int) (mImageView.getLayoutY() / (2*Map.tileHeight));
+			System.out.println("x:" + x);
+			System.out.println("y:" + y);
+			if(mImageView.getLayoutY() - speed >= 2 * y * Map.tileHeight
+					&& mImageView.getLayoutX() > 2 * x * Map.tileWidth
+					&& mImageView.getLayoutX() < 2 * (x+1) * Map.tileWidth
+					&& index[y+1][x] != 0)
+				canMove = false;
+			System.out.println(mImageView.getLayoutX() + speed + getWidth());
+			System.out.println(2 * (y-1) * Map.tileWidth);
 		}
-		mImageView.setLayoutY(mImageView.getLayoutY() + speed);
+		if(canMove)
+			mImageView.setLayoutY(mImageView.getLayoutY() + speed);
+		lastDirection = direction;
 	}
 	
-	public void moveLeft(MainCanvas mainCanvas) {
+	public void moveLeft(IIterator<Map> layers) {
 		direction = Direction.Left;
 		if(lastDirection != direction) {
 			index = column * indexDiv;
@@ -113,27 +84,27 @@ public class SpriteUI extends Parent {
 		}
 		mImageView.setViewport(new Rectangle2D(((index / indexDiv) % column) * width, ((index / indexDiv) / column) * height, width,
 				height));
-		lastDirection = direction;
-		IIterator<Map> layersIterator = mainCanvas.iterator();
-		int[][][] index;
-		while(layersIterator.hasNext()) {
-			layersIterator.next();
-			index = layersIterator.next().coordinate();
-			for(int i = 1; i<index.length; i++) {
-				for(int y = 0; y < Map.MAP_HEIGHT; y++) {
-					for(int x = 0; x < Map.MAP_WIDTH; x++) {
-						if(!canMove(direction, index[y][x][0], index[y][x][1]) && index[y][x][0] != 0 && index[y][x][1] != 0) {
-							return ;
-						}
-					}
-				}
-			}
+		layers.next();
+		boolean canMove = true;
+		while(layers.hasNext()) {
+			Map layer = layers.next();
+			int[][] index = layer.getMapIndex();
+			int x = (int) (mImageView.getLayoutX() / (2*Map.tileWidth));
+			int y = (int) (mImageView.getLayoutY() / (2*Map.tileHeight));
+			if(mImageView.getLayoutX() - speed <= 2 * x * Map.tileWidth
+					&& mImageView.getLayoutY() > 2 * y * Map.tileHeight
+					&& mImageView.getLayoutY() < 2 * (y+1) * Map.tileHeight
+					&& index[y][x-1] != 0)
+				canMove = false;
+			System.out.println(mImageView.getLayoutX() - speed);
+			System.out.println(2 * x * Map.tileWidth);
 		}
-		mImageView.setLayoutX(mImageView.getLayoutX() - speed);
-		
+		if(canMove)
+			mImageView.setLayoutX(mImageView.getLayoutX() - speed);
+		lastDirection = direction;
 	}
 	
-	public void moveRight(MainCanvas mainCanvas) {
+	public void moveRight(IIterator<Map> layers) {
 		direction = Direction.Right;
 		if(lastDirection != direction) {
 			index = column * 2 * indexDiv;
@@ -144,27 +115,29 @@ public class SpriteUI extends Parent {
 		}
 		mImageView.setViewport(new Rectangle2D(((index / indexDiv) % column) * width, ((index / indexDiv) / column) * height, width,
 				height));
-		lastDirection = direction;
-		IIterator<Map> layersIterator = mainCanvas.iterator();
-		int[][][] index;
-		while(layersIterator.hasNext()) {
-			layersIterator.next();
-			index = layersIterator.next().coordinate();
-			for(int i = 1; i<index.length; i++) {
-				for(int y = 0; y < Map.MAP_HEIGHT; y++) {
-					for(int x = 0; x < Map.MAP_WIDTH; x++) {
-						if(!canMove(direction, index[y][x][0], index[y][x][1]) && index[y][x][0] != 0 && index[y][x][1] != 0) {
-							return ;
-						}
-					}
-				}
-			}
+		layers.next();
+		boolean canMove = true;
+		while(layers.hasNext()) {
+			Map layer = layers.next();
+			int[][] index = layer.getMapIndex();
+			int x = (int) (mImageView.getLayoutX() / (2*Map.tileWidth));
+			int y = (int) (mImageView.getLayoutY() / (2*Map.tileHeight));
+			System.out.println("x:" + x);
+			System.out.println("y:" + y);
+			if(mImageView.getLayoutX() + speed + getWidth() >= 2 * (x+1) * Map.tileWidth
+					&& mImageView.getLayoutY() > 2 * y * Map.tileHeight
+					&& mImageView.getLayoutY() < 2 * (y+1) * Map.tileHeight
+					&& index[y][x+1] != 0)
+				canMove = false;
+			System.out.println(mImageView.getLayoutX() + speed + getWidth());
+			System.out.println(2 * (x+1) * Map.tileWidth);
 		}
-		mImageView.setLayoutX(mImageView.getLayoutX() + speed);
-		
+		if(canMove)
+			mImageView.setLayoutX(mImageView.getLayoutX() + speed);
+		lastDirection = direction;
 	}
 	
-	public void moveUp(MainCanvas mainCanvas) {
+	public void moveUp(IIterator<Map> layers) {
 		direction = Direction.Up;
 		if(lastDirection != direction) {
 			index = column * 3 * indexDiv;
@@ -175,23 +148,26 @@ public class SpriteUI extends Parent {
 		}
 		mImageView.setViewport(new Rectangle2D(((index / indexDiv) % column) * width, ((index / indexDiv) / column) * height, width,
 				height));
-		lastDirection = direction;
-		IIterator<Map> layersIterator = mainCanvas.iterator();
-		int[][][] index;
-		while(layersIterator.hasNext()) {
-			layersIterator.next();
-			index = layersIterator.next().coordinate();
-			for(int i = 1; i<index.length; i++) {
-				for(int y = 0; y < Map.MAP_HEIGHT; y++) {
-					for(int x = 0; x < Map.MAP_WIDTH; x++) {
-						if(!canMove(direction, index[y][x][0], index[y][x][1]) && index[y][x][0] != 0 && index[y][x][1] != 0) {
-							return ;
-						}
-					}
-				}
-			}
+		layers.next();
+		boolean canMove = true;
+		while(layers.hasNext()) {
+			Map layer = layers.next();
+			int[][] index = layer.getMapIndex();
+			int x = (int) (mImageView.getLayoutX() / (2*Map.tileWidth));
+			int y = (int) (mImageView.getLayoutY() / (2*Map.tileHeight));
+			System.out.println("x:" + x);
+			System.out.println("y:" + y);
+			if(mImageView.getLayoutY() - speed >= 2 * y * Map.tileHeight
+					&& mImageView.getLayoutX() > 2 * x * Map.tileWidth
+					&& mImageView.getLayoutX() < 2 * (x+1) * Map.tileWidth
+					&& index[y][x] != 0)
+				canMove = false;
+			System.out.println(mImageView.getLayoutX() + speed + getWidth());
+			System.out.println(2 * (y-1) * Map.tileWidth);
 		}
-		mImageView.setLayoutY(mImageView.getLayoutY() - speed);
+		if(canMove)
+			mImageView.setLayoutY(mImageView.getLayoutY() - speed);
+		lastDirection = direction;
 	}
 	
 	public double getX() {
@@ -224,5 +200,13 @@ public class SpriteUI extends Parent {
 	
 	public void setHeight(int height) {
 		this.height = height;
+	}
+	
+	public double getSpeed() {
+		return speed;
+	}
+	
+	public void setSpeed(double speed) {
+		this.speed = speed;
 	}
 }

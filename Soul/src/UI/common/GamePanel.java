@@ -53,13 +53,13 @@ public class GamePanel extends Parent {
 	
 	public void onKeyPressed(KeyEvent event){
 		if(event.getCode() == KeyCode.LEFT){
-			spriteUI.moveLeft(canvas);
+			spriteUI.moveLeft(canvas.iterator());
 		}else if(event.getCode() == KeyCode.RIGHT){
-			spriteUI.moveRight(canvas);
+			spriteUI.moveRight(canvas.iterator());
 		}else if(event.getCode() == KeyCode.UP){
-			spriteUI.moveUp(canvas);
+			spriteUI.moveUp(canvas.iterator());
 		}else if(event.getCode() == KeyCode.DOWN){
-			spriteUI.moveDown(canvas);
+			spriteUI.moveDown(canvas.iterator());
 		}else if(event.getCode() == KeyCode.ENTER) {
 			MainApp.fightView = true;
 		}else if(event.getCode() == KeyCode.I){
