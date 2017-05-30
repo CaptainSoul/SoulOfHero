@@ -11,7 +11,7 @@ public class MainView extends Application {
 	public void start(Stage stage) throws Exception {
 		GamePanel mPanel = new GamePanel();
 		final Scene scene = new Scene(mPanel, 800, 600);
-		mPanel.load();
+		mPanel.loadFirst();
 		scene.setFill(Color.BLACK);
 		stage.setScene(scene);
 		stage.setTitle("YCaptain");

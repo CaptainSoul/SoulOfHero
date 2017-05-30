@@ -1,6 +1,7 @@
 package UI.common;
 
 import UI.MainApp;
+import UI.scenario.Dialog;
 import character.Sprite;
 import dsa.iface.IIterator;
 import javafx.event.EventHandler;
@@ -11,12 +12,20 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import map.Map;
 
 public class GamePanel extends Parent {
+	private Dialog dialog;
     private SpriteUI spriteUI;
     private Sprite sprite = new Sprite("Hero");
-    MainCanvas canvas;
+    private SpriteUI[] npcUI;
+    private MainCanvas canvas;
+    private int numNpc;
+    private boolean canMoveUp = true;
+    private boolean canMoveDown = true;
+    private boolean canMoveLeft = true;
+    private boolean canMoveRight = true;
     private IIterator<Map> layersIterator;
     public static final int SPRITE_WIDTH = 32;
 	public static final int SPRITE_HEIGHT = 48;
@@ -26,11 +35,15 @@ public class GamePanel extends Parent {
 	public GamePanel() {
 	}
 
-	public void load(){
+	public void loadFirst(){
 		canvas = new MainCanvas(SCENE_WIDTH, SCENE_HEIGHT, sprite, spriteUI);
 		getChildren().add(canvas);
-        spriteUI = new SpriteUI(600, 180, SPRITE_WIDTH, SPRITE_HEIGHT, "xpchar51.png");
+        spriteUI = new SpriteUI(814, 392, SPRITE_WIDTH, SPRITE_HEIGHT, "xpchar51.png");
+        npcUI = new SpriteUI[10];
+        npcUI[0] = new SpriteUI(525, 450, SPRITE_WIDTH, SPRITE_HEIGHT, "xpchar8.png");
+        numNpc = 1;
         getChildren().add(spriteUI);
+        getChildren().add(npcUI[0]);
         layersIterator = canvas.iterator();
         getScene().setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
@@ -44,6 +57,7 @@ public class GamePanel extends Parent {
  				onKeyPressed(event);
  			}
  		});
+
 	}
 	
 	public void onMouseClicked(MouseEvent event) {
@@ -52,11 +66,24 @@ public class GamePanel extends Parent {
 	}
 	
 	public void onKeyPressed(KeyEvent event){
+		if(event.getCode() == KeyCode.SPACE) {
+			dialog = new Dialog();
+			dialog.setVisible(true);
+			dialog.setAlwaysOnTop(true);
+			dialog.setAutoRequestFocus(true);
+		}
+		for(int i = 0; i < numNpc; i++) {
+			if(spriteUI.getX() + spriteUI.getWidth() > npcUI[i].getX() && spriteUI.getX() < npcUI[i].getX() + npcUI[i].getWidth()
+			&& spriteUI.getY() > npcUI[i].getY() + npcUI[i].getHeight() && spriteUI.getY() < npcUI[i].getY() + 2*npcUI[i].getHeight()) {
+				System.out.println("move");
+				canMoveUp = false;
+			}
+		}
 		if(event.getCode() == KeyCode.LEFT){
 			spriteUI.moveLeft(canvas.iterator());
 		}else if(event.getCode() == KeyCode.RIGHT){
 			spriteUI.moveRight(canvas.iterator());
-		}else if(event.getCode() == KeyCode.UP){
+		}else if(event.getCode() == KeyCode.UP && canMoveUp){
 			spriteUI.moveUp(canvas.iterator());
 		}else if(event.getCode() == KeyCode.DOWN){
 			spriteUI.moveDown(canvas.iterator());
@@ -73,6 +100,10 @@ public class GamePanel extends Parent {
 			MainApp.fightView = true;
 			System.out.println("exchange");
 		}
+	    canMoveUp = true;
+	    canMoveDown = true;
+	    canMoveLeft = true;
+	    canMoveRight = true;
 	}
 	
 	
@@ -87,10 +118,12 @@ public class GamePanel extends Parent {
 		Stage stage = new Stage();
 		GamePanel gamePanel = new GamePanel();
 		Scene scene = new Scene(gamePanel, SCENE_WIDTH, SCENE_HEIGHT);
-		gamePanel.load();
+		gamePanel.loadFirst();
 		scene.setFill(Color.BLACK);
 		stage.setScene(scene);
 		stage.setTitle("SoulOfHero");
+		stage.initStyle(StageStyle.UTILITY);
+
 		return stage;
 	}
 

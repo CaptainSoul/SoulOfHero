@@ -8,7 +8,7 @@ import javafx.scene.image.ImageView;
 import map.Map;
 
 public class SpriteUI extends Parent {
-	private enum Direction {
+	public enum Direction {
 		Left, Right, Up, Down
 	};
 	
@@ -40,6 +40,16 @@ public class SpriteUI extends Parent {
 		}
 		return false;
 	}
+	
+	public boolean isCollisionWithTile(int x, int y) {
+		if(isCollisionWith(2 * x * Map.tileWidth - 2*speed, 2* y * Map.tileHeight - 2*speed)
+				|| isCollisionWith(2 * (x+1) * Map.tileWidth + 2*speed, 2* y * Map.tileHeight - 2*speed)
+				|| isCollisionWith(2 * x * Map.tileWidth + 2*speed, 2* (y+1) * Map.tileHeight + 2*speed)
+				|| isCollisionWith(2 * (x+1) * Map.tileWidth + 2*speed, 2* (y+1) * Map.tileHeight + 2*speed))
+			return true;
+		return false;
+	}
+	
 	public void moveDown(IIterator<Map> layers) {
 		direction = Direction.Down;
 		if(lastDirection != direction) {
@@ -56,14 +66,17 @@ public class SpriteUI extends Parent {
 		while(layers.hasNext()) {
 			Map layer = layers.next();
 			int[][] index = layer.getMapIndex();
-			int x = (int) (mImageView.getLayoutX() / (2*Map.tileWidth));
-			int y = (int) (mImageView.getLayoutY() / (2*Map.tileHeight));
+			int x = (int) (mImageView.getLayoutX() / (Map.tileWidth)) + 1;
+			int y = (int) (mImageView.getLayoutY() / (Map.tileHeight)) + 1;
 			System.out.println("x:" + x);
 			System.out.println("y:" + y);
-			if(mImageView.getLayoutY() - speed >= 2 * y * Map.tileHeight
-					&& mImageView.getLayoutX() > 2 * x * Map.tileWidth
-					&& mImageView.getLayoutX() < 2 * (x+1) * Map.tileWidth
-					&& index[y+1][x] != 0)
+		/*	if(mImageView.getLayoutY() - height + 3*speed >=  y * Map.tileHeight
+					&& mImageView.getLayoutX() > x * Map.tileWidth
+					&& mImageView.getLayoutX() <  (x+1) * Map.tileWidth
+					&& index[y+1][x] != 0)*/
+			if(getY() + height <= y * Map.tileHeight &&
+					(getX() >= x * Map.tileWidth || getX() + width >= x * Map.tileWidth) &&
+					(getX()<= (x+1) * Map.WIDTH || getX() + width <= (x+1 * Map.tileWidth)))
 				canMove = false;
 			System.out.println(mImageView.getLayoutX() + speed + getWidth());
 			System.out.println(2 * (y-1) * Map.tileWidth);
@@ -89,12 +102,12 @@ public class SpriteUI extends Parent {
 		while(layers.hasNext()) {
 			Map layer = layers.next();
 			int[][] index = layer.getMapIndex();
-			int x = (int) (mImageView.getLayoutX() / (2*Map.tileWidth));
+			int x = (int) (mImageView.getLayoutX() / (Map.tileWidth));
 			int y = (int) (mImageView.getLayoutY() / (2*Map.tileHeight));
-			if(mImageView.getLayoutX() - speed <= 2 * x * Map.tileWidth
-					&& mImageView.getLayoutY() > 2 * y * Map.tileHeight
-					&& mImageView.getLayoutY() < 2 * (y+1) * Map.tileHeight
-					&& index[y][x-1] != 0)
+			if(mImageView.getLayoutX() - speed <=  (x+1) * Map.tileWidth
+					&& mImageView.getLayoutY() + 3*speed >  y * Map.tileHeight
+					&& mImageView.getLayoutY() + height - 2*speed <  (y+1) * Map.tileHeight
+					&& index[y][x] != 0)
 				canMove = false;
 			System.out.println(mImageView.getLayoutX() - speed);
 			System.out.println(2 * x * Map.tileWidth);
@@ -120,14 +133,15 @@ public class SpriteUI extends Parent {
 		while(layers.hasNext()) {
 			Map layer = layers.next();
 			int[][] index = layer.getMapIndex();
-			int x = (int) (mImageView.getLayoutX() / (2*Map.tileWidth));
-			int y = (int) (mImageView.getLayoutY() / (2*Map.tileHeight));
+			int x = (int) (mImageView.getLayoutX() / (Map.tileWidth));
+			int y = (int) (mImageView.getLayoutY() / (Map.tileHeight));
 			System.out.println("x:" + x);
 			System.out.println("y:" + y);
-			if(mImageView.getLayoutX() + speed + getWidth() >= 2 * (x+1) * Map.tileWidth
-					&& mImageView.getLayoutY() > 2 * y * Map.tileHeight
-					&& mImageView.getLayoutY() < 2 * (y+1) * Map.tileHeight
+			if(mImageView.getLayoutX() + width + speed>= (x+1) * Map.tileWidth
+					&& mImageView.getLayoutY() + 3*speed > y * Map.tileHeight
+					&& mImageView.getLayoutY() + 3*speed <  (y+1) * Map.tileHeight
 					&& index[y][x+1] != 0)
+
 				canMove = false;
 			System.out.println(mImageView.getLayoutX() + speed + getWidth());
 			System.out.println(2 * (x+1) * Map.tileWidth);
@@ -153,13 +167,13 @@ public class SpriteUI extends Parent {
 		while(layers.hasNext()) {
 			Map layer = layers.next();
 			int[][] index = layer.getMapIndex();
-			int x = (int) (mImageView.getLayoutX() / (2*Map.tileWidth));
-			int y = (int) (mImageView.getLayoutY() / (2*Map.tileHeight));
+			int x = (int) (mImageView.getLayoutX() / (Map.tileWidth));
+			int y = (int) (mImageView.getLayoutY() / (Map.tileHeight));
 			System.out.println("x:" + x);
 			System.out.println("y:" + y);
-			if(mImageView.getLayoutY() - speed >= 2 * y * Map.tileHeight
-					&& mImageView.getLayoutX() > 2 * x * Map.tileWidth
-					&& mImageView.getLayoutX() < 2 * (x+1) * Map.tileWidth
+			if(mImageView.getLayoutY() - speed >= y * Map.tileHeight
+					&& mImageView.getLayoutX() >  x * Map.tileWidth
+					&& mImageView.getLayoutX() <  (x+1) * Map.tileWidth
 					&& index[y][x] != 0)
 				canMove = false;
 			System.out.println(mImageView.getLayoutX() + speed + getWidth());
@@ -208,5 +222,9 @@ public class SpriteUI extends Parent {
 	
 	public void setSpeed(double speed) {
 		this.speed = speed;
+	}
+	
+	public Direction getDirection() {
+		return direction;
 	}
 }
