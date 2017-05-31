@@ -1,7 +1,7 @@
 package UI.common;
 
+import Scenario.Dialog;
 import UI.MainApp;
-import UI.scenario.Dialog;
 import character.Sprite;
 import dsa.iface.IIterator;
 import javafx.event.EventHandler;
@@ -38,9 +38,9 @@ public class GamePanel extends Parent {
 	public void loadFirst(){
 		canvas = new MainCanvas(SCENE_WIDTH, SCENE_HEIGHT, sprite, spriteUI);
 		getChildren().add(canvas);
-        spriteUI = new SpriteUI(814, 392, SPRITE_WIDTH, SPRITE_HEIGHT, "xpchar51.png");
+        spriteUI = new SpriteUI(30, 270, SPRITE_WIDTH, SPRITE_HEIGHT, "xpchar51.png");
         npcUI = new SpriteUI[10];
-        npcUI[0] = new SpriteUI(525, 450, SPRITE_WIDTH, SPRITE_HEIGHT, "xpchar8.png");
+        npcUI[0] = new SpriteUI(420, 395, SPRITE_WIDTH, SPRITE_HEIGHT, "xpchar8.png");
         numNpc = 1;
         getChildren().add(spriteUI);
         getChildren().add(npcUI[0]);
@@ -91,8 +91,13 @@ public class GamePanel extends Parent {
 			MainApp.fightView = true;
 		}else if(event.getCode() == KeyCode.I){
 			new InventoryUI();
-		}else if(event.getCode() == KeyCode.S){
+		}else if(event.getCode() == KeyCode.K){
 			new SkillBaseUI();
+		}else if(event.getCode() == KeyCode.O) {
+			if(canvas.setProperty == false)
+				canvas.setProperty = true;
+			else
+				canvas.setProperty = false;
 		}
 		System.out.println("Sprite X: " + spriteUI.getX());
 		System.out.println("Sprite Y: " + spriteUI.getY());

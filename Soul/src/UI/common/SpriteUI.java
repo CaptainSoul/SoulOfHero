@@ -41,15 +41,6 @@ public class SpriteUI extends Parent {
 		return false;
 	}
 	
-	public boolean isCollisionWithTile(int x, int y) {
-		if(isCollisionWith(2 * x * Map.tileWidth - 2*speed, 2* y * Map.tileHeight - 2*speed)
-				|| isCollisionWith(2 * (x+1) * Map.tileWidth + 2*speed, 2* y * Map.tileHeight - 2*speed)
-				|| isCollisionWith(2 * x * Map.tileWidth + 2*speed, 2* (y+1) * Map.tileHeight + 2*speed)
-				|| isCollisionWith(2 * (x+1) * Map.tileWidth + 2*speed, 2* (y+1) * Map.tileHeight + 2*speed))
-			return true;
-		return false;
-	}
-	
 	public void moveDown(IIterator<Map> layers) {
 		direction = Direction.Down;
 		if(lastDirection != direction) {
@@ -69,10 +60,6 @@ public class SpriteUI extends Parent {
 			int xLeft = (int) ((getX() + speed) / (Map.tileWidth));
 			int xRight = (int) ((getX() + width - speed) / (Map.tileWidth));
 			int y = (int) ((getY() + height) / (Map.tileHeight));
-		/*	if(getY() - height + 3*speed >=  y * Map.tileHeight
-					&& getX() > x * Map.tileWidth
-					&& getX() <  (x+1) * Map.tileWidth
-					&& index[y+1][x] != 0)*/
 			if((index[y][xLeft] != 0 || index[y][xRight] != 0))
 				canMove = false;
 		}
@@ -99,10 +86,6 @@ public class SpriteUI extends Parent {
 			int[][] index = layer.getMapIndex();
 			int x = (int) (getX() / (Map.tileWidth));
 			int y = (int) ((getY() + height - speed) / (Map.tileHeight));
-	/*		if(getX() - speed <=  (x+1) * Map.tileWidth
-					&& getY() + 3*speed >  y * Map.tileHeight
-					&& getY() + height - 2*speed<  (y+1) * Map.tileHeight
-					&& index[y][x] != 0)*/
 			if(index[y][x] != 0)
 				canMove = false;
 		}
@@ -129,10 +112,6 @@ public class SpriteUI extends Parent {
 			int[][] index = layer.getMapIndex();
 			int x = (int) (getX() / (Map.tileWidth));
 			int y = (int) ((getY() + height - speed) / (Map.tileHeight));
-		/*	if(getX() + width + speed>= (x+1) * Map.tileWidth
-					&& getY() + 3*speed > y * Map.tileHeight
-					&& getY() + 3*speed <  (y+1) * Map.tileHeight
-					&& index[y][x+1] != 0)*/
 			if(index[y][x+1] != 0)
 				canMove = false;
 		}
@@ -160,14 +139,8 @@ public class SpriteUI extends Parent {
 			int xLeft = (int) ((getX() + speed) / (Map.tileWidth));
 			int xRight = (int) ((getX() + width - speed) / (Map.tileWidth));
 			int y = (int) ((getY() + height - Map.tileHeight) / (Map.tileHeight));
-	/*		if(getY() - speed >= y * Map.tileHeight
-					&& getX() >  x * Map.tileWidth
-					&& getX() <  (x+1) * Map.tileWidth
-					&& index[y][x] != 0)*/
 			if(index[y][xLeft] != 0 || index[y][xRight] != 0)
 				canMove = false;
-			System.out.println(getX() + speed + getWidth());
-			System.out.println(2 * (y-1) * Map.tileWidth);
 		}
 		if(canMove)
 			mImageView.setLayoutY(getY() - speed);

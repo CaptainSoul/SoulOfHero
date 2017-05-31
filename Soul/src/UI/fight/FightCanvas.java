@@ -196,6 +196,7 @@ public class FightCanvas extends Canvas {
 							waitToNextPlayer();
 							if (enemys.size() == 0) {
 								nowStatus = Status.GAME_WIN;
+								MainApp.mainView = true;
 							}
 						}
 					}
@@ -425,6 +426,7 @@ public class FightCanvas extends Canvas {
 			gContext.setFont(Font.font(18));
 			gContext.setFill(Color.RED);
 			gContext.fillText("Failure!", 250, 150);
+			MainApp.mainView = true;
 			break;
 		default:
 			break;

@@ -18,6 +18,8 @@ public class MainCanvas extends Canvas {
 	private Image imageMap;
 	public static final int tileWidth = 32;
 	public static final int tileHeight = 32;
+	public boolean setProperty = false;
+	
 	private boolean isRunning = true;
 	private long sleep = 100;
 
@@ -26,7 +28,6 @@ public class MainCanvas extends Canvas {
 	private Sprite sprite;
 	private String mapData1 = "./resource/data/map/map1.txt";
 	private String mapData2 = "./resource/data/map/map2.txt";
-	private String mapData3 = "./resource/data/map/map3.txt";
 	
 	private Thread thread = new Thread(new Runnable() {
 
@@ -119,7 +120,8 @@ public class MainCanvas extends Canvas {
 		while(iterator.hasNext()) {
 			iterator.next().drawMapLayer(gContext);
 		}
-		propertyMenu.draw(gContext);
+		if(setProperty)
+			propertyMenu.draw(gContext);
 	}
 	
 	public void update() {

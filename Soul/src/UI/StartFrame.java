@@ -80,6 +80,9 @@ public class StartFrame {
 					btnStart.setSelected(false);
 					btnContinue.setSelected(true);
 					btnContinue.requestFocus();
+				} else if(key == KeyEvent.VK_ENTER) {
+					MainApp.mainView = true;
+					frmSoulOfHero.dispose();
 				}
 			}
 		});
@@ -103,7 +106,6 @@ public class StartFrame {
 		btnContinue.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
-				System.out.println(1);
 				int key = e.getKeyCode();
 				if(key == KeyEvent.VK_UP) {
 					btnStart.setSelected(true);	
@@ -111,6 +113,8 @@ public class StartFrame {
 				} else if(key == KeyEvent.VK_DOWN) {
 					btnExit.setSelected(true);
 					btnExit.requestFocus();
+				} else if(key == KeyEvent.VK_ENTER) {
+					
 				}
 				btnContinue.setSelected(false);
 			}
@@ -143,7 +147,7 @@ public class StartFrame {
 					btnContinue.setSelected(true);
 					btnExit.setSelected(false);
 				} else if(key == KeyEvent.VK_ENTER) {
-					
+					frmSoulOfHero.dispose();
 				}
 			}
 		});

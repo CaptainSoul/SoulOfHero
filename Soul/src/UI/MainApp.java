@@ -99,7 +99,7 @@ public class MainApp extends Application {
 			UserManagement.addUser("Hero", "123");
 			stageController = new StageController();
 			stageController.setPrimaryStage("primaryStage", primaryStage);
-			loginView = true;
+			mainView = true;
 
 			player.setAutoPlay(true);
 			player.setCycleCount(20);

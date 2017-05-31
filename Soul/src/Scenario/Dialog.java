@@ -1,4 +1,4 @@
-package UI.scenario;
+package Scenario;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
