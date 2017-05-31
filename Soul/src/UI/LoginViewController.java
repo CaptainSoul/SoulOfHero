@@ -26,7 +26,7 @@ public class LoginViewController extends ControlledStage implements Initializabl
 			JOptionPane.showMessageDialog(null, "There is no this ID in database");
 		} else if(UserManagement.checkPassword(userName, password)) {	
 			JOptionPane.showMessageDialog(null, "Login success");
-			MainApp.mainView = true;
+			MainApp.startView = true;
 		} else if(!UserManagement.checkPassword(userName, password)) {
 			JOptionPane.showMessageDialog(null, "Please check your password");
 		}

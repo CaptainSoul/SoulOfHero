@@ -23,6 +23,9 @@ public class MainApp extends Application {
 	public static String signUpViewRes = "SignUpView.fxml";
 	public static boolean signUpView = false;
 	
+	public static String startViewID = "startView";
+	public static boolean startView = false;
+	
 	public static String fightViewID = "fightView";
 	public static boolean fightView = false;
 	
@@ -59,13 +62,16 @@ public class MainApp extends Application {
 	public void update() {
 		if(loginView) {
 			player.play();
-			stageController.loadStage(loginViewID, loginViewRes, StageStyle.DECORATED);
+			stageController.loadStage(loginViewID, loginViewRes, StageStyle.UTILITY);
 			stageController.setStage(loginViewID);
 			loginView = false;
 		} else if(signUpView) {
-			stageController.loadStage(signUpViewID, signUpViewRes, StageStyle.DECORATED);
+			stageController.loadStage(signUpViewID, signUpViewRes, StageStyle.UTILITY);
 			stageController.setStage(signUpViewID);
 			signUpView = false;
+		} else if(startView) {
+			StartFrame.main(null);
+			startView = false;
 		} else if(mainView) {
 			loadMusic("Can't Take My Eyes Off You.mp3");
 			stageController.addStage(mainViewID, GamePanel.MainStage());
@@ -77,7 +83,6 @@ public class MainApp extends Application {
 			stageController.setStage(fightViewID);
 			fightView = false;
 		}
-		
 	}
 	
 	public void loadMusic(String name) {
@@ -94,7 +99,7 @@ public class MainApp extends Application {
 			UserManagement.addUser("Hero", "123");
 			stageController = new StageController();
 			stageController.setPrimaryStage("primaryStage", primaryStage);
-			mainView = true;
+			loginView = true;
 
 			player.setAutoPlay(true);
 			player.setCycleCount(20);

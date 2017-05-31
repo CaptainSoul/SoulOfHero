@@ -59,28 +59,6 @@ public class Dialog extends JDialog {
 		Dimension frameSize= this.getSize();
 		this.setLocation((screenSize.width-frameSize.width)/2,(screenSize.height-frameSize.height)/2);
 		
-		JButton btnClick = new JButton(" click ");
-		btnClick.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				dispose();
-			}
-		});
-		btnClick.setFont(new Font("Comic Sans MS", Font.BOLD, 17));
-		btnClick.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyPressed(KeyEvent e) {
-				int key = e.getKeyCode();
-				System.out.println(1);
-				if(key == KeyEvent.VK_ENTER || key == KeyEvent.VK_SPACE) {
-					dispose();
-				}
-			}
-		});
-		btnClick.setBackground(new Color(154, 205, 50));
-		btnClick.setBounds(423, 98, 85, 27);
-		getContentPane().add(btnClick);
-		
 		head = new JLabel("");
 		head.setIcon(new ImageIcon(Dialog.class.getResource("/utils/player1.png")));
 		head.setBounds(14, 20, 100, 100);
