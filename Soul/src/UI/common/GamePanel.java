@@ -1,6 +1,7 @@
 package UI.common;
 
 import Scenario.Dialog;
+import Scenario.TaskController;
 import UI.MainApp;
 import character.Sprite;
 import dsa.iface.IIterator;
@@ -18,7 +19,7 @@ import map.Map;
 public class GamePanel extends Parent {
 	private Dialog dialog;
     private SpriteUI spriteUI;
-    private Sprite sprite = new Sprite("Hero");
+    private Sprite sprite = new Sprite("Dec");
     private SpriteUI[] npcUI;
     private MainCanvas canvas;
     private int numNpc;
@@ -27,6 +28,7 @@ public class GamePanel extends Parent {
     private boolean canMoveLeft = true;
     private boolean canMoveRight = true;
     private IIterator<Map> layersIterator;
+    private TaskController taskController;
     public static final int SPRITE_WIDTH = 32;
 	public static final int SPRITE_HEIGHT = 48;
 	public static final int SCENE_WIDTH = 1600;
@@ -45,6 +47,7 @@ public class GamePanel extends Parent {
         getChildren().add(spriteUI);
         getChildren().add(npcUI[0]);
         layersIterator = canvas.iterator();
+        taskController = new TaskController();
         getScene().setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
@@ -67,10 +70,7 @@ public class GamePanel extends Parent {
 	
 	public void onKeyPressed(KeyEvent event){
 		if(event.getCode() == KeyCode.SPACE) {
-			dialog = new Dialog();
-			dialog.setVisible(true);
-			dialog.setAlwaysOnTop(true);
-			dialog.setAutoRequestFocus(true);
+			taskController.Check();
 		}
 		for(int i = 0; i < numNpc; i++) {
 			if(spriteUI.getX() + spriteUI.getWidth() > npcUI[i].getX() && spriteUI.getX() < npcUI[i].getX() + npcUI[i].getWidth()

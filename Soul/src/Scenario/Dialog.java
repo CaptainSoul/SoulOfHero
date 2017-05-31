@@ -39,16 +39,6 @@ public class Dialog extends JDialog {
 	 * Create the dialog.
 	 */
 	public Dialog() {
-		addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyPressed(KeyEvent e) {
-				int key = e.getKeyCode();
-				System.out.println(1);
-				if(key == KeyEvent.VK_ENTER || key == KeyEvent.VK_SPACE) {
-					dispose();
-				}
-			}
-		});
 		setUndecorated(true);
 		setTitle(" ");
 		setType(Type.UTILITY);
@@ -60,11 +50,11 @@ public class Dialog extends JDialog {
 		this.setLocation((screenSize.width-frameSize.width)/2,(screenSize.height-frameSize.height)/2);
 		
 		head = new JLabel("");
-		head.setIcon(new ImageIcon(Dialog.class.getResource("/utils/player1.png")));
+		head.setIcon(new ImageIcon(Dialog.class.getResource("/pic/head/vx013.png")));
 		head.setBounds(14, 20, 100, 100);
 		getContentPane().add(head);
 		
-		lblTxt = new JLabel("Welcome to Soul of Hero!!");
+		lblTxt = new JLabel("Welcome to Soul of Hero!!");	
 		lblTxt.setForeground(new Color(51, 51, 102));
 		lblTxt.setFont(new Font("Comic Sans MS", Font.BOLD, 20));
 		lblTxt.setBounds(128, 13, 409, 106);
@@ -74,10 +64,49 @@ public class Dialog extends JDialog {
 		lblBackground.setIcon(new ImageIcon(Dialog.class.getResource("/UI/fight/fight1.jpg")));
 		lblBackground.setBounds(0, 0, 537, 137);
 		getContentPane().add(lblBackground);
+		setAlwaysOnTop(true);
+		setAutoRequestFocus(true);
+	}
+	
+	public void setCloseListener() {
+		addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				int key = e.getKeyCode();
+				if(key == KeyEvent.VK_ENTER || key == KeyEvent.VK_SPACE) {
+					dispose();
+				}
+			}
+		});
+	}
+	
+	public void setHintTxt(String txt) {
+		clearHeadIcon();
+		lblTxt.setForeground(new Color(204, 51, 0));
+		lblTxt.setFont(new Font("Comic Sans MS", Font.BOLD, 21));
+		setTxt(txt);
+	}
+	
+	public void setCommonTxt(String txt) {
+		head.setIcon(new ImageIcon(Dialog.class.getResource("/pic/head/vx013.png")));
+		lblTxt.setForeground(new Color(51, 51, 102));
+		lblTxt.setFont(new Font("Comic Sans MS", Font.BOLD, 20));
+		setTxt(txt);
+	}
+	
+	public void setAsideTxt(String txt) {
+		clearHeadIcon();
+		lblTxt.setFont(new Font("Comic Sans MS", Font.BOLD, 23));
+		lblTxt.setForeground(new Color(153, 0, 0));
+		setTxt(txt);
 	}
 	
 	public void setHeadIcon(String url) {
 		head.setIcon(new ImageIcon(Dialog.class.getResource(url)));
+	}
+	
+	public void clearHeadIcon() {
+		head.setIcon(null);
 	}
 	
 	public void setTxt(String text) {
