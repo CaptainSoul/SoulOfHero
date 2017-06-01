@@ -21,6 +21,7 @@ public class Sprite extends FightObject {
 	private int hp;
 	private int mp;
 	private int strength;
+	private int attack; // need to add
 	private int defence;
 	private int exp;
 	private int level;

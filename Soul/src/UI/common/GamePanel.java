@@ -17,18 +17,13 @@ import javafx.stage.StageStyle;
 import map.Map;
 
 public class GamePanel extends Parent {
-	private Dialog dialog;
     private SpriteUI spriteUI;
-    private Sprite sprite = new Sprite("Dec");
+    public Sprite sprite = new Sprite("Dec");
     private SpriteUI[] npcUI;
     private MainCanvas canvas;
     private int numNpc;
-    private boolean canMoveUp = true;
-    private boolean canMoveDown = true;
-    private boolean canMoveLeft = true;
-    private boolean canMoveRight = true;
-    private IIterator<Map> layersIterator;
     private TaskController taskController;
+	private MenuBar menuBar;
     public static final int SPRITE_WIDTH = 32;
 	public static final int SPRITE_HEIGHT = 48;
 	public static final int SCENE_WIDTH = 1600;
@@ -46,8 +41,8 @@ public class GamePanel extends Parent {
         numNpc = 1;
         getChildren().add(spriteUI);
         getChildren().add(npcUI[0]);
-        layersIterator = canvas.iterator();
         taskController = new TaskController();
+        menuBar = new MenuBar(sprite);
         getScene().setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
@@ -69,21 +64,11 @@ public class GamePanel extends Parent {
 	}
 	
 	public void onKeyPressed(KeyEvent event){
-		if(event.getCode() == KeyCode.SPACE) {
-			taskController.Check();
-		}
-		for(int i = 0; i < numNpc; i++) {
-			if(spriteUI.getX() + spriteUI.getWidth() > npcUI[i].getX() && spriteUI.getX() < npcUI[i].getX() + npcUI[i].getWidth()
-			&& spriteUI.getY() > npcUI[i].getY() + npcUI[i].getHeight() && spriteUI.getY() < npcUI[i].getY() + 2*npcUI[i].getHeight()) {
-				System.out.println("move");
-				canMoveUp = false;
-			}
-		}
 		if(event.getCode() == KeyCode.LEFT){
 			spriteUI.moveLeft(canvas.iterator());
 		}else if(event.getCode() == KeyCode.RIGHT){
 			spriteUI.moveRight(canvas.iterator());
-		}else if(event.getCode() == KeyCode.UP && canMoveUp){
+		}else if(event.getCode() == KeyCode.UP){
 			spriteUI.moveUp(canvas.iterator());
 		}else if(event.getCode() == KeyCode.DOWN){
 			spriteUI.moveDown(canvas.iterator());
@@ -98,24 +83,23 @@ public class GamePanel extends Parent {
 				canvas.setProperty = true;
 			else
 				canvas.setProperty = false;
+		} else if(event.getCode() == KeyCode.SPACE) {
+			taskController.Check();
+		} else if(event.getCode() == KeyCode.ESCAPE) {
+			menuBar.updateSprite(sprite);
+			menuBar.main();
 		}
-		System.out.println("Sprite X: " + spriteUI.getX());
-		System.out.println("Sprite Y: " + spriteUI.getY());
+			
 		if(spriteUI.getY() <= 120) {
 			MainApp.fightView = true;
 			System.out.println("exchange");
 		}
-	    canMoveUp = true;
-	    canMoveDown = true;
-	    canMoveLeft = true;
-	    canMoveRight = true;
 	}
 	
 	
 	public void update(){
 		if(spriteUI.getY() <= 120) {
 			MainApp.fightView = true;
-			System.out.println("exchange");
 		}
 	}
 	

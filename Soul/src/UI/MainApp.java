@@ -103,7 +103,7 @@ public class MainApp extends Application {
 
 			player.setAutoPlay(true);
 			player.setCycleCount(20);
-			thread.start();
+			thread.start();	
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -112,4 +112,5 @@ public class MainApp extends Application {
 	public static void main(String[] args) {
 		launch(args);
 	}
+
 }
