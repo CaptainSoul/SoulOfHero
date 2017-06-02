@@ -13,10 +13,6 @@ public class Weapon extends Item {
 		this.strength = strength;
 	}
 
-	public int getStrength() {
-		return strength;
-	}
-
 	public boolean equals(Item item) {
 		if(item instanceof Weapon) {
 			Weapon weapon = (Weapon)item;
@@ -32,4 +28,13 @@ public class Weapon extends Item {
 		return message;
 	}
 
+	public int getStrength() {
+		return strength;
+	}
+
+	public void setStrength(int strength) {
+		this.strength = strength;
+	}
+
+	
 }

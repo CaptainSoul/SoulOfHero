@@ -76,10 +76,6 @@ public class Inventory {
 		else
 			return null;
 	}
-
-	public int getNumInventories() {
-		return numInventories;
-	}
 	
 	public String toString() {
 		IIterator<Item> iterator = items.iterator();
@@ -93,5 +89,29 @@ public class Inventory {
 	public void changeMaxItem(int max) {
 		maxItem = max;
 	}
+	
+	public int getNumInventories() {
+		return numInventories;
+	}
+	
+	public static void reNumInventories() {
+		numInventories--;
+	}
 
+	public int getMaxItem() {
+		return maxItem;
+	}
+
+	public void setMaxItem(int maxItem) {
+		this.maxItem = maxItem;
+	}
+
+	public SLinkedList<Item> getItems() {
+		return items;
+	}
+
+	public void setItems(SLinkedList<Item> items) {
+		this.items = items;
+	}
+	
 }

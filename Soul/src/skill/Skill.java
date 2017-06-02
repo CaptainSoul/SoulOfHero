@@ -1,5 +1,6 @@
 package skill;
 
+
 import archive.Code;
 
 public class Skill {
@@ -22,13 +23,7 @@ public class Skill {
 		code = Code.getCode(this);
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public String getDescription() {
-		return description;
-	}
+	
 	
 	public int getCode() {
 		return code;
@@ -37,10 +32,46 @@ public class Skill {
 	public int getNumSkills() {
 		return numSkills;
 	}
-	
-	public double getDamage(){
+	// in database may change the number, so it need to be reset
+	public static int reNumSkills() {
+		return numSkills--;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+
+	public String getDescription() {
+		return description;
+	}
+
+
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+
+
+	public double getDamage() {
 		return damage;
 	}
+
+
+
+	public void setDamage(double damage) {
+		this.damage = damage;
+	}
+
+
 
 	public double attack( int strength ) {
 		double skillDamage = damage * strength;
@@ -48,3 +79,4 @@ public class Skill {
 	}
 
 }
+
