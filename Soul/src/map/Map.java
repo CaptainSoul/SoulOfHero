@@ -20,23 +20,20 @@ public class Map {
 	private int[][] mapIndex = new int[HEIGHT][WIDTH];
 	
 	public Map(int tileWidth, int tileHeight, Image image, int numExit) {
-		this.tileWidth = tileWidth;
-		this.tileHeight = tileHeight;
+		Map.tileWidth = tileWidth;
+		Map.tileHeight = tileHeight;
 		this.image = image;
 		cols = (int) (image.getWidth() / tileWidth);
 		code = Code.getCode(this);
-	//	setPrimaryMap();
 	}
 	
 	public Map(int tileWidth, int tileHeight, Image image, String url, int numExit) {
 		this(tileWidth, tileHeight, image, 4);
 		setMapIndex(url);
-	//	setPrimaryMap();
 	}
 	
 	public Map(int tileWidth, int tileHeight, Image image) {
 		this(tileWidth, tileHeight, image, 4);
-	//	setPrimaryMap();
 	}
 	
 	public Map(int tileWidth, int tileHeight, Image image, String url) {
@@ -90,7 +87,6 @@ public class Map {
 				locStart = 0;
 				for(int x = 0; x < WIDTH; x++) {
 					locEnd = map[y].indexOf(" ", locStart);
-					System.out.println("locStart:" + locStart);
 					mapIndex[y][x] = Integer.parseInt(map[y].substring(locStart, locEnd));
 					locStart = locEnd + 1;
 				}
@@ -107,5 +103,13 @@ public class Map {
 	
 	public int getNumMaps() {
 		return numMaps;
+	}
+	
+	public int getTileWidth() {
+		return tileWidth;
+	}
+	
+	public int getTileHeight() {
+		return tileHeight;
 	}
 }

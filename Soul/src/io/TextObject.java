@@ -9,7 +9,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 
-@SuppressWarnings("restriction")
 public class TextObject extends BaseObject {
 	private String text;
 	private Font font = Font.getDefault();

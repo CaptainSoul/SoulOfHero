@@ -20,6 +20,7 @@ public class GamePanel extends Parent {
     private MainCanvas canvas;
     private TaskController taskController;
 	private MenuBar menuBar;
+	private boolean firCheck = true;
     public static final int SPRITE_WIDTH = 32;
 	public static final int SPRITE_HEIGHT = 48;
 	public static final int SCENE_WIDTH = 1600;
@@ -37,6 +38,11 @@ public class GamePanel extends Parent {
         getChildren().add(spriteUI);
         getChildren().add(npcUI[0]);
         taskController = new TaskController();
+        if(firCheck) {
+        	taskController.Check();
+        	System.out.println(2);
+        	firCheck = false;
+        }
         menuBar = new MenuBar(sprite);
         getScene().setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
@@ -84,10 +90,15 @@ public class GamePanel extends Parent {
 			menuBar.updateSprite(sprite);
 			menuBar.main();
 		}
-			
-		if(spriteUI.getY() <= 120) {
+		if(taskController.getFind() == false) {
+			if(spriteUI.getX() >= 221 && spriteUI.getX() <= 513
+					&& spriteUI.getY() >= 328 && spriteUI.getY() <= 454) {
+				System.out.println(1);
+				taskController.setFind(true);
+			} 
+		}
+		if(spriteUI.getY() <= 46) {
 			MainApp.fightView = true;
-			System.out.println("exchange");
 		}
 	}
 	
@@ -107,7 +118,6 @@ public class GamePanel extends Parent {
 		stage.setScene(scene);
 		stage.setTitle("SoulOfHero");
 		stage.initStyle(StageStyle.UTILITY);
-
 		return stage;
 	}
 

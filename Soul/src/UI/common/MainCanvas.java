@@ -27,7 +27,7 @@ public class MainCanvas extends Canvas {
 	private SpriteUI spriteUI;
 	private Sprite sprite;
 	private String mapData1 = "./resource/data/map/map1.txt";
-	private String mapData2 = "./resource/data/map/map2.txt";
+	private String mapData2 = "./resource/data/map/map3.txt";
 	
 	private Thread thread = new Thread(new Runnable() {
 

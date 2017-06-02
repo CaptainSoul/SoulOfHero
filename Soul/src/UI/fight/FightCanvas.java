@@ -24,6 +24,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import map.Map;
+import scenario.FightFrame;
 
 public class FightCanvas extends Canvas {
 	private enum Status {
@@ -55,6 +56,7 @@ public class FightCanvas extends Canvas {
 	private int moveToX, moveToY;
 	private boolean isCanMove = false;
 	private WPath path;
+	private boolean firFight = true;
 	
 	private Thread thread = new Thread(new Runnable() {
 
@@ -83,6 +85,10 @@ public class FightCanvas extends Canvas {
 	
 	public FightCanvas(double width, double height) {
 		super(width, height);
+		if(firFight) {
+			FightFrame.main(null);
+			firFight = false;
+		}
 		imageMap = new Image(getClass().getResourceAsStream("fight2.jpg"));
 		gContext = getGraphicsContext2D();
 		map = new Map(tileWidth, tileHeight, imageMap);

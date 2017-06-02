@@ -9,7 +9,6 @@ import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
-import UI.MainApp;
 import character.Sprite;
 
 import java.awt.Color;

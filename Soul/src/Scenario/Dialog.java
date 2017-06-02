@@ -1,6 +1,5 @@
 package scenario;
 
-import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
@@ -9,8 +8,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class Dialog extends JDialog {
 	
@@ -43,7 +40,7 @@ public class Dialog extends JDialog {
 		setTitle(" ");
 		setType(Type.UTILITY);
 		setResizable(false);
-		setBounds(100, 100, 537, 138);
+		setBounds(100, 100, 946, 234);
 		getContentPane().setLayout(null);
 		Dimension screenSize=java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 		Dimension frameSize= this.getSize();
@@ -51,18 +48,18 @@ public class Dialog extends JDialog {
 		
 		head = new JLabel("");
 		head.setIcon(new ImageIcon(Dialog.class.getResource("/pic/head/vx013.png")));
-		head.setBounds(14, 20, 100, 100);
+		head.setBounds(14, 60, 100, 100);
 		getContentPane().add(head);
 		
 		lblTxt = new JLabel("Welcome to Soul of Hero!!");	
 		lblTxt.setForeground(new Color(51, 51, 102));
-		lblTxt.setFont(new Font("Comic Sans MS", Font.BOLD, 20));
-		lblTxt.setBounds(128, 13, 409, 106);
+		lblTxt.setFont(new Font("Comic Sans MS", Font.BOLD, 25));
+		lblTxt.setBounds(128, 13, 707, 208);
 		getContentPane().add(lblTxt);
 		
 		lblBackground = new JLabel("");
-		lblBackground.setIcon(new ImageIcon(Dialog.class.getResource("/UI/fight/fight1.jpg")));
-		lblBackground.setBounds(0, 0, 537, 137);
+		lblBackground.setIcon(new ImageIcon(Dialog.class.getResource("/pic/common/demon.jpg")));
+		lblBackground.setBounds(0, 0, 946, 234);
 		getContentPane().add(lblBackground);
 		setAlwaysOnTop(true);
 		setAutoRequestFocus(true);
@@ -83,20 +80,20 @@ public class Dialog extends JDialog {
 	public void setHintTxt(String txt) {
 		clearHeadIcon();
 		lblTxt.setForeground(new Color(204, 51, 0));
-		lblTxt.setFont(new Font("Comic Sans MS", Font.BOLD, 21));
+		lblTxt.setFont(new Font("Comic Sans MS", Font.BOLD, 25));
 		setTxt(txt);
 	}
 	
 	public void setCommonTxt(String txt) {
 		head.setIcon(new ImageIcon(Dialog.class.getResource("/pic/head/vx013.png")));
 		lblTxt.setForeground(new Color(51, 51, 102));
-		lblTxt.setFont(new Font("Comic Sans MS", Font.BOLD, 20));
+		lblTxt.setFont(new Font("Comic Sans MS", Font.BOLD, 25));
 		setTxt(txt);
 	}
 	
 	public void setAsideTxt(String txt) {
 		clearHeadIcon();
-		lblTxt.setFont(new Font("Comic Sans MS", Font.BOLD, 23));
+		lblTxt.setFont(new Font("Comic Sans MS", Font.BOLD, 25));
 		lblTxt.setForeground(new Color(153, 0, 0));
 		setTxt(txt);
 	}

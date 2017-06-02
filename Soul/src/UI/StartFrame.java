@@ -5,6 +5,9 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+
+import scenario.WelcomeFrame;
+
 import javax.swing.ImageIcon;
 import java.awt.Window.Type;
 import javax.swing.JButton;
@@ -80,7 +83,7 @@ public class StartFrame {
 					btnContinue.setSelected(true);
 					btnContinue.requestFocus();
 				} else if(key == KeyEvent.VK_ENTER) {
-					MainApp.mainView = true;
+					WelcomeFrame.main(null);
 					frmSoulOfHero.dispose();
 				}
 			}
@@ -88,7 +91,7 @@ public class StartFrame {
 		btnStart.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				MainApp.mainView = true;
+				WelcomeFrame.main(null);
 				frmSoulOfHero.dispose();
 			}
 		});
@@ -102,6 +105,13 @@ public class StartFrame {
 		frmSoulOfHero.getContentPane().add(btnStart);
 		
 		btnContinue = new JButton("");
+		btnContinue.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				WelcomeFrame.main(null);
+				frmSoulOfHero.dispose();
+			}
+		});
 		btnContinue.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -113,7 +123,8 @@ public class StartFrame {
 					btnExit.setSelected(true);
 					btnExit.requestFocus();
 				} else if(key == KeyEvent.VK_ENTER) {
-					
+					WelcomeFrame.main(null);
+					frmSoulOfHero.dispose();
 				}
 				btnContinue.setSelected(false);
 			}
@@ -175,12 +186,12 @@ public class StartFrame {
 		frmSoulOfHero.getContentPane().add(btnExit);
 		
 		label_1 = new JLabel("");
-		label_1.setIcon(new ImageIcon(StartFrame.class.getResource("/pic/menu/SoulOfHero.png")));
-		label_1.setBounds(576, 265, 400, 86);
+		label_1.setIcon(new ImageIcon(StartFrame.class.getResource("/pic/common/Soul of Hero.png")));
+		label_1.setBounds(373, 223, 903, 86);
 		frmSoulOfHero.getContentPane().add(label_1);
 		
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(StartFrame.class.getResource("/pic/common/assassin.jpg")));
+		label.setIcon(new ImageIcon(StartFrame.class.getResource("/pic/common/judge.jpg")));
 		label.setBounds(0, 0, 1600, 892);
 		frmSoulOfHero.getContentPane().add(label);
 	}

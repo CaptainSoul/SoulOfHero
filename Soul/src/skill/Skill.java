@@ -1,7 +1,6 @@
 package skill;
 
 import archive.Code;
-import character.Sprite;
 
 public class Skill {
 

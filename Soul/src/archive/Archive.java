@@ -29,4 +29,8 @@ public class Archive {
 		this.player = player;
 	}
 	
+	public Sprite getPlayer() {
+		return player;
+	}
+	
 }
