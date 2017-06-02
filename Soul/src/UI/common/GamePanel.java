@@ -1,10 +1,7 @@
 package UI.common;
 
-import Scenario.Dialog;
-import Scenario.TaskController;
 import UI.MainApp;
 import character.Sprite;
-import dsa.iface.IIterator;
 import javafx.event.EventHandler;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -14,14 +11,13 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import map.Map;
+import scenario.TaskController;
 
 public class GamePanel extends Parent {
     private SpriteUI spriteUI;
     public Sprite sprite = new Sprite("Dec");
     private SpriteUI[] npcUI;
     private MainCanvas canvas;
-    private int numNpc;
     private TaskController taskController;
 	private MenuBar menuBar;
     public static final int SPRITE_WIDTH = 32;
@@ -38,7 +34,6 @@ public class GamePanel extends Parent {
         spriteUI = new SpriteUI(30, 270, SPRITE_WIDTH, SPRITE_HEIGHT, "xpchar51.png");
         npcUI = new SpriteUI[10];
         npcUI[0] = new SpriteUI(420, 395, SPRITE_WIDTH, SPRITE_HEIGHT, "xpchar8.png");
-        numNpc = 1;
         getChildren().add(spriteUI);
         getChildren().add(npcUI[0]);
         taskController = new TaskController();

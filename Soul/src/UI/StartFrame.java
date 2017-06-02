@@ -4,7 +4,6 @@ import java.awt.Dimension;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
-import java.awt.GridBagLayout;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import java.awt.Window.Type;
@@ -181,7 +180,7 @@ public class StartFrame {
 		frmSoulOfHero.getContentPane().add(label_1);
 		
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(StartFrame.class.getResource("/pic/map/assassin.jpg")));
+		label.setIcon(new ImageIcon(StartFrame.class.getResource("/pic/common/assassin.jpg")));
 		label.setBounds(0, 0, 1600, 892);
 		frmSoulOfHero.getContentPane().add(label);
 	}

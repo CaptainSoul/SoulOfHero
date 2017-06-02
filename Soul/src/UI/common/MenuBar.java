@@ -21,6 +21,8 @@ public class MenuBar {
 	private JFrame frame;
 	private Sprite sprite;
 	private SpriteBar spriteBar;
+	private SkillBar skillBar;
+	private ResureExit resureExit;
 
 	/**
 	 * Launch the application.
@@ -111,6 +113,17 @@ public class MenuBar {
 		frame.getContentPane().add(btnSprite);
 		
 		JButton btnSkill = new JButton("");
+		btnSkill.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(skillBar == null)
+					skillBar = new SkillBar(sprite);
+				else
+					skillBar.updateSprite(sprite);
+				skillBar.main();
+				frame.dispose();
+			}
+		});
 		btnSkill.setBackground(Color.WHITE);
 		btnSkill.setIcon(new ImageIcon(MenuBar.class.getResource("/pic/menu/Skill.png")));
 		btnSkill.setRolloverIcon(new ImageIcon(MenuBar.class.getResource("/pic/menu/SkillR.png")));
@@ -150,7 +163,11 @@ public class MenuBar {
 		btnExit.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				MainApp.loginView = true;
+				if(resureExit == null)
+					resureExit = new ResureExit(sprite);
+				else
+					resureExit.updateSprite(sprite);
+				resureExit.main();
 				frame.dispose();
 			}
 		});
@@ -163,7 +180,7 @@ public class MenuBar {
 		frame.getContentPane().add(btnExit);
 		
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(MenuBar.class.getResource("/pic/map/demon.jpg")));
+		label.setIcon(new ImageIcon(MenuBar.class.getResource("/pic/common/demon.jpg")));
 		label.setBounds(0, 0, 230, 360);
 		frame.getContentPane().add(label);
 	}
