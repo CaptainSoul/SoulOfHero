@@ -21,6 +21,7 @@ public class GamePanel extends Parent {
     private TaskController taskController;
 	private MenuBar menuBar;
 	private boolean firCheck = true;
+	public static boolean canComm = true;
     public static final int SPRITE_WIDTH = 32;
 	public static final int SPRITE_HEIGHT = 48;
 	public static final int SCENE_WIDTH = 1600;
@@ -38,10 +39,10 @@ public class GamePanel extends Parent {
         getChildren().add(spriteUI);
         getChildren().add(npcUI[0]);
         taskController = new TaskController();
-        if(firCheck) {
-        	taskController.Check();
-        	System.out.println(2);
+        if(firCheck && canComm) {
+        	canComm = false;
         	firCheck = false;
+        	taskController.Check();
         }
         menuBar = new MenuBar(sprite);
         getScene().setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -56,7 +57,11 @@ public class GamePanel extends Parent {
  				onKeyPressed(event);
  			}
  		});
-
+        if(firCheck && canComm) {
+        	canComm = false;
+        	firCheck = false;
+        	taskController.Check();
+        }
 	}
 	
 	public void onMouseClicked(MouseEvent event) {
@@ -80,7 +85,8 @@ public class GamePanel extends Parent {
 				canvas.setProperty = true;
 			else
 				canvas.setProperty = false;
-		} else if(event.getCode() == KeyCode.SPACE) {
+		} else if(event.getCode() == KeyCode.SPACE && canComm) {
+			canComm = false;
 			taskController.Check();
 		} else if(event.getCode() == KeyCode.ESCAPE) {
 			menuBar.updateSprite(sprite);
@@ -89,7 +95,6 @@ public class GamePanel extends Parent {
 		if(taskController.getFind() == false) {
 			if(spriteUI.getX() >= 221 && spriteUI.getX() <= 513
 					&& spriteUI.getY() >= 328 && spriteUI.getY() <= 454) {
-				System.out.println(1);
 				taskController.setFind(true);
 			} 
 		}
@@ -100,9 +105,7 @@ public class GamePanel extends Parent {
 	
 	
 	public void update(){
-		if(spriteUI.getY() <= 120) {
-			MainApp.fightView = true;
-		}
+
 	}
 	
 	public static Stage MainStage() {

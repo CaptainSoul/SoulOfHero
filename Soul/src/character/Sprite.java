@@ -36,10 +36,10 @@ public class Sprite extends FightObject {
 
 	private int max_exp = 50;
 	private static int numCharacters = 0;
-	private static final int MAX_HP = 100;
-	private static final int MIN_HP = 0;
-	private static final int MAX_MP = 100;
-//	private static final int MIN_MP = 0;
+	private int MAX_HP = 500;
+	private int MIN_HP = 0;
+	private int MAX_MP = 200;
+//	private int MIN_MP = 0;
 	private static final int MIN_DAMAGE = 0;
 //	private static final int MIN_HEAL = 0;
 
@@ -50,7 +50,7 @@ public class Sprite extends FightObject {
 
 
 	public Sprite(String name) {
-		this(name, 100, 100, 70, 15);
+		this(name, 500, 200, 70, 15);
 	}
 	
 	public Sprite(String name, int hp, int mp, int strength, int defence) {
@@ -64,9 +64,6 @@ public class Sprite extends FightObject {
 		this.level = 1;
 		this.gold = 1;
 		this.move = 4;
-		this.armorCode = armor.getCode();
-		this.weaponCode = weapon.getCode();
-		this.inventoryCode = inventory.getCode();
 		inventory = new Inventory();
 		weapon = new Weapon();
 		armor = new Armor();
@@ -265,8 +262,16 @@ public class Sprite extends FightObject {
 		return MAX_HP;
 	}
 	
+	public void setMaxHp(int maxHP) {
+		this.MAX_HP = maxHP;
+	}
+	
 	public int getMaxMp() {
 		return MAX_MP;
+	}
+	
+	public void setMaxMp(int maxMP) {
+		this.MAX_MP = maxMP;
 	}
 
 	public int getNumCharacters() {

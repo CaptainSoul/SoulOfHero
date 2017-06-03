@@ -202,7 +202,6 @@ public class FightCanvas extends Canvas {
 							waitToNextPlayer();
 							if (enemys.size() == 0) {
 								nowStatus = Status.GAME_WIN;
-								MainApp.mainView = true;
 							}
 						}
 					}
@@ -339,11 +338,11 @@ public class FightCanvas extends Canvas {
 	}
 	
 	private void initPlayers() {
-		Image player1Image = new Image(getClass().getResourceAsStream("vx025.png"));
-		Sprite player1 = new Sprite("Wang");
+		Image player1Image = new Image(getClass().getResourceAsStream("/pic/head/vx013.png"));
+		Sprite player1 = new Sprite("Dec");
 		player1.setImage(player1Image);
 		player1.putExp(150);
-		player1.setXY(18 * tileWidth, 15 * tileHeight);
+		player1.setXY(12 * tileWidth, 8 * tileHeight);
 
 		Image player2Image = new Image(getClass().getResourceAsStream("vx02.png"));
 		Sprite player2 = new Sprite("Dong");
@@ -356,8 +355,6 @@ public class FightCanvas extends Canvas {
 		player3.setXY(15 * tileWidth, 15 * tileHeight);
 
 		players.add(player1);
-		players.add(player2);
-		players.add(player3);
 	}
 
 	private void waitToNextPlayer() {
@@ -384,12 +381,14 @@ public class FightCanvas extends Canvas {
 
 	private void initEnemy() {
 		Image orc = new Image(getClass().getResourceAsStream("vx05.png"));
-		int[][] locations = { { 3, 3 }, { 3, 5 }, { 5, 3 } };
+		int[][] locations = { { 7, 3 }, { 7, 5 }, { 9, 3 } };
 		for (int i = 0; i < 3; i++) {
 			Sprite enemy = new Sprite("Enemy");
 			enemy.setImage(orc);
 			enemy.setGroup(Group.ENEMY);
+			enemy.setHp(75);
 			enemy.setMove(3);
+			enemy.setMaxHp(75);
 			enemy.putExp(50);
 			enemy.setXY(locations[i][0] * tileWidth, locations[i][1] * tileHeight);
 			enemys.add(enemy);
@@ -426,13 +425,11 @@ public class FightCanvas extends Canvas {
 			gContext.setFont(Font.font(18));
 			gContext.setFill(Color.WHITE);
 			gContext.fillText("Victory!", 250, 150);
-			MainApp.mainView = true;
 			break;
 		case GAME_OVER:
 			gContext.setFont(Font.font(18));
 			gContext.setFill(Color.RED);
 			gContext.fillText("Failure!", 250, 150);
-			MainApp.mainView = true;
 			break;
 		default:
 			break;

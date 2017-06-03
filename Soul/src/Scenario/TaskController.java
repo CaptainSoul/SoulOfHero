@@ -3,6 +3,8 @@ package scenario;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+import UI.common.GamePanel;
+
 public class TaskController {
 	private int progress = 0;
 	private int start1 = 0;
@@ -19,12 +21,14 @@ public class TaskController {
 			start1B();
 		else if(progress == 2 && find == true)
 			start1C();
+		GamePanel.canComm = true;
 	}
 	
 	public void start() {
 		Dialog dialog = new Dialog();
 		dialog.setTxt("Ah...");
 		dialog.setVisible(true);
+		dialog.requestFocus();
 		dialog.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -47,7 +51,6 @@ public class TaskController {
 					dialog.dispose();
 				}
 				start1++;
-					
 			}
 		});
 	}

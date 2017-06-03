@@ -29,10 +29,24 @@ public class MainApp extends Application {
 	public static String fightViewID = "fightView";
 	public static boolean fightView = false;
 	
+	public static String bgmStartURL = "/bgm/Start.mp3";
+	public static String bgmTheme1URL = "/bgm/Theme1.mp3";
+	public static String bgmTheme2URL = "/bgm/Theme2.mp3";
+	public static String bgmTheme3URL = "/bgm/Theme3.mp3";
+	public static String bgmTheme4URL = "/bgm/Theme4.mp3";
+	public static String bgmGhostURL = "/bgm/GhostHouse.mp3";
+	public static String bgmBattleURL = "/bgm/Battle.mp3";
+	public static String bgmBattle2URL = "/bgm/Battle2.mp3";
+	public static String bgmBattleBossURL = "/bgm/BattleBoss.mp3";
+	
+	public boolean bgmStart = false;
+	public boolean bgmGhost = false;
+	public boolean bgmBattleBoss = false;
+	
 	private StageController stageController;
 	private boolean isRunning = true;
 	private long sleep = 100;
-	private String url = getClass().getResource("¡÷”—…˘ - –°µ∂ª·–Ú«˙.mp3").toString();
+	private String url = getClass().getResource(bgmStartURL).toString();
 	private Media media = new Media(url);
 	private MediaPlayer player = new MediaPlayer(media);
 	
@@ -62,7 +76,7 @@ public class MainApp extends Application {
 	public void update() {
 		if(loginView) {
 			player.play();
-			stageController.loadStage(loginViewID, loginViewRes, StageStyle.UTILITY);
+			stageController.loadStage(loginViewID, loginViewRes, StageStyle.DECORATED);
 			stageController.setStage(loginViewID);
 			loginView = false;
 		} else if(signUpView) {
@@ -73,15 +87,25 @@ public class MainApp extends Application {
 			StartFrame.main(null);
 			startView = false;
 		} else if(mainView) {
-			loadMusic("Can't Take My Eyes Off You.mp3");
+			bgmGhost = true;
 			stageController.addStage(mainViewID, GamePanel.MainStage());
 			stageController.setStage(mainViewID);
 			mainView = false;
 		} else if(fightView) {
-			loadMusic("The General's Order.mp3");
+			bgmBattleBoss = true;
 			stageController.addStage(fightViewID, FightCanvas.fightStage());
 			stageController.setStage(fightViewID);
 			fightView = false;
+		}
+		if(bgmStart) {
+			loadMusic(bgmStartURL);
+			bgmStart = false;
+		} else if(bgmGhost) {
+			loadMusic(bgmGhostURL);
+			bgmGhost = false;
+		} else if(bgmBattleBoss) {
+			loadMusic(bgmBattleBossURL);
+			bgmBattleBoss = false;
 		}
 	}
 	
@@ -99,7 +123,7 @@ public class MainApp extends Application {
 			UserManagement.addUser("Hero", "123");
 			stageController = new StageController();
 			stageController.setPrimaryStage("primaryStage", primaryStage);
-			loginView = true;
+			startView = true;
 
 			player.setAutoPlay(true);
 			player.setCycleCount(20);
