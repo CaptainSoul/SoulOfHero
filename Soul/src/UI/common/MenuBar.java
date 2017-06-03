@@ -111,6 +111,7 @@ public class MenuBar {
 		btnSprite.setBounds(0, 60, 230, 60);
 		frame.getContentPane().add(btnSprite);
 		
+		
 		JButton btnSkill = new JButton("");
 		btnSkill.addMouseListener(new MouseAdapter() {
 			@Override
@@ -132,6 +133,17 @@ public class MenuBar {
 		frame.getContentPane().add(btnSkill);
 		
 		JButton btnInventory = new JButton("");
+		btnSkill.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(skillBar == null)
+					skillBar = new SkillBar(sprite);
+				else
+					skillBar.updateSprite(sprite);
+				skillBar.main();
+				frame.dispose();
+			}
+		});
 		btnInventory.setBackground(Color.WHITE);
 		btnInventory.setIcon(new ImageIcon(MenuBar.class.getResource("/pic/menu/Inventory.png")));
 		btnInventory.setRolloverIcon(new ImageIcon(MenuBar.class.getResource("/pic/menu/InventoryR.png")));
@@ -141,6 +153,12 @@ public class MenuBar {
 		frame.getContentPane().add(btnInventory);
 		
 		JButton btnSave = new JButton("");
+		btnSkill.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+			}
+		});
 		btnSave.setBackground(Color.WHITE);
 		btnSave.setIcon(new ImageIcon(MenuBar.class.getResource("/pic/menu/Save.png")));
 		btnSave.setRolloverIcon(new ImageIcon(MenuBar.class.getResource("/pic/menu/SaveR.png")));
