@@ -12,21 +12,17 @@ public class Item {
 	
 	private final int code;
 
+	private int inventoryCode;
+	
 	public Item(String name, String description) {
 		this.name =  name;
 		this.description = description;
 		numItems++;
 		code = Code.getCode(this);
+		this.inventoryCode = 0;
 	}
 
-	public String getName() {
-		return name;
-	}
 
-	public String getDescription() {
-		return description;
-	}
-	
 	public int getCode() {
 		return code;
 	}
@@ -53,5 +49,45 @@ public class Item {
 		message += name + ". " + description;
 		return message;
 	}
+
+
+	public String getName() {
+		return name;
+	}
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+	public String getDescription() {
+		return description;
+	}
+
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+
+	public static void setNumItems(int numItems) {
+		Item.numItems = numItems;
+	}
+
+	public static void reNumItems(){
+		Item.numItems--;
+	}
+
+
+	public int getInventoryCode() {
+		return inventoryCode;
+	}
+
+
+	public void setInventoryCode(int inventoryCode) {
+		this.inventoryCode = inventoryCode;
+	}
+
 
 }

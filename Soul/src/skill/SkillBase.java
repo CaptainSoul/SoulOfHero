@@ -11,6 +11,10 @@ public class SkillBase {
 	private static int numSkillBase = 0;
 	
 	private SLinkedList<Skill> skills;
+	private IIterator<Skill> iterator;
+	
+	private int skillCode;
+	private int spriteCode;
 
 	public SkillBase(){
 		 skills = new SLinkedList<>();
@@ -18,6 +22,22 @@ public class SkillBase {
 		 code = Code.getCode(this);
 	}
 	
+	public int getSkillCode() {
+		return skillCode;
+	}
+
+	public void setSkillCode(int skillCode) {
+		this.skillCode = skillCode;
+	}
+
+	public int getSpriteCode() {
+		return spriteCode;
+	}
+
+	public void setSpriteCode(int spriteCode) {
+		this.spriteCode = spriteCode;
+	}
+
 	public int getNumSkill() {
 		return skills.size();
 	}
@@ -63,12 +83,14 @@ public class SkillBase {
 		return numSkillBase;
 	}
 
-	public static void setNumSkillBase(int numSkills) {
-		SkillBase.numSkillBase = numSkills;
+	// in database may change the number, so it need to be reset
+	public static int reNumSkillBase() {
+		return numSkillBase--;
 	}
 
 	public int getCode() {
 		return code;
 	}
+
 
 }

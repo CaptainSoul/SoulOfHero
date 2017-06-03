@@ -13,10 +13,6 @@ public class Armor extends Item {
 		this.defence = defence;
 	}
 
-	public int getDefence() {
-		return defence;
-	}
-
 	public boolean equals(Item item) {
 		if(item instanceof Armor) {
 			Armor armor = (Armor)item;
@@ -32,4 +28,13 @@ public class Armor extends Item {
 		return message;
 	}
 
+	public int getDefence() {
+		return defence;
+	}
+
+	public void setDefence(int defence) {
+		this.defence = defence;
+	}
+
+	
 }

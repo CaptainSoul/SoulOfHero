@@ -30,6 +30,10 @@ public class Sprite extends FightObject {
 
 	private final int code;
 	
+	private int armorCode;
+	private int weaponCode;
+	private int inventoryCode;
+
 	private int max_exp = 50;
 	private static int numCharacters = 0;
 	private static final int MAX_HP = 100;
@@ -60,6 +64,9 @@ public class Sprite extends FightObject {
 		this.level = 1;
 		this.gold = 1;
 		this.move = 4;
+		this.armorCode = armor.getCode();
+		this.weaponCode = weapon.getCode();
+		this.inventoryCode = inventory.getCode();
 		inventory = new Inventory();
 		weapon = new Weapon();
 		armor = new Armor();
@@ -68,20 +75,12 @@ public class Sprite extends FightObject {
 		numCharacters++;
 	}
 	
-	public void setGroup(Group group) {
-		this.group = group;
-	}
-	
 	public void putExp(int exp) {
 		this.exp += exp;
 		if(this.exp >= max_exp) {
 			levelUp();
 			this.exp = 0;
 		}
-	}
-	
-	public int getExp() {
-		return exp;
 	}
 	
 	public void levelUp() {
@@ -113,50 +112,6 @@ public class Sprite extends FightObject {
 		this.armor = armor;
 	}
 	
-	public String getName() {
-		return name;
-	}
-
-	public int getLevel() {
-		return level;
-	}
-	
-	public int getNumCharacters() {
-		return numCharacters;
-	}
-	
-	public int getCode() {
-		return code;
-	}
-
-	public int getHp() {
-		return hp;
-	}
-
-	public int getMp() {
-		return mp;
-	}
-	
-	public int getStrength(){
-		return strength;
-	}
-	
-	public int getAttack() {
-		return strength + weapon.getStrength();
-	}
-	
-	public int getDefence(){
-		return defence;
-	}
-	
-	public int getSheild() {
-		return defence + armor.getDefence();
-	}
-	
-	public int getGold() {
-		return gold;
-	}
-	
 	public int getMove() {
 		return move;
 	}
@@ -173,6 +128,106 @@ public class Sprite extends FightObject {
 		return inventory;
 	}
 
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getHp() {
+		return hp;
+	}
+
+	public void setHp(int hp) {
+		this.hp = hp;
+	}
+
+	public int getMp() {
+		return mp;
+	}
+
+	public void setMp(int mp) {
+		this.mp = mp;
+	}
+
+	public int getStrength() {
+		return strength;
+	}
+
+	public void setStrength(int strength) {
+		this.strength = strength;
+	}
+
+	public int getDefence() {
+		return defence;
+	}
+
+	public void setDefence(int defence) {
+		this.defence = defence;
+	}
+
+	public int getExp() {
+		return exp;
+	}
+
+	public void setExp(int exp) {
+		this.exp = exp;
+	}
+
+	public int getLevel() {
+		return level;
+	}
+
+	public void setLevel(int level) {
+		this.level = level;
+	}
+
+	public int getGold() {
+		return gold;
+	}
+
+	public void setGold(int gold) {
+		this.gold = gold;
+	}
+
+	public int getArmorCode() {
+		return armor.getCode();
+	}
+
+	public void setArmorCode(int armorCode) {
+		this.armorCode = armorCode;
+	}
+
+	public int getWeaponCode() {
+		return weapon.getCode();
+	}
+
+	public void setWeaponCode(int weaponCode) {
+		this.weaponCode = weaponCode;
+	}
+
+	public int getInventoryCode() {
+		return inventory.getCode();
+	}
+
+	public void setInventoryCode(int inventoryCode) {
+		this.inventoryCode = inventoryCode;
+	}
+
+	public Group getGroup() {
+		return group;
+	}
+
+	public void setGroup( Group group){
+		this.group = group;
+	}
+	
+	public int getCode() {
+		return code;
+	}
+	
 	public void attack(Sprite target) {
 		// target_hp,defence, AC_strength
 		int damage = strength - target.defence;
@@ -213,8 +268,21 @@ public class Sprite extends FightObject {
 	public int getMaxMp() {
 		return MAX_MP;
 	}
-	
-	public Group getGroup() {
-		return group;
+
+	public int getNumCharacters() {
+		// TODO Auto-generated method stub
+		return numCharacters;
 	}
+
+	// in database may change the number, so it need to be reset
+	public static int reNumCharacters() {
+		return numCharacters--;
+	}
+	
+	public int getAttack() {
+		// TODO Auto-generated method stub
+		return strength+weapon.getStrength();
+	}
+
+	
 }

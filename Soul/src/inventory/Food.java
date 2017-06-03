@@ -11,14 +11,6 @@ public class Food extends Item {
 		this.hp = hp;
 		this.mp = mp;
 	}
-
-	public int getHp() {
-		return hp;
-	}
-
-	public int getMp() {
-		return mp;
-	}
 	
 	public boolean equals(Item item) {
 		if(item instanceof Food) {
@@ -35,4 +27,21 @@ public class Food extends Item {
 		return message;
 	}
 
+	public int getHp() {
+		return hp;
+	}
+
+	public void setHp(int hp) {
+		this.hp = hp;
+	}
+
+	public int getMp() {
+		return mp;
+	}
+
+	public void setMp(int mp) {
+		this.mp = mp;
+	}
+
+	
 }
