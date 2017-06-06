@@ -5,8 +5,6 @@ import UI.fight.FightCanvas;
 import archive.UserManagement;
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -38,6 +36,8 @@ public class MainApp extends Application {
 	public BGM bgm = BGM.getBGM();
 	private boolean isRunning = true;
 	private long sleep = 100;
+	
+	private UserManagement userManagement;
 
 	
 	private Thread thread = new Thread(new Runnable() {
@@ -102,7 +102,8 @@ public class MainApp extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			UserManagement.addUser("Hero", "123");
+			userManagement = UserManagement.getUserManagement();
+			userManagement.addUser("Hero", "123");
 			stageController = new StageController();
 			stageController.setPrimaryStage("primaryStage", primaryStage);
 			loginView = true;

@@ -20,6 +20,9 @@ public class UserService {
 	}
 	
 	public User query(String ID) {
+		int count = userDao.getCount();
+		if(count <= 0)
+			return null;
 		User user = userDao.getUser(ID);
 		if(user == null)
 			System.out.println("The query result is empty!!");
@@ -33,5 +36,15 @@ public class UserService {
 			System.out.println("Invalid information, cannot delete!!");
 		else
 			userDao.delete(user);
+	}
+	
+	public User[] getAll() {
+		User[] users = userDao.getUsers();
+		if(users.length == 0) {
+			System.out.println("Empty table!!");
+			return null;
+		}
+		else
+			return users;
 	}
 }

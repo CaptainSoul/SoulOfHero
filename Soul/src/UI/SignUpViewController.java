@@ -13,6 +13,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 public class SignUpViewController extends ControlledStage implements Initializable {
+	private UserManagement userManagement = UserManagement.getUserManagement();
 	@FXML private TextField userNameField;
 	@FXML private PasswordField passwordField;
 	@FXML private PasswordField checkPasswordField;
@@ -24,12 +25,12 @@ public class SignUpViewController extends ControlledStage implements Initializab
 		String passwordC = checkPasswordField.getText();
 		if(user.equals("") || password.equals("") || passwordC.equals("")) {
 			JOptionPane.showMessageDialog(null, "Please enter ID and password");
-		} else if(UserManagement.isDuplication(user)) {
+		} else if(userManagement.isDuplication(user)) {
 			JOptionPane.showMessageDialog(null, "Duplicative ID");
 		} else if(!password.equals(passwordC)) {
 			JOptionPane.showMessageDialog(null, "Please check your password");
 		} else {
-			UserManagement.addUser(user, password);
+			userManagement.addUser(user, password);
 			MainApp.loginView = true;
 		}
 	}

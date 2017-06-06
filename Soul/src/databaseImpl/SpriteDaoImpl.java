@@ -63,8 +63,8 @@ public class SpriteDaoImpl implements SpriteDao {
 			st = con.prepareStatement(sql);
 			st.setInt(1, code);
 			rs = st.executeQuery();
-			Sprite sprite = new Sprite(rs.getString("name"), code);
 			while(rs.next()) {
+				Sprite sprite = new Sprite(rs.getString("name"), code);
 				sprite.setHp(rs.getInt("hp"));
 				sprite.setMp(rs.getInt("mp"));
 				sprite.setStrength(rs.getInt("strength"));
@@ -92,13 +92,14 @@ public class SpriteDaoImpl implements SpriteDao {
 				sprite.setArmor(armor);
 				sprite.setWeapon(weapon);
 				sprite.setInventory(inventory);
+				return sprite;
 			}
-			return sprite;
 		} catch(Exception e) {
 			throw new DaoException(e.getMessage(), e);
 		} finally {
 			JdbcUtils.free(rs, st, con);
 		}
+		return null;
 	}
 
 	@Override

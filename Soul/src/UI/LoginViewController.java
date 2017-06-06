@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
 
 import archive.UserManagement;
+import databaseMain.MainFrame;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -13,6 +14,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 public class LoginViewController extends ControlledStage implements Initializable {
+	private UserManagement userManagement = UserManagement.getUserManagement();
 	@FXML private TextField userNameField;
 	@FXML private PasswordField passwordField;
 	
@@ -22,12 +24,12 @@ public class LoginViewController extends ControlledStage implements Initializabl
 		String password = passwordField.getText();
 		if(userName.equals("") || password.equals("")) {
 			JOptionPane.showMessageDialog(null, "Please enter your ID and password");
-		} else if(!UserManagement.isDuplication(userName)) {
+		} else if(!userManagement.isDuplication(userName)) {
 			JOptionPane.showMessageDialog(null, "There is no this ID in database");
-		} else if(UserManagement.checkPassword(userName, password)) {	
+		} else if(userManagement.checkPassword(userName, password)) {	
 			JOptionPane.showMessageDialog(null, "Login success");
 			MainApp.startView = true;
-		} else if(!UserManagement.checkPassword(userName, password)) {
+		} else if(!userManagement.checkPassword(userName, password)) {
 			JOptionPane.showMessageDialog(null, "Please check your password");
 		}
 	}
@@ -35,6 +37,11 @@ public class LoginViewController extends ControlledStage implements Initializabl
 	@FXML
 	protected void handleToSignUpAction(ActionEvent event) {
 		MainApp.signUpView = true;
+	}
+	
+	@FXML
+	protected void handleNewDatabaseAction(ActionEvent event) {
+		MainFrame.main(null);
 	}
 
 	@Override
