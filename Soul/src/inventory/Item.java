@@ -27,7 +27,7 @@ public class Item {
 		return code;
 	}
 	
-	public int getNumItems() {
+	public static int getNumItems() {
 		return numItems;
 	}
 

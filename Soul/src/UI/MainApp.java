@@ -102,8 +102,8 @@ public class MainApp extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			userManagement = UserManagement.getUserManagement();
-			userManagement.addUser("Hero", "123");
+		//	userManagement = UserManagement.getUserManagement();
+		//	userManagement.addUser("Hero", "123");
 			stageController = new StageController();
 			stageController.setPrimaryStage("primaryStage", primaryStage);
 			loginView = true;

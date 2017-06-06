@@ -29,9 +29,14 @@ public class Skill {
 		return code;
 	}
 	
-	public int getNumSkills() {
+	public static int getNumSkills() {
 		return numSkills;
 	}
+	
+	public static void setNumSkills(int numSkills) {
+		Skill.numSkills = numSkills;
+	}
+	
 	// in database may change the number, so it need to be reset
 	public static int reNumSkills() {
 		return numSkills--;

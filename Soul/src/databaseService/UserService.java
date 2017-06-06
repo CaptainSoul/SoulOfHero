@@ -43,8 +43,7 @@ public class UserService {
 		if(users.length == 0) {
 			System.out.println("Empty table!!");
 			return null;
-		}
-		else
+		} else
 			return users;
 	}
 }

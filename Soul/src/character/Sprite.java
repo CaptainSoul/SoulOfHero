@@ -263,8 +263,12 @@ public class Sprite extends FightObject {
 		this.MAX_MP = maxMP;
 	}
 
-	public int getNumCharacters() {
+	public static int getNumCharacters() {
 		return numCharacters;
+	}
+	
+	public static void setNumCharacters(int numCharacters) {
+		Sprite.numCharacters = numCharacters;
 	}
 
 	// in database may change the number, so it need to be reset

@@ -90,8 +90,12 @@ public class Inventory {
 		maxItem = max;
 	}
 	
-	public int getNumInventories() {
+	public static int getNumInventories() {
 		return numInventories;
+	}
+	
+	public static void setNumInventories(int numInventories) {
+		Inventory.numInventories = numInventories;
 	}
 	
 	public static void reNumInventories() {

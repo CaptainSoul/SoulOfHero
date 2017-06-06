@@ -134,14 +134,22 @@ public class InitUtils {
 					+ "code INT PRIMARY KEY,"
 					+ "ID VARCHAR(30) NOT NULL,"
 					+ "password VARCHAR(30) NOT NULL,"
-					+ "dateOfSignUp datetime NOT NULL,"
+					+ "dateOfSignUp datetime NOT NULL)";
+			st.execute(sql);
+			
+			sql = "CREATE TABLE archives("
+					+ "code INT PRIMARY KEY,"
+					+ "name VARCHAR(20),"
+					+ "userID INT,"
 					+ "spriteCode INT,"
-					+ "canvasCode INT,"
+					+ "taskProgress INT DEFAULT 0,"
 					+ ""
+					+ "FOREIGN KEY (userID) REFERENCES users(ID) ON DELETE CASCADE ON UPDATE CASCADE,"
 					+ "FOREIGN KEY (spriteCode) REFERENCES sprite(code) ON DELETE SET NULL ON UPDATE CASCADE"
 					+ ")";
-			st.execute(sql);	
-	
+			st.execute(sql);
+
+
 			JOptionPane.showMessageDialog(null, "initialize success", "message", JOptionPane.INFORMATION_MESSAGE);
 		} catch(Exception e) {
 			e.printStackTrace();

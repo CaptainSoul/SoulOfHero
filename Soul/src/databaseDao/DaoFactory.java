@@ -13,6 +13,7 @@ public class DaoFactory {
 	private static SkillDao skillDao = null;
 	private static SkillBaseDao skillBaseDao = null;
 	private static UserDao userDao = null;
+	private static ArchiveDao archiveDao = null;
 	private static DaoFactory instance = new DaoFactory();
 	
 	private DaoFactory() {
@@ -56,6 +57,10 @@ public class DaoFactory {
 			className = prop.getProperty("userDaoClass");
 			clazz = Class.forName(className);
 			userDao = (UserDao) clazz.newInstance();
+			
+			className = prop.getProperty("archiveDaoClass");
+			clazz = Class.forName(className);
+			archiveDao = (ArchiveDao) clazz.newInstance();
 			
 			fis.close();
 		} catch(Throwable e) {
@@ -101,6 +106,10 @@ public class DaoFactory {
 	
 	public UserDao createUserDao() {
 		return userDao;
+	}
+	
+	public ArchiveDao createArchiveDao() {
+		return archiveDao;
 	}
 }
 

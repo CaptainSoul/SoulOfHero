@@ -82,6 +82,10 @@ public class SkillBase {
 	public static int getNumSkillBase() {
 		return numSkillBase;
 	}
+	
+	public static void setNumSkillBase(int numSkillBase) {
+		SkillBase.numSkillBase = numSkillBase;
+	}
 
 	// in database may change the number, so it need to be reset
 	public static int reNumSkillBase() {
