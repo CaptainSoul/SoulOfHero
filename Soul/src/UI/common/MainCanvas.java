@@ -13,9 +13,9 @@ import map.Map;
 
 public class MainCanvas extends Canvas {
 	private SLinkedList<Map> layers;
-	private Map map;
 	private GraphicsContext gContext;
 	private Image imageMap;
+	private int canvasCode = 0;
 	public static final int tileWidth = 32;
 	public static final int tileHeight = 32;
 	public boolean setProperty = false;
@@ -24,8 +24,6 @@ public class MainCanvas extends Canvas {
 	private long sleep = 100;
 
 	private PropertyMenu propertyMenu;
-	private SpriteUI spriteUI;
-	private Sprite sprite;
 	private String mapData1 = "./resource/data/map/map1.txt";
 	private String mapData2 = "./resource/data/map/map3.txt";
 	
@@ -61,20 +59,23 @@ public class MainCanvas extends Canvas {
 		layers = new SLinkedList<>();
 		addLayer(mapData1);
 		addLayer(mapData2);
-		this.sprite = sprite;
-		this.spriteUI = spriteUI;
 		propertyMenu = new PropertyMenu(120, 215);
 		propertyMenu.initPlayer(sprite);
 		thread.start();
 	}
-	public void setPlayer(Sprite player) {
-		this.sprite = player;
+	
+	public int getCode() {
+		return canvasCode;
 	}
 	
-	public void setPlayerUI(SpriteUI spriteUI) {
-		this.spriteUI = spriteUI;
+	public void changeCanvasOne() {
+		canvasCode = 1;
 	}
 	
+	public void changeCanvasTwo() {
+		canvasCode = 2;
+	}
+
 	public int getNumLayers() {
 		return layers.size();
 	}

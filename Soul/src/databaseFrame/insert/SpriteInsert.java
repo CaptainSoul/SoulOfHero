@@ -15,7 +15,13 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import databaseMain.Insert;
+import databaseService.ArmorService;
+import databaseService.InventoryService;
 import databaseService.SpriteService;
+import databaseService.WeaponService;
+import inventory.Armor;
+import inventory.Inventory;
+import inventory.Weapon;
 import character.*;
 import character.Sprite.Group;
 
@@ -264,9 +270,15 @@ public class SpriteInsert {
 					sprite.setLevel(Integer.parseInt(level.getText()));
 					sprite.setGold(Integer.parseInt(gold.getText()));
 					sprite.setMove(Integer.parseInt(move.getText()));
-					sprite.setArmorCode(Integer.parseInt(armorCode.getText()));
-					sprite.setWeaponCode(Integer.parseInt(weaponCode.getText()));
-					sprite.setInventoryCode(Integer.parseInt(inventoryCode.getText()));
+					ArmorService armorService = new ArmorService();
+					WeaponService weaponService = new WeaponService();
+					InventoryService inventoryService=  new InventoryService();
+					Armor armor = armorService.query(Integer.parseInt(armorCode.getText()));
+					Weapon weapon = weaponService.query(Integer.parseInt(weaponCode.getText()));
+					Inventory inventory = inventoryService.query(Integer.parseInt(inventoryCode.getText()));
+					sprite.setArmor(armor);
+					sprite.setWeapon(weapon);
+					sprite.setInventory(inventory);
 					try{
 						if(group.getText().equals("COMMON")) {
 							sprite.setGroup(Group.COMMON);

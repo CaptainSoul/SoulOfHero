@@ -11,7 +11,7 @@ public class JdbcUtils {
 	private static final String DBBASICURL = "jdbc:mysql://localhost:3306?characterEncoding=gbk&useSSL=true";
 	private static final String DBURL = "jdbc:mysql://localhost:3306/SoulOfHero?characterEncoding=gbk&useSSL=true";
 	private static final String DBUSER = "root";
-	private static final String DBPASS = "1234";
+	private static final String DBPASS = "";
 	
 	static{
 		try{

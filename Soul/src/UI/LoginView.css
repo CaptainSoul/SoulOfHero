@@ -1,18 +1,18 @@
 .root {
-	-fx-background-image: url("Welcome5.jpg");
+	-fx-background-image: url("/pic/common/dotaAS.png");
 }
 
 .label {
-	-fx-font-size: 12px;
+	-fx-font-size: 15px;
 	-fx-font-weight: bold;
-	-fx-text-fill: #333333;
+	-fx-text-fill: #33ccff;
 	-fx-effect: dropshadow( gaussian, rgba(255, 255, 255, 0.5), 0, 0, 0, 1);
 }
 
 #welcome_text {
 	-fx-font-size: 32px;
 	-fx-font-family: "Arial Black";
-	-fx-fill: #818181;
+	-fx-fill: #33ccff;
 	-fx-effect: innershadow(three-pass-box, rgba(0, 0, 0, 0.7), 6, 0.0, 0, 2);
 }
 
@@ -23,7 +23,7 @@
 }
 
 .button {
-	-fx-text-fill: white;
+	-fx-text-fill: #000000;
 	-fx-font-family: "Arial Narrow";
 	-fx-font-weight: bold;
 	-fx-background-color: linear-gradient(#61a2b1, #2A5058);

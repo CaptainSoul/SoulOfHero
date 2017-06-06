@@ -29,10 +29,6 @@ public class Sprite extends FightObject {
 	private Random random = new Random();
 
 	private final int code;
-	
-	private int armorCode;
-	private int weaponCode;
-	private int inventoryCode;
 
 	private int max_exp = 50;
 	private static int numCharacters = 0;
@@ -70,6 +66,11 @@ public class Sprite extends FightObject {
 		skillBase = new SkillBase();
 		code = Code.getCode(this);
 		numCharacters++;
+	}
+	
+	public Sprite(String name, int code) {
+		this.name = name;
+		this.code = code;
 	}
 	
 	public void putExp(int exp) {
@@ -193,24 +194,12 @@ public class Sprite extends FightObject {
 		return armor.getCode();
 	}
 
-	public void setArmorCode(int armorCode) {
-		this.armorCode = armorCode;
-	}
-
 	public int getWeaponCode() {
 		return weapon.getCode();
 	}
 
-	public void setWeaponCode(int weaponCode) {
-		this.weaponCode = weaponCode;
-	}
-
 	public int getInventoryCode() {
 		return inventory.getCode();
-	}
-
-	public void setInventoryCode(int inventoryCode) {
-		this.inventoryCode = inventoryCode;
 	}
 
 	public Group getGroup() {
@@ -275,7 +264,6 @@ public class Sprite extends FightObject {
 	}
 
 	public int getNumCharacters() {
-		// TODO Auto-generated method stub
 		return numCharacters;
 	}
 
@@ -285,7 +273,6 @@ public class Sprite extends FightObject {
 	}
 	
 	public int getAttack() {
-		// TODO Auto-generated method stub
 		return strength+weapon.getStrength();
 	}
 

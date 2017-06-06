@@ -69,7 +69,7 @@ public class InitUtils {
 					+ "code INT PRIMARY KEY,"
 					+ "defence INT NOT NULL,"
 					+ ""
-					+ "FOREIGN KEY (code) REFERENCES item(code) ON DELETE SET NULL ON UPDATE CASCADE"
+					+ "FOREIGN KEY (code) REFERENCES item(code) ON DELETE CASCADE ON UPDATE CASCADE"
 					+ ")AUTO_INCREMENT=10100000";
 				st.execute(sql);
 			
@@ -94,7 +94,7 @@ public class InitUtils {
 					+ "code INT PRIMARY KEY,"
 					+ "name VARCHAR(20) NOT NULL UNIQUE,"
 					+ "descripton VARCHAR(100) NOT NULL,"
-					+ "damage DOUBLE NOT NULL,"
+					+ "damage DOUBLE NOT NULL"
 					+ ""
 					+ ")AUTO_INCREMENT=10300000";
 			st.execute(sql);
@@ -102,6 +102,7 @@ public class InitUtils {
 			sql = "CREATE TABLE sprite("
 					+ "code INT PRIMARY KEY,"
 					+ "name VARCHAR(20) NOT NULL UNIQUE,"
+					+ "spriteGroup VARCHAR(20) NOT NULL,"
 					+ "hp INT NOT NULL,"
 					+ "mp INT NOT NULL,"
 					+ "strength INT NOT NULL,"
@@ -114,8 +115,8 @@ public class InitUtils {
 					+ "armorcode INT,"
 					+ "weaponcode INT,"
 					+ "FOREIGN KEY (inventorycode) REFERENCES inventory(code) ON DELETE CASCADE ON UPDATE CASCADE,"
-					+ "FOREIGN KEY (armorcode) REFERENCES aromor(code) ON DELETE CASCADE ON UPDATE CASCADE"
-					+ "FOREIGN KEY (weaponcode) REFERENCES weaponcode(code) ON DELETE CASCADE ON UPDATE CASCADE"
+					+ "FOREIGN KEY (armorcode) REFERENCES armor(code) ON DELETE CASCADE ON UPDATE CASCADE,"
+					+ "FOREIGN KEY (weaponcode) REFERENCES weapon(code) ON DELETE CASCADE ON UPDATE CASCADE"
 					+ ")AUTO_INCREMENT=10400000";
 			st.execute(sql);
 			
@@ -129,11 +130,18 @@ public class InitUtils {
 					+ ")AUTO_INCREMENT=10500000";
 			st.execute(sql);
 			
-			sql = "ALTER TABLE sprite ADD COLUMN group ENUM('PLAYER','COMMON','ENEMY')(";
-			
-			st.execute(sql);
-			
-			
+			sql = "CREATE TABLE users("
+					+ "code INT PRIMARY KEY,"
+					+ "ID VARCHAR(30) NOT NULL,"
+					+ "password VARCHAR(30) NOT NULL,"
+					+ "dateOfSignUp datetime NOT NULL,"
+					+ "spriteCode INT,"
+					+ "canvasCode INT,"
+					+ ""
+					+ "FOREIGN KEY (spriteCode) REFERENCES sprite(code) ON DELETE SET NULL ON UPDATE CASCADE"
+					+ ")";
+			st.execute(sql);	
+	
 			JOptionPane.showMessageDialog(null, "initialize success", "message", JOptionPane.INFORMATION_MESSAGE);
 		} catch(Exception e) {
 			e.printStackTrace();

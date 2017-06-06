@@ -8,8 +8,13 @@ import character.Sprite;
 import character.Sprite.Group;
 import databaseDao.DaoException;
 import databaseDao.SpriteDao;
+import databaseService.ArmorService;
+import databaseService.InventoryService;
+import databaseService.WeaponService;
 import databaseUtils.JdbcUtils;
-import inventory.Item;
+import inventory.Armor;
+import inventory.Inventory;
+import inventory.Weapon;
 
 public class SpriteDaoImpl implements SpriteDao {
 
@@ -34,9 +39,9 @@ public class SpriteDaoImpl implements SpriteDao {
 			st.setInt(9,sprite.getGold());
 			st.setInt(10,sprite.getMove());
 			st.setString(11, sprite.getGroup().toString());
-			st.setInt(12,sprite.getArmorCode());
-			st.setInt(13,sprite.getWeaponCode());
-			st.setInt(14,sprite.getInventoryCode());
+			st.setInt(12,sprite.getArmor().getCode());
+			st.setInt(13,sprite.getWeapon().getCode());
+			st.setInt(14,sprite.getInventory().getCode());
 			int count = st.executeUpdate();
 			System.out.println("Add record: " + count);
 		} catch(Exception e) {
@@ -58,9 +63,8 @@ public class SpriteDaoImpl implements SpriteDao {
 			st = con.prepareStatement(sql);
 			st.setInt(1, code);
 			rs = st.executeQuery();
-			Sprite sprite = new Sprite(null, 0, 0, 0, 0);
+			Sprite sprite = new Sprite(rs.getString("name"), code);
 			while(rs.next()) {
-				sprite.setName(rs.getString("name"));
 				sprite.setHp(rs.getInt("hp"));
 				sprite.setMp(rs.getInt("mp"));
 				sprite.setStrength(rs.getInt("strength"));
@@ -79,10 +83,15 @@ public class SpriteDaoImpl implements SpriteDao {
 				else if (rs.getString("group").equals("ENEMY")){
 					sprite.setGroup(Group.ENEMY);
 				}
-				sprite.setArmorCode(rs.getInt("armorcode"));
-				sprite.setWeaponCode(rs.getInt("weaponcode"));
-				sprite.setInventoryCode(rs.getInt("inventorycode"));
-				Sprite.reNumCharacters();
+				ArmorService armorService = new ArmorService();
+				WeaponService weaponService = new WeaponService();
+				InventoryService inventoryService=  new InventoryService();
+				Armor armor = armorService.query(rs.getInt("armorcode"));
+				Weapon weapon = weaponService.query(rs.getInt("weaponcode"));
+				Inventory inventory = inventoryService.query(rs.getInt("inventorycode"));
+				sprite.setArmor(armor);
+				sprite.setWeapon(weapon);
+				sprite.setInventory(inventory);
 			}
 			return sprite;
 		} catch(Exception e) {
@@ -99,7 +108,7 @@ public class SpriteDaoImpl implements SpriteDao {
 		PreparedStatement st = null;
 		try{
 			con = JdbcUtils.getConnection();
-			String sql = "UPDATE sprite SET  name = ? , hp = ? ,  mp = ? , strength = ? ,  defence = ? ,  exp = ? , level = ? ,  gold = ? ,  move = ? ,  group = ? , armorcode = ? ,  weaponcode = ? , inventorycode = ? ,  WHERE code = ?";
+			String sql = "UPDATE sprite SET  name = ? , hp = ? ,  mp = ? , strength = ? ,  defence = ? ,  exp = ? , level = ? ,  gold = ? ,  move = ? ,  group = ? , armorcode = ? ,  weaponcode = ? , inventorycode = ? WHERE code = ?";
 			st = con.prepareStatement(sql);
 			st.setString(1,sprite.getName());
 			st.setInt(2,sprite.getHp());
@@ -111,9 +120,9 @@ public class SpriteDaoImpl implements SpriteDao {
 			st.setInt(8,sprite.getGold());
 			st.setInt(9,sprite.getMove());
 			st.setString(10, sprite.getGroup().toString());
-			st.setInt(11,sprite.getArmorCode());
-			st.setInt(12,sprite.getWeaponCode());
-			st.setInt(13,sprite.getInventoryCode());
+			st.setInt(11,sprite.getArmor().getCode());
+			st.setInt(12,sprite.getWeapon().getCode());
+			st.setInt(13,sprite.getInventory().getCode());
 			st.setInt(14, sprite.getCode());
 			int count = st.executeUpdate();
 			System.out.println("Update record: " + count);

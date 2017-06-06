@@ -197,7 +197,7 @@ public class DatabaseMethod {
 				+ "gold"
 				+ ") VALUES ("
 				+ sprite.getCode() + ", "
-				+ "'" + sprite.getName() + "', "
+				+ sprite.getName() + "', "
 				+ sprite.getHp() + ", "
 				+ sprite.getMaxHp() + ", "
 				+ sprite.getMp() + ", "

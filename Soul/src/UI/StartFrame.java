@@ -41,7 +41,7 @@ public class StartFrame {
 			}
 		});
 	}
-
+	
 	/**
 	 * Create the application.
 	 */
@@ -191,7 +191,7 @@ public class StartFrame {
 		frmSoulOfHero.getContentPane().add(label_1);
 		
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(StartFrame.class.getResource("/pic/common/judge.jpg")));
+		label.setIcon(new ImageIcon(StartFrame.class.getResource("/pic/common/dragon.jpg")));
 		label.setBounds(0, 0, 1600, 892);
 		frmSoulOfHero.getContentPane().add(label);
 	}
