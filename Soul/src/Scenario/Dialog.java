@@ -40,26 +40,26 @@ public class Dialog extends JDialog {
 		setTitle("");
 		setType(Type.UTILITY);
 		setResizable(false);
-		setBounds(100, 100, 946, 234);
+		setBounds(100, 100, 946, 298);
 		getContentPane().setLayout(null);
 		Dimension screenSize=java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 		Dimension frameSize= this.getSize();
 		this.setLocation((screenSize.width-frameSize.width)/2,(screenSize.height-frameSize.height)/2);
 		
 		head = new JLabel("");
-		head.setIcon(new ImageIcon(Dialog.class.getResource("/pic/head/vx013.png")));
-		head.setBounds(14, 60, 100, 100);
+		head.setIcon(new ImageIcon(Dialog.class.getResource("/pic/head/o54tA.png")));
+		head.setBounds(14, 28, 180, 246);
 		getContentPane().add(head);
 		
 		lblTxt = new JLabel("Welcome to Soul of Hero!!");	
 		lblTxt.setForeground(new Color(51, 51, 102));
 		lblTxt.setFont(new Font("Comic Sans MS", Font.BOLD, 25));
-		lblTxt.setBounds(128, 13, 707, 208);
+		lblTxt.setBounds(192, 46, 631, 208);
 		getContentPane().add(lblTxt);
 		
 		lblBackground = new JLabel("");
-		lblBackground.setIcon(new ImageIcon(Dialog.class.getResource("/pic/common/demon.jpg")));
-		lblBackground.setBounds(0, 0, 946, 234);
+		lblBackground.setIcon(new ImageIcon(Dialog.class.getResource("/pic/common/treeA.png")));
+		lblBackground.setBounds(0, 0, 946, 318);
 		getContentPane().add(lblBackground);
 		setAlwaysOnTop(true);
 		setAutoRequestFocus(true);
@@ -78,14 +78,14 @@ public class Dialog extends JDialog {
 	}
 	
 	public void setHintTxt(String txt) {
-		clearHeadIcon();
+		head.setIcon(new ImageIcon(Dialog.class.getResource("/pic/head/o54tA.png")));
 		lblTxt.setForeground(new Color(204, 51, 0));
 		lblTxt.setFont(new Font("Comic Sans MS", Font.BOLD, 25));
 		setTxt(txt);
 	}
 	
 	public void setCommonTxt(String txt) {
-		head.setIcon(new ImageIcon(Dialog.class.getResource("/pic/head/vx013.png")));
+		head.setIcon(new ImageIcon(Dialog.class.getResource("/pic/head/o54tA.png")));
 		lblTxt.setForeground(new Color(51, 51, 102));
 		lblTxt.setFont(new Font("Comic Sans MS", Font.BOLD, 25));
 		setTxt(txt);

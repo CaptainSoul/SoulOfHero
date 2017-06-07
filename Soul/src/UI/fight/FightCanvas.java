@@ -401,6 +401,8 @@ public class FightCanvas extends Canvas {
 		FightCanvas mapCanvas = new FightCanvas(800, 600);
 		root.getChildren().add(mapCanvas);
 		stage.setScene(scene);
+		stage.setWidth(800);
+		stage.setHeight(600);
 		stage.setResizable(false);
 		return stage;
 	}

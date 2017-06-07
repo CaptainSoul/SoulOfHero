@@ -57,7 +57,7 @@ public class TaskController {
 	
 	public void start1A() {
 		Dialog dialog = new Dialog();
-		dialog.setHeadIcon("/pic/head/vx035_07.png");
+		dialog.setHeadIcon("/pic/head/o1tA.png");
 		dialog.setTxt("..........");
 		dialog.setVisible(true);
 		dialog.addKeyListener(new KeyAdapter() {
@@ -128,7 +128,7 @@ public class TaskController {
 		Dialog dialog = new Dialog();
 		dialog.setTxt("Did you call me?");
 		dialog.setVisible(true);
-		dialog.setHeadIcon("/pic/head/vx035_03.png");
+		dialog.setHeadIcon("/pic/head/o1tA.png");
 		dialog.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -151,11 +151,14 @@ public class TaskController {
 				else if(start1C == 8)
 					dialog.setHintTxt("I am not a man in the world...");
 				else if(start1C == 9)
-					dialog.setTxt("So I would go to KILL DEMON...");
-				else if(start1C == 10)
+					dialog.setCommonTxt("So I would go to KILL DEMON and go back to my world....");
+				else if(start1C == 10) {
+					dialog.setHeadIcon("/pic/head/o1tA.png");
+					dialog.setTxt("Go up along the path and kill DEMON!! My hero!!!");
+				} else if(start1C == 11)
 					dialog.setAsideTxt("(Go UP and kill DEMON)");
-				else if(start1C == 11) {
-					start1C = 9;
+				else if(start1C == 12) {
+					start1C = 10;
 					dialog.dispose();
 				}
 				start1C++;

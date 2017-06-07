@@ -25,7 +25,7 @@ public class MainCanvas extends Canvas {
 
 	private PropertyMenu propertyMenu;
 	private String mapData1 = "./resource/data/map/map1.txt";
-	private String mapData2 = "./resource/data/map/map3.txt";
+	private String mapData3 = "./resource/data/map/map3.txt";
 	
 	private Thread thread = new Thread(new Runnable() {
 
@@ -58,7 +58,7 @@ public class MainCanvas extends Canvas {
 		gContext = getGraphicsContext2D();
 		layers = new SLinkedList<>();
 		addLayer(mapData1);
-		addLayer(mapData2);
+		addLayer(mapData3);
 		propertyMenu = new PropertyMenu(120, 215);
 		propertyMenu.initPlayer(sprite);
 		thread.start();
