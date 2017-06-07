@@ -11,17 +11,15 @@ import javafx.stage.StageStyle;
 public class StageController {
 	private HashMap<String, Stage> stages = new HashMap<String, Stage>();
 	private Stage lastStage;
-	private String lastStageName;
-	
 	
 	public void addStage(String name, Stage stage) {
 		stages.put(name, stage);
 	}
-	
+
 	public Stage getStage(String name) {
 		return stages.get(name);
 	}
-	
+
 	public void setPrimaryStage(String primaryStageName, Stage primaryStage) {
 		this.addStage(primaryStageName, primaryStage);
 	}
@@ -37,6 +35,7 @@ public class StageController {
 			Scene tempScene = new Scene(tempPane);
 			Stage tempStage = new Stage();
 			tempStage.setScene(tempScene);
+			tempStage.setResizable(false);
 			
 			for(StageStyle style: styles) {
 				tempStage.initStyle(style);
@@ -56,10 +55,8 @@ public class StageController {
 	public boolean setStage(String name) {
 		if(lastStage != null) {
 			lastStage.close();
-			unloadStage(lastStageName);
 		}
 		lastStage = this.getStage(name);
-		lastStageName = name;
 		lastStage.show();
 		return true;
 	}
@@ -68,6 +65,12 @@ public class StageController {
 		getStage(close).close();
 		setStage(show);
 		return true;
+	}
+	
+	public void closeLastStage() {
+		if(lastStage != null) {
+			lastStage.hide();
+		}
 	}
 	
 	public boolean unloadStage(String name) {

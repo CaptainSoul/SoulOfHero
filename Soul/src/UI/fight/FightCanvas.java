@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import UI.MainApp;
 import character.Sprite;
 import character.Sprite.Group;
 import dsa.impl.Point2D;
@@ -402,6 +401,7 @@ public class FightCanvas extends Canvas {
 		FightCanvas mapCanvas = new FightCanvas(800, 600);
 		root.getChildren().add(mapCanvas);
 		stage.setScene(scene);
+		stage.setResizable(false);
 		return stage;
 	}
 	

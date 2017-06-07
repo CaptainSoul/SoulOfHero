@@ -2,8 +2,6 @@ package archive;
 
 import java.util.Date;
 
-import character.Sprite;
-
 public class User {
 	private String ID;
 	private String password;

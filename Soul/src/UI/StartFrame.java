@@ -20,7 +20,7 @@ import java.awt.event.MouseMotionAdapter;
 
 public class StartFrame {
 
-	private JFrame frmSoulOfHero;
+	public static JFrame frmSoulOfHero;
 	private JButton btnStart;
 	private JButton btnContinue;
 	private JButton btnExit;
@@ -29,7 +29,7 @@ public class StartFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public void main() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -56,9 +56,11 @@ public class StartFrame {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		BGM.bgmStart = true;
 		frmSoulOfHero = new JFrame();
+		frmSoulOfHero.setType(Type.NORMAL);
+		frmSoulOfHero.setResizable(false);
 		frmSoulOfHero.setTitle("Soul of Hero");
-		frmSoulOfHero.setType(Type.UTILITY);
 		frmSoulOfHero.setBounds(100, 100, 1600, 892);
 		frmSoulOfHero.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmSoulOfHero.getContentPane().setLayout(null);
@@ -84,7 +86,6 @@ public class StartFrame {
 					btnContinue.requestFocus();
 				} else if(key == KeyEvent.VK_ENTER) {
 					WelcomeFrame.main(null);
-					frmSoulOfHero.dispose();
 				}
 			}
 		});
@@ -92,7 +93,6 @@ public class StartFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				WelcomeFrame.main(null);
-				frmSoulOfHero.dispose();
 			}
 		});
 		btnStart.setIcon(new ImageIcon(StartFrame.class.getResource("/pic/menu/Start.png")));
@@ -194,5 +194,9 @@ public class StartFrame {
 		label.setIcon(new ImageIcon(StartFrame.class.getResource("/pic/common/dragon.jpg")));
 		label.setBounds(0, 0, 1600, 892);
 		frmSoulOfHero.getContentPane().add(label);
+	}
+	
+	public static void dispose() {
+		frmSoulOfHero.dispose();
 	}
 }

@@ -11,7 +11,6 @@ public class SkillBase {
 	private static int numSkillBase = 0;
 	
 	private SLinkedList<Skill> skills;
-	private IIterator<Skill> iterator;
 	
 	private int skillCode;
 	private int spriteCode;

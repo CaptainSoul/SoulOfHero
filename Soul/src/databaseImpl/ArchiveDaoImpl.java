@@ -50,12 +50,12 @@ public class ArchiveDaoImpl implements ArchiveDao {
 			st = con.prepareStatement(sql);
 			st.setInt(1, code);
 			rs = st.executeQuery();
+			SpriteService spriteService = new SpriteService();
 			while(rs.next()) {
 				Archive archive = new Archive(rs.getString("name"));
 				UserService userService = new UserService();
 				User user = userService.query(rs.getString("userID"));
 				archive.setUser(user);
-				SpriteService spriteService = new SpriteService();
 				Sprite sprite = spriteService.query(rs.getInt("spriteCode"));
 				if(sprite != null)
 					archive.setSprite(sprite);
@@ -81,12 +81,13 @@ public class ArchiveDaoImpl implements ArchiveDao {
 			Archive[] archives = new Archive[count];
 			String sql = "SELECT * FROM archives WHERE userCode = ?";
 			st = con.prepareStatement(sql);
+			st.setInt(1, user.getCode());
 			rs = st.executeQuery();
 			int i = 0;
+			SpriteService spriteService = new SpriteService();
 			while(rs.next()) {
 				Archive archive = new Archive(rs.getString("name"));
 				archive.setUser(user);
-				SpriteService spriteService = new SpriteService();
 				Sprite sprite = spriteService.query(rs.getInt("spriteCode"));
 				if(sprite != null)
 					archive.setSprite(sprite);

@@ -6,15 +6,10 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
-import databaseUtils.JdbcUtils;
 
 public class Enter {
 
@@ -125,8 +120,7 @@ public class Enter {
 		btnBack.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				MainFrame mainFrame = new MainFrame();
-				mainFrame.main(null);
+				MainFrame.main(null);
 				frame.dispose();
 			}
 		});

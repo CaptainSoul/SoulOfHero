@@ -4,6 +4,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 import UI.MainApp;
+import UI.StartFrame;
 
 public class WelcomeFrame {
 	public static int count = 0;
@@ -28,6 +29,7 @@ public class WelcomeFrame {
 					dialog.setAsideTxt("Now! Have a good game!!!");
 				else if(count == 6) {
 					MainApp.mainView = true;
+					StartFrame.frmSoulOfHero.dispose();
 					dialog.dispose();
 				}
 				count++;

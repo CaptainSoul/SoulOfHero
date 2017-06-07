@@ -116,7 +116,10 @@ public class GamePanel extends Parent {
 		scene.setFill(Color.BLACK);
 		stage.setScene(scene);
 		stage.setTitle("SoulOfHero");
-		stage.initStyle(StageStyle.UTILITY);
+		stage.initStyle(StageStyle.DECORATED);
+		stage.setWidth(SCENE_WIDTH);
+		stage.setHeight(SCENE_HEIGHT);
+		stage.setResizable(false);
 		return stage;
 	}
 

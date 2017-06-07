@@ -3,8 +3,6 @@ package scenario;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-import UI.MainApp;
-
 public class FightFrame {
 	public static int count = 0;
 	public static void main(String[] args) {

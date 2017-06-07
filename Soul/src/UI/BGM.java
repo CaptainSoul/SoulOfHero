@@ -6,24 +6,38 @@ import javafx.scene.media.MediaPlayer;
 public class BGM {
 	private String bgmStartURL = "/bgm/MainTitle.mp3";
 	private String bgmMainURL = "/bgm/Theme1.mp3";
-	private String bgmNervousURL = "/bgm/.mp3";
-	private String bgmEpicURL = "/bgm/.mp3";
-	private String bgmTerrorURL = "/bgm/GameOfThrones.mp3";
-	private String bgmBattleURL = "/bgm/.mp3";
-	private String bgmBattle2URL = "/bgm/.mp3";
-	private String bgmBattleBossURL = "/bgm/.mp3";
+	private String bgmNervousURL = "/bgm/Illusions.mp3";
+	private String bgmEpicURL = "/bgm/GameOfThrones.mp3";
+	private String bgmSoulURL = "/bgm/LastReunion.mp3";
+	private String bgmBattleURL = "/bgm/Battle.mp3";
+	private String bgmBattleBossURL = "/bgm/BattleBoss.mp3";
 	private String bgmBazaarURL = "/bgm/NassauShores.mp3";
 	
-	public boolean bgmStart = false;
-	public boolean bgmMain = false;
-	public boolean bgmNervous = false;
-	public boolean bgmTerror = false;
-	public boolean bgmBattleBoss = false;
+	public static boolean bgmStart = false;
+	public static boolean bgmMain = false;
+	public static boolean bgmNervous = false;
+	public static boolean bgmBattleBoss = false;
 	
-	private String url = getClass().getResource(bgmStartURL).toString();
-	private Media media = new Media(url);
-	private MediaPlayer player = new MediaPlayer(media);
+	private String url;
+	private Media media;
+	public MediaPlayer player;
 	private static BGM bgm;
+	
+	public void checkBgm() {
+		if(bgmStart) {
+			loadBgmStart();
+			bgmStart = false;
+		} else if(bgmNervous) {
+			loadBgmNervous();
+			bgmNervous = false;
+		} else if(bgmBattleBoss) {
+			loadBgmBattle();
+			bgmBattleBoss = false;
+		} else if(bgmMain) {
+			loadBgmMain();
+			bgmMain = false;
+		}
+	}
 	
 	public void loadBgmStart() {
 		loadMusic(bgmStartURL);
@@ -41,12 +55,20 @@ public class BGM {
 		loadMusic(bgmEpicURL);
 	}
 	
-	public void loadBgmTerro() {
-		loadMusic(bgmTerrorURL);
-	}
-	
 	public void loadBgmBattle() {
 		loadMusic(bgmBattleURL);
+	}
+	
+	public void loadBgmBazaar() {
+		loadMusic(bgmBazaarURL);
+	}
+	
+	public void loadBgmSoul() {
+		loadMusic(bgmSoulURL);
+	}
+	
+	public void loadBgmBattleBoss() {
+		loadMusic(bgmBattleBossURL);
 	}
 	
 	private BGM() {
@@ -59,11 +81,12 @@ public class BGM {
 	}
 	
 	private void loadMusic(String name) {
-		player.stop();
+		if(player != null)
+			player.stop();
 		url = getClass().getResource(name).toString();
 		media = new Media(url);
 		player = new MediaPlayer(media);
-		player.play();
+		setAutoPlay();
 	}
 	
 	public void setAutoPlay() {

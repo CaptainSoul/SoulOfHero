@@ -37,7 +37,7 @@ public class Dialog extends JDialog {
 	 */
 	public Dialog() {
 		setUndecorated(true);
-		setTitle(" ");
+		setTitle("");
 		setType(Type.UTILITY);
 		setResizable(false);
 		setBounds(100, 100, 946, 234);
