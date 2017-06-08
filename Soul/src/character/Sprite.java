@@ -5,6 +5,7 @@ import inventory.Weapon;
 
 import java.util.Random;
 
+import UI.MainApp;
 import UI.fight.FightObject;
 import archive.Code;
 import inventory.Armor;
@@ -46,7 +47,7 @@ public class Sprite extends FightObject {
 
 
 	public Sprite(String name) {
-		this(name, 500, 200, 70, 15);
+		this(name, 500, 200, 90, 15);
 	}
 	
 	public Sprite(String name, int hp, int mp, int strength, int defence) {
@@ -60,11 +61,16 @@ public class Sprite extends FightObject {
 		this.level = 1;
 		this.gold = 1;
 		this.move = 4;
-		inventory = new Inventory();
+		code = Code.getCode(this);
+	//	inventory = new Inventory();
 		weapon = new Weapon();
 		armor = new Armor();
-		skillBase = new SkillBase();
-		code = Code.getCode(this);
+	//	skillBase = new SkillBase();
+	//	skillBase.setSpriteCode(code);
+	//	MainApp.inventoryService.add(inventory);
+	//	MainApp.weaponService.add(weapon);
+	//	MainApp.armorService.add(armor);
+	//	MainApp.skillBaseService.add(skillBase);
 		numCharacters++;
 	}
 	

@@ -24,11 +24,11 @@ public class SignUpViewController extends ControlledStage implements Initializab
 		String password = passwordField.getText();
 		String passwordC = checkPasswordField.getText();
 		if(user.equals("") || password.equals("") || passwordC.equals("")) {
-			JOptionPane.showMessageDialog(null, "Please enter ID and password");
+			JOptionPane.showMessageDialog(null, "Please enter ID and password", "Soul Of Hero: HINT!!", JOptionPane.WARNING_MESSAGE);
 		} else if(userManagement.isDuplication(user)) {
 			JOptionPane.showMessageDialog(null, "Duplicative ID");
 		} else if(!password.equals(passwordC)) {
-			JOptionPane.showMessageDialog(null, "Please check your password");
+			JOptionPane.showMessageDialog(null, "Please check your password", "Soul Of Hero: HINT!!", JOptionPane.WARNING_MESSAGE);
 		} else {
 			userManagement.addUser(user, password);
 			MainApp.loginView = true;

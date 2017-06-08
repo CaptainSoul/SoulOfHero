@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 
 import archive.UserManagement;
 import databaseMain.MainFrame;
+import databaseService.UserService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -23,14 +24,16 @@ public class LoginViewController extends ControlledStage implements Initializabl
 		String userName = userNameField.getText();
 		String password = passwordField.getText();
 		if(userName.equals("") || password.equals("")) {
-			JOptionPane.showMessageDialog(null, "Please enter your ID and password");
+			JOptionPane.showMessageDialog(null, "Please enter your ID and password", "Soul Of Hero: HINT!!", JOptionPane.WARNING_MESSAGE);
 		} else if(!userManagement.isDuplication(userName)) {
-			JOptionPane.showMessageDialog(null, "There is no this ID in database");
-		} else if(userManagement.checkPassword(userName, password)) {	
-			JOptionPane.showMessageDialog(null, "Login success");
+			JOptionPane.showMessageDialog(null, "There is no this ID in database", "Soul Of Hero: HINT!!", JOptionPane.WARNING_MESSAGE);
+		} else if(userManagement.checkPassword(userName, password)) {
+			JOptionPane.showMessageDialog(null, "Login success", "Soul Of Hero: HINT!!", JOptionPane.PLAIN_MESSAGE);
+			UserService userService = new UserService();
+			MainApp.user = userService.query(userName);
 			MainApp.startView = true;
 		} else if(!userManagement.checkPassword(userName, password)) {
-			JOptionPane.showMessageDialog(null, "Please check your password");
+			JOptionPane.showMessageDialog(null, "Please check your password", "Soul Of Hero: HINT!!", JOptionPane.WARNING_MESSAGE);
 		}
 	}
 	

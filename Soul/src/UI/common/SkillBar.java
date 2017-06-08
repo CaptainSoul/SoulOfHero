@@ -60,8 +60,22 @@ public class SkillBar {
 		Dimension screenSize=java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 		Dimension frameSize= frame.getSize();
 		frame.setLocation((screenSize.width-frameSize.width)/2,(screenSize.height-frameSize.height)/2);
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setAlwaysOnTop(true);
+		frame.setResizable(false);
+		frame.setUndecorated(true);
+		frame.setType(Type.UTILITY);
+		frame.setBounds(100, 100, 800, 640);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
+
 		JButton btnNewButton = new JButton("");
 		btnNewButton.setIcon(new ImageIcon(SkillBar.class.getResource("/pic/skill/Ability_Warrior_BattleShout.jpg")));
 		btnNewButton.setBounds(85, 73, 64, 64);
@@ -139,19 +153,6 @@ public class SkillBar {
 		label.setIcon(new ImageIcon(SkillBar.class.getResource("/pic/common/nevermore.jpg")));
 		label.setBounds(0, 0, 1024, 768);
 		frame.getContentPane().add(label);
-	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		frame = new JFrame();
-		frame.setAlwaysOnTop(true);
-		frame.setResizable(false);
-		frame.setUndecorated(true);
-		frame.setType(Type.UTILITY);
-		frame.setBounds(100, 100, 800, 640);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
 	public void updateSprite(Sprite sprite) {

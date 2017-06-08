@@ -94,7 +94,7 @@ public class Enter {
 		btnUpdate.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Insert update = new Insert();
+				Update update = new Update();
 				update.run();
 				frame.dispose();
 			}

@@ -133,7 +133,7 @@ public class MenuBar {
 		frame.getContentPane().add(btnSkill);
 		
 		JButton btnInventory = new JButton("");
-		btnSkill.addMouseListener(new MouseAdapter() {
+		btnInventory.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if(skillBar == null)

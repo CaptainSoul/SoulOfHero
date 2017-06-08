@@ -20,13 +20,13 @@ public class ArmorDaoImpl implements ArmorDao {
 		PreparedStatement st2 = null;
 		try{
 			con = JdbcUtils.getConnection();
-			String sql1 = "INSERT INTO item(code, name, description,inventorycode)"
-					+ "VALUES (?,?,?,?)";
+			String sql1 = "INSERT INTO item(code, name, description)"
+					+ "VALUES (?,?,?)";
 			st1 = con.prepareStatement(sql1);
 			st1.setInt(1, armor.getCode());
 			st1.setString(2,armor.getName());
 			st1.setString(3,armor.getDescription());
-			st1.setInt(4, armor.getInventoryCode());
+			st1.executeUpdate();
 			String sql2 = "INSERT INTO armor(code, defence)"
 					+ " VALUES (?,?)";
 			st2 = con.prepareStatement(sql2);

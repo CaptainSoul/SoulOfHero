@@ -25,7 +25,12 @@ public class MainCanvas extends Canvas {
 
 	private PropertyMenu propertyMenu;
 	private String mapData1 = "./resource/data/map/map1.txt";
+	private String mapData2 = "./resource/data/map/map2.txt";
 	private String mapData3 = "./resource/data/map/map3.txt";
+	private String mapData4 = "./resource/data/map/map4.txt";
+	private String mapData5 = "./resource/data/map/map5.txt";
+	private String mapRes1 = "/pic/map/043-Cave01.png";
+	private String mapRes2 = "/pic/map/014-PostTown02.png";
 	
 	private Thread thread = new Thread(new Runnable() {
 
@@ -54,7 +59,7 @@ public class MainCanvas extends Canvas {
 	
 	public MainCanvas(double width, double height, Sprite sprite, SpriteUI spriteUI) {
 		super(width, height);
-		imageMap = new Image(getClass().getResourceAsStream("043-Cave01.png"));
+		imageMap = new Image(getClass().getResourceAsStream(mapRes1));
 		gContext = getGraphicsContext2D();
 		layers = new SLinkedList<>();
 		addLayer(mapData1);
@@ -70,10 +75,18 @@ public class MainCanvas extends Canvas {
 	
 	public void changeCanvasOne() {
 		canvasCode = 1;
+		imageMap = new Image(getClass().getResourceAsStream(mapRes1));
+		layers = new SLinkedList<>();
+		addLayer(mapData1);
+		addLayer(mapData3);
 	}
 	
 	public void changeCanvasTwo() {
 		canvasCode = 2;
+		imageMap = new Image(getClass().getResourceAsStream(mapRes2));
+		layers = new SLinkedList<>();
+		addLayer(mapData4);
+		addLayer(mapData5);
 	}
 
 	public int getNumLayers() {

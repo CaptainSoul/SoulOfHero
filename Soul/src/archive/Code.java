@@ -14,16 +14,16 @@ import skill.Skill;
 import skill.SkillBase;
 
 public class Code {
-	private static final int scalar = 71;
-	private static final int shift = 7;
-	private static final int addedSprite = 1000000;
-	private static final int addedItem = 1010000;
-	private static final int addedMap = 1020000;
-	private static final int addedInventory = 1030000;
-	private static final int addedUser = 1040000;
-	private static final int addedSkill = 1050000;
-	private static final int addedArchive = 1060000;
-	private static final int addedSkillBase = 1070000;
+	private static final int scalar = 7;
+	private static final int shift = 71;
+	private static final int addedSprite = 1000001;
+	private static final int addedItem = 1010001;
+	private static final int addedMap = 1020001;
+	private static final int addedInventory = 1030001;
+	private static final int addedUser = 1040001;
+	private static final int addedSkill = 1050001;
+	private static final int addedArchive = 1060001;
+	private static final int addedSkillBase = 1070001;
 
 	public static int getCode(Sprite sprite) {
 		Connection con = null;
@@ -35,10 +35,10 @@ public class Code {
 			st = con.createStatement();
 			rs = st.executeQuery(sql);
 			while(rs.next()) {
-				int num = (rs.getInt("code") - addedSprite - shift) / scalar;
-				User.setNumUsers(num + 1);
+				int num = (rs.getInt("code") - addedItem - shift) / scalar;
+				Sprite.setNumCharacters(num + 1);
 			}
-			return Sprite.getNumCharacters() * scalar + shift + addedSprite;
+			return Sprite.getNumCharacters() * scalar + shift + addedItem;
 		} catch(Exception e) {
 			throw new DaoException(e.getMessage(), e);
 		} finally {
@@ -52,7 +52,7 @@ public class Code {
 		ResultSet rs = null;
 		try{
 			con = JdbcUtils.getConnection();
-			String sql = "SELECT * FROM users ORDER BY code DESC LIMIT 1";
+			String sql = "SELECT * FROM item ORDER BY code DESC LIMIT 1";
 			st = con.createStatement();
 			rs = st.executeQuery(sql);
 			while(rs.next()) {

@@ -20,7 +20,7 @@ public class UserDaoImpl implements UserDao {
 		try{
 			con = JdbcUtils.getConnection();
 			String sql = "INSERT INTO users(ID, password, dateOfSignUp)"
-					+ " VALUES (?,?,?,?);";
+					+ " VALUES (?,?,?);";
 			st = con.prepareStatement(sql);
 			st.setString(1, user.getID());
 			st.setString(2, user.getPassword());

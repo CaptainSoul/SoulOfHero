@@ -6,13 +6,13 @@ import java.awt.event.KeyEvent;
 import UI.common.GamePanel;
 
 public class TaskController {
-	private int progress = 0;
-	private int start1 = 0;
-	private int start1A = 0;
-	private int start1B = 0;
-	private int start1C = 0;
-	private boolean find = false;
-	public void Check() {
+	private static int progress = 0;
+	private static int start1 = 0;
+	private static int start1A = 0;
+	private static int start1B = 0;
+	private static int start1C = 0;
+	private static boolean find = false;
+	public static void Check() {
 		if(progress == 0)
 			start();
 		else if(progress == 1)
@@ -24,7 +24,7 @@ public class TaskController {
 		GamePanel.canComm = true;
 	}
 	
-	public void start() {
+	public static void start() {
 		Dialog dialog = new Dialog();
 		dialog.setTxt("Ah...");
 		dialog.setVisible(true);
@@ -55,7 +55,7 @@ public class TaskController {
 		});
 	}
 	
-	public void start1A() {
+	public static void start1A() {
 		Dialog dialog = new Dialog();
 		dialog.setHeadIcon("/pic/head/o1tA.png");
 		dialog.setTxt("..........");
@@ -102,7 +102,7 @@ public class TaskController {
 		});
 	}
 	
-	public void start1B() {
+	public static void start1B() {
 		Dialog dialog = new Dialog();
 		dialog.setTxt("Who are you?");
 		dialog.setVisible(true);
@@ -124,17 +124,17 @@ public class TaskController {
 		});
 	}
 	
-	public void start1C() {
+	public static void start1C() {
 		Dialog dialog = new Dialog();
 		dialog.setTxt("Did you call me?");
 		dialog.setVisible(true);
-		dialog.setHeadIcon("/pic/head/o1tA.png");
 		dialog.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
-				if(start1C == 0)
+				if(start1C == 0) {
+					dialog.setHeadIcon("/pic/head/o1tA.png");
 					dialog.setTxt("Yes, I called you");
-				else if(start1C == 1)
+				} else if(start1C == 1)
 					dialog.setTxt("You are not this world's person!");
 				else if(start1C == 2)
 						dialog.setTxt("Even not this universe!");
@@ -171,14 +171,14 @@ public class TaskController {
 	}
 	
 	public void setProgress(int progress) {
-		this.progress = progress;
+		TaskController.progress = progress;
 	}
 	
-	public boolean getFind() {
+	public static boolean getFind() {
 		return find;
 	}
 	
-	public void setFind(boolean find) {
-		this.find = find;
+	public static void setFind(boolean find) {
+		TaskController.find = find;
 	}
 }

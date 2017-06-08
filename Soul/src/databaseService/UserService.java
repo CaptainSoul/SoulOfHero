@@ -32,7 +32,7 @@ public class UserService {
 	}
 	
 	public void delete(User user) {
-		if(user.getCode() <= 0)
+		if(user.getID().equals(""))
 			System.out.println("Invalid information, cannot delete!!");
 		else
 			userDao.delete(user);

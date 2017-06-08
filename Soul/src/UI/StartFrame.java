@@ -6,6 +6,8 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import archive.Archive;
+import databaseService.ArchiveService;
 import scenario.WelcomeFrame;
 
 import javax.swing.ImageIcon;
@@ -85,6 +87,9 @@ public class StartFrame {
 					btnContinue.setSelected(true);
 					btnContinue.requestFocus();
 				} else if(key == KeyEvent.VK_ENTER) {
+					Archive archive = new Archive("Default");
+					ArchiveService archiveService = new ArchiveService();
+					archiveService.add(archive);
 					WelcomeFrame.main(null);
 				}
 			}
@@ -92,6 +97,9 @@ public class StartFrame {
 		btnStart.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				Archive archive = new Archive("Default");
+				ArchiveService archiveService = new ArchiveService();
+				archiveService.add(archive);
 				WelcomeFrame.main(null);
 			}
 		});

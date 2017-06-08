@@ -18,12 +18,11 @@ public class SkillBaseDaoImpl implements SkillBaseDao {
 		PreparedStatement st = null;
 		try{
 			con = JdbcUtils.getConnection();
-			String sql = "INSERT INTO item(code,skillcode, spritecode)"
-					+ " VALUES (?,?,?)";
+			String sql = "INSERT INTO skillbase(code, spritecode)"
+					+ " VALUES (?,?)";
 			st = con.prepareStatement(sql);
 			st.setInt(1, skillBase.getCode());
-			st.setInt(2, skillBase.getSkillCode());
-			st.setInt(3, skillBase.getSpriteCode());
+			st.setInt(2, skillBase.getSpriteCode());
 			int count = st.executeUpdate();
 			System.out.println("Add record: " + count);
 		} catch(Exception e) {

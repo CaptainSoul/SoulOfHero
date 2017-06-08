@@ -20,13 +20,13 @@ public class WeaponDaoImpl implements WeaponDao {
 		PreparedStatement st2 = null;
 		try{
 			con = JdbcUtils.getConnection();
-			String sql = "INSERT INTO item(code, name, description,inventorycode)"
-					+ "VALUES (?,?,?,?)";
+			String sql = "INSERT INTO item(code, name, description)"
+					+ "VALUES (?,?,?)";
 			st = con.prepareStatement(sql);
 			st.setInt(1, weapon.getCode());
 			st.setString(2,weapon.getName());
 			st.setString(3,weapon.getDescription());
-			st.setInt(4, weapon.getInventoryCode());
+			st.executeUpdate();
 			String sql2 = "INSERT INTO weapon(code, strength)"
 					+ " VALUES (?,?)";
 			st2 = con.prepareStatement(sql2);

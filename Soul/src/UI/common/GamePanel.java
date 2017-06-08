@@ -1,7 +1,9 @@
 package UI.common;
 
 import UI.MainApp;
+import archive.Archive;
 import character.Sprite;
+import databaseService.ArchiveService;
 import javafx.event.EventHandler;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -15,13 +17,17 @@ import scenario.TaskController;
 
 public class GamePanel extends Parent {
     private SpriteUI spriteUI;
-    public Sprite sprite = new Sprite("Dec");
+    private ArchiveService archiveService;
     private SpriteUI[] npcUI;
     private MainCanvas canvas;
-    private TaskController taskController;
+    
+    public Archive[] archive;
+    public Sprite sprite = new Sprite("Dec");
+
 	private MenuBar menuBar;
 	private boolean firCheck = true;
 	public static boolean canComm = true;
+	public static boolean loadSecond = false;
     public static final int SPRITE_WIDTH = 32;
 	public static final int SPRITE_HEIGHT = 48;
 	public static final int SCENE_WIDTH = 1600;
@@ -38,11 +44,13 @@ public class GamePanel extends Parent {
         npcUI[0] = new SpriteUI(420, 395, SPRITE_WIDTH, SPRITE_HEIGHT, "xpchar8.png");
         getChildren().add(spriteUI);
         getChildren().add(npcUI[0]);
-        taskController = new TaskController();
+        
+        loadSecond = true;
+        
         if(firCheck && canComm) {
         	canComm = false;
         	firCheck = false;
-        	taskController.Check();
+        	TaskController.Check();
         }
         menuBar = new MenuBar(sprite);
         getScene().setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -60,7 +68,44 @@ public class GamePanel extends Parent {
         if(firCheck && canComm) {
         	canComm = false;
         	firCheck = false;
-        	taskController.Check();
+        	TaskController.Check();
+        }
+	}
+	
+	public void loadSecond() {
+		canvas = new MainCanvas(SCENE_WIDTH, SCENE_HEIGHT, sprite, spriteUI);
+		canvas.changeCanvasTwo();
+		getChildren().add(canvas);
+        spriteUI = new SpriteUI(1130, 264, SPRITE_WIDTH, SPRITE_HEIGHT, "xpchar51.png");
+        npcUI = new SpriteUI[10];
+     //   npcUI[0] = new SpriteUI(420, 395, SPRITE_WIDTH, SPRITE_HEIGHT, "xpchar8.png");
+        getChildren().add(spriteUI);
+        getChildren().add(npcUI[0]);
+        
+        loadSecond = false;
+        
+        if(firCheck && canComm) {
+        	canComm = false;
+        	firCheck = false;
+        	TaskController.Check();
+        }
+        menuBar = new MenuBar(sprite);
+        getScene().setOnMouseClicked(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				onMouseClicked(event);
+			}
+        });
+        getScene().setOnKeyPressed(new EventHandler<KeyEvent>() {
+ 			@Override
+ 			public void handle(KeyEvent event) {
+ 				onKeyPressed(event);
+ 			}
+ 		});
+        if(firCheck && canComm) {
+        	canComm = false;
+        	firCheck = false;
+        	TaskController.Check();
         }
 	}
 	
@@ -87,15 +132,15 @@ public class GamePanel extends Parent {
 				canvas.setProperty = false;
 		} else if(event.getCode() == KeyCode.SPACE && canComm) {
 			canComm = false;
-			taskController.Check();
+			TaskController.Check();
 		} else if(event.getCode() == KeyCode.ESCAPE) {
 			menuBar.updateSprite(sprite);
 			menuBar.main();
 		}
-		if(taskController.getFind() == false) {
+		if(TaskController.getFind() == false) {
 			if(spriteUI.getX() >= 221 && spriteUI.getX() <= 513
 					&& spriteUI.getY() >= 328 && spriteUI.getY() <= 454) {
-				taskController.setFind(true);
+				TaskController.setFind(true);
 			} 
 		}
 		if(spriteUI.getY() <= 46) {
@@ -112,7 +157,10 @@ public class GamePanel extends Parent {
 		Stage stage = new Stage();
 		GamePanel gamePanel = new GamePanel();
 		Scene scene = new Scene(gamePanel, SCENE_WIDTH, SCENE_HEIGHT);
-		gamePanel.loadFirst();
+		if(loadSecond == false)
+			gamePanel.loadFirst();
+		else
+			gamePanel.loadSecond();
 		scene.setFill(Color.BLACK);
 		stage.setScene(scene);
 		stage.setTitle("SoulOfHero");

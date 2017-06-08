@@ -40,11 +40,14 @@ public class Dialog extends JDialog {
 		setTitle("");
 		setType(Type.UTILITY);
 		setResizable(false);
-		setBounds(100, 100, 946, 298);
+		setBounds(100, 100, 1200, 300);
 		getContentPane().setLayout(null);
+		getRootPane().setOpaque(false);
+		getContentPane().setBackground(new Color(0,0,0,0));
+		setBackground(new Color(0,0,0,0));
 		Dimension screenSize=java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 		Dimension frameSize= this.getSize();
-		this.setLocation((screenSize.width-frameSize.width)/2,(screenSize.height-frameSize.height)/2);
+		this.setLocation((screenSize.width*2-frameSize.width)/8,(screenSize.height*2-frameSize.height)/4);
 		
 		head = new JLabel("");
 		head.setIcon(new ImageIcon(Dialog.class.getResource("/pic/head/o54tA.png")));
@@ -53,13 +56,13 @@ public class Dialog extends JDialog {
 		
 		lblTxt = new JLabel("Welcome to Soul of Hero!!");	
 		lblTxt.setForeground(new Color(51, 51, 102));
-		lblTxt.setFont(new Font("Comic Sans MS", Font.BOLD, 25));
-		lblTxt.setBounds(192, 46, 631, 208);
+		lblTxt.setFont(new Font("Comic Sans MS", Font.BOLD, 28));
+		lblTxt.setBounds(165, 144, 1035, 130);
 		getContentPane().add(lblTxt);
 		
 		lblBackground = new JLabel("");
-		lblBackground.setIcon(new ImageIcon(Dialog.class.getResource("/pic/common/treeA.png")));
-		lblBackground.setBounds(0, 0, 946, 318);
+		lblBackground.setIcon(new ImageIcon(Dialog.class.getResource("/pic/common/communication.png")));
+		lblBackground.setBounds(0, 144, 1200, 130);
 		getContentPane().add(lblBackground);
 		setAlwaysOnTop(true);
 		setAutoRequestFocus(true);
@@ -80,20 +83,20 @@ public class Dialog extends JDialog {
 	public void setHintTxt(String txt) {
 		head.setIcon(new ImageIcon(Dialog.class.getResource("/pic/head/o54tA.png")));
 		lblTxt.setForeground(new Color(204, 51, 0));
-		lblTxt.setFont(new Font("Comic Sans MS", Font.BOLD, 25));
+		lblTxt.setFont(new Font("Comic Sans MS", Font.BOLD, 28));
 		setTxt(txt);
 	}
 	
 	public void setCommonTxt(String txt) {
 		head.setIcon(new ImageIcon(Dialog.class.getResource("/pic/head/o54tA.png")));
 		lblTxt.setForeground(new Color(51, 51, 102));
-		lblTxt.setFont(new Font("Comic Sans MS", Font.BOLD, 25));
+		lblTxt.setFont(new Font("Comic Sans MS", Font.BOLD, 28));
 		setTxt(txt);
 	}
 	
 	public void setAsideTxt(String txt) {
 		clearHeadIcon();
-		lblTxt.setFont(new Font("Comic Sans MS", Font.BOLD, 25));
+		lblTxt.setFont(new Font("Comic Sans MS", Font.BOLD, 28));
 		lblTxt.setForeground(new Color(153, 0, 0));
 		setTxt(txt);
 	}
@@ -105,7 +108,7 @@ public class Dialog extends JDialog {
 	public void clearHeadIcon() {
 		head.setIcon(null);
 	}
-	
+
 	public void setTxt(String text) {
 		lblTxt.setText(text);
 	}

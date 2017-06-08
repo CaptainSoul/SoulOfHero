@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import UI.MainApp;
 import character.Sprite;
 import character.Sprite.Group;
 import dsa.impl.Point2D;
@@ -23,9 +24,11 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import map.Map;
+import scenario.FightEnd;
 import scenario.FightFrame;
 
 public class FightCanvas extends Canvas {
+	private static Stage stage;
 	private enum Status {
 		NONE, SHOW_ENEMY_PROPERTY, SHOW_MENU, PREPARE_MOVE, MOVE, PREPARE_ATTACK, ATTACK, WAIT, GAME_WIN, GAME_OVER
 	}
@@ -313,6 +316,12 @@ public class FightCanvas extends Canvas {
 						}
 					}
 					break;
+				case GAME_WIN:
+					MainApp.fightEndView = true;
+					break;
+				case GAME_OVER:
+					MainApp.fightEndView = true;
+					break;
 				default:
 					break;
 				}
@@ -394,19 +403,6 @@ public class FightCanvas extends Canvas {
 		}
 	}
 	
-	public static Stage fightStage() {
-		Stage stage = new Stage();
-		AnchorPane root = new AnchorPane();
-		Scene scene = new Scene(root, 800, 600);
-		FightCanvas mapCanvas = new FightCanvas(800, 600);
-		root.getChildren().add(mapCanvas);
-		stage.setScene(scene);
-		stage.setWidth(800);
-		stage.setHeight(600);
-		stage.setResizable(false);
-		return stage;
-	}
-	
 	public void draw() {
 		map.drawMap(gContext);
 		drawPlayer();
@@ -421,7 +417,6 @@ public class FightCanvas extends Canvas {
 			propertyMenu.draw(gContext);
 			break;
 		case PREPARE_MOVE:
-
 			break;
 		case GAME_WIN:
 			gContext.setFont(Font.font(18));
@@ -498,6 +493,19 @@ public class FightCanvas extends Canvas {
 			}
 		}
 		return mapSprite;
+	}
+	
+	public static Stage fightStage() {
+		stage = new Stage();
+		AnchorPane root = new AnchorPane();
+		Scene scene = new Scene(root, 800, 600);
+		FightCanvas mapCanvas = new FightCanvas(800, 600);
+		root.getChildren().add(mapCanvas);
+		stage.setScene(scene);
+		stage.setWidth(800);
+		stage.setHeight(600);
+		stage.setResizable(false);
+		return stage;
 	}
 	
 }

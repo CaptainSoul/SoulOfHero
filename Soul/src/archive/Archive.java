@@ -1,6 +1,8 @@
 package archive;
 
+import UI.MainApp;
 import character.Sprite;
+import databaseService.SpriteService;
 
 public class Archive {
 	private String name;
@@ -13,6 +15,11 @@ public class Archive {
 	public Archive(String name) {
 		this.name = name;
 		code = Code.getCode(this);
+		user = MainApp.user;
+		sprite = new Sprite("Dec");
+		SpriteService spriteService = new SpriteService();
+		spriteService.add(sprite);
+		setSprite(sprite);
 	}
 	
 	public User getUser() {

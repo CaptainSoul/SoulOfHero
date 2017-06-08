@@ -96,13 +96,13 @@ public class InitUtils {
 					+ "descripton VARCHAR(100) NOT NULL,"
 					+ "damage DOUBLE NOT NULL"
 					+ ""
-					+ ")AUTO_INCREMENT=10300000";
+					+ ")AUTO_INCREMENT=10800000";
 			st.execute(sql);
 			
 			sql = "CREATE TABLE sprite("
 					+ "code INT PRIMARY KEY,"
-					+ "name VARCHAR(20) NOT NULL UNIQUE,"
-					+ "spriteGroup VARCHAR(20) NOT NULL,"
+					+ "name VARCHAR(20) NOT NULL,"
+			//		+ "spriteGroup VARCHAR(20) NOT NULL,"
 					+ "hp INT NOT NULL,"
 					+ "mp INT NOT NULL,"
 					+ "strength INT NOT NULL,"
@@ -110,22 +110,22 @@ public class InitUtils {
 					+ "level INT Default 1 NOT NULL,"
 					+ "gold INT NOT NULL,"
 					+ "exp INT NOT NULL,"
-					+ "move INT Default 0 NOT NULL,"
-					+ "inventorycode INT,"
-					+ "armorcode INT,"
-					+ "weaponcode INT,"
-					+ "FOREIGN KEY (inventorycode) REFERENCES inventory(code) ON DELETE CASCADE ON UPDATE CASCADE,"
-					+ "FOREIGN KEY (armorcode) REFERENCES armor(code) ON DELETE CASCADE ON UPDATE CASCADE,"
-					+ "FOREIGN KEY (weaponcode) REFERENCES weapon(code) ON DELETE CASCADE ON UPDATE CASCADE"
+					+ "move INT Default 0 NOT NULL"
+			//		+ "inventorycode INT,"
+			//		+ "armorcode INT,"
+			//		+ "weaponcode INT"
+			//		+ "FOREIGN KEY (inventorycode) REFERENCES inventory(code) ON DELETE CASCADE ON UPDATE CASCADE,"
+			//		+ "FOREIGN KEY (armorcode) REFERENCES armor(code) ON DELETE CASCADE ON UPDATE CASCADE,"
+			//		+ "FOREIGN KEY (weaponcode) REFERENCES weapon(code) ON DELETE CASCADE ON UPDATE CASCADE"
 					+ ")AUTO_INCREMENT=10400000";
 			st.execute(sql);
 			
 			sql = "CREATE TABLE skillbase("
 					+ "code INT PRIMARY KEY,"
 					+ "spritecode INT,"
-					+ "skillcode INT,"
+			//		+ "skillcode INT,"
 					+ ""
-					+ "FOREIGN KEY (skillcode) REFERENCES skill(code) ON DELETE CASCADE ON UPDATE CASCADE,"
+			//		+ "FOREIGN KEY (skillcode) REFERENCES skill(code) ON DELETE CASCADE ON UPDATE CASCADE,"
 					+ "FOREIGN KEY (spritecode) REFERENCES sprite(code) ON DELETE CASCADE ON UPDATE CASCADE"
 					+ ")AUTO_INCREMENT=10500000";
 			st.execute(sql);

@@ -25,8 +25,8 @@ public class SpriteDaoImpl implements SpriteDao {
 		PreparedStatement st = null;
 		try{
 			con = JdbcUtils.getConnection();
-			String sql = "INSERT INTO sprite(code, name, hp,mp, strength,defence,exp,level,gold,move,group,armorcode,weaponcode,inventorycode)"
-					+ " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+			String sql = "INSERT INTO sprite(code, name, hp, mp, strength, defence, exp, level, gold, move)"
+					+ " VALUES (?,?,?,?,?,?,?,?,?,?)";
 			st = con.prepareStatement(sql);
 			st.setInt(1, sprite.getCode());
 			st.setString(2,sprite.getName());
@@ -38,10 +38,10 @@ public class SpriteDaoImpl implements SpriteDao {
 			st.setInt(8,sprite.getLevel());
 			st.setInt(9,sprite.getGold());
 			st.setInt(10,sprite.getMove());
-			st.setString(11, sprite.getGroup().toString());
-			st.setInt(12,sprite.getArmor().getCode());
-			st.setInt(13,sprite.getWeapon().getCode());
-			st.setInt(14,sprite.getInventory().getCode());
+	//		st.setString(11, sprite.getGroup().toString());
+	//		st.setInt(12,sprite.getArmor().getCode());
+	//		st.setInt(13,sprite.getWeapon().getCode());
+	//		st.setInt(14,sprite.getInventory().getCode());
 			int count = st.executeUpdate();
 			System.out.println("Add record: " + count);
 		} catch(Exception e) {

@@ -2,10 +2,17 @@ package UI;
 
 import UI.common.GamePanel;
 import UI.fight.FightCanvas;
+import archive.User;
+import databaseService.ArmorService;
+import databaseService.InventoryService;
+import databaseService.SkillBaseService;
+import databaseService.WeaponService;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import scenario.FightEnd;
+import scenario.TaskController;
 
 public class MainApp extends Application {
 	public static String mainViewID = "MainView";
@@ -27,11 +34,25 @@ public class MainApp extends Application {
 	public static String fightViewID = "fightView";
 	public static boolean fightView = false;
 	
+	public static String fightEndID = "fightEndView";
+	public static boolean fightEndView = false;
+	public FightEnd fightEnd;
+	
+	public static InventoryService inventoryService;
+	public static WeaponService weaponService;
+	public static ArmorService armorService;
+	public static SkillBaseService skillBaseService;
+	
+	public static User user;
+	
+	public TaskController taskController;
+	
 	private BGM bgm;
 	
 	private StageController stageController;
 	private boolean isRunning = true;
 	private long sleep = 100;
+    
 	
 	private Thread thread = new Thread(new Runnable() {
 
@@ -81,6 +102,11 @@ public class MainApp extends Application {
 			stageController.addStage(fightViewID, FightCanvas.fightStage());
 			stageController.setStage(fightViewID);
 			fightView = false;
+		} else if(fightEndView) {
+			BGM.bgmNervous = true;
+			fightEnd = new FightEnd();
+			fightEnd.main();
+			fightEndView = false;
 		}
 		bgm.checkBgm();
 	}
@@ -90,8 +116,13 @@ public class MainApp extends Application {
 		try {
 			stageController = new StageController();
 			stageController.setPrimaryStage("primaryStage", primaryStage);
+			taskController = new TaskController();
+			inventoryService = new InventoryService();
+			weaponService = new WeaponService();
+			armorService=  new ArmorService();
+			skillBaseService = new SkillBaseService();
 			bgm = BGM.getBGM();
-			loginView = true; 
+			fightEndView = true; 
 
 			thread.start();	
 		} catch(Exception e) {
