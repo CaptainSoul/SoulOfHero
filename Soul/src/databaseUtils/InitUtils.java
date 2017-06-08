@@ -131,8 +131,7 @@ public class InitUtils {
 			st.execute(sql);
 			
 			sql = "CREATE TABLE users("
-					+ "code INT PRIMARY KEY,"
-					+ "ID VARCHAR(30) NOT NULL,"
+					+ "ID VARCHAR(30) PRIMARY KEY,"
 					+ "password VARCHAR(30) NOT NULL,"
 					+ "dateOfSignUp datetime NOT NULL)";
 			st.execute(sql);
@@ -140,7 +139,7 @@ public class InitUtils {
 			sql = "CREATE TABLE archives("
 					+ "code INT PRIMARY KEY,"
 					+ "name VARCHAR(20),"
-					+ "userID INT,"
+					+ "userID VARCHAR(30),"
 					+ "spriteCode INT,"
 					+ "taskProgress INT DEFAULT 0,"
 					+ ""

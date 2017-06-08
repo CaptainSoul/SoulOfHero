@@ -21,12 +21,12 @@ public class ArchiveDaoImpl implements ArchiveDao {
 		PreparedStatement st = null;
 		try{
 			con = JdbcUtils.getConnection();
-			String sql = "INSERT INTO archives(code, name, userCode, spriteCode, taskProgress)"
+			String sql = "INSERT INTO archives(code, name, userID, spriteCode, taskProgress)"
 					+ " VALUES (?,?,?,?,?)";
 			st = con.prepareStatement(sql);
 			st.setInt(1, archive.getCode());
 			st.setString(2, archive.getName());
-			st.setInt(3, archive.getUser().getCode());
+			st.setString(3, archive.getUser().getID());
 			st.setInt(4, archive.getSprite().getCode());
 			st.setInt(5, archive.getTaskProgress());
 			int count = st.executeUpdate();
@@ -79,9 +79,9 @@ public class ArchiveDaoImpl implements ArchiveDao {
 			con = JdbcUtils.getConnection();
 			int count = getCount(user);
 			Archive[] archives = new Archive[count];
-			String sql = "SELECT * FROM archives WHERE userCode = ?";
+			String sql = "SELECT * FROM archives WHERE userID = ?";
 			st = con.prepareStatement(sql);
-			st.setInt(1, user.getCode());
+			st.setString(1, user.getID());
 			rs = st.executeQuery();
 			int i = 0;
 			SpriteService spriteService = new SpriteService();

@@ -91,7 +91,7 @@ public class MainApp extends Application {
 			stageController = new StageController();
 			stageController.setPrimaryStage("primaryStage", primaryStage);
 			bgm = BGM.getBGM();
-			startView = true; 
+			loginView = true; 
 
 			thread.start();	
 		} catch(Exception e) {

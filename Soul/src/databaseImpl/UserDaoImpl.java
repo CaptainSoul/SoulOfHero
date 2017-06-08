@@ -19,13 +19,12 @@ public class UserDaoImpl implements UserDao {
 		PreparedStatement st = null;
 		try{
 			con = JdbcUtils.getConnection();
-			String sql = "INSERT INTO users(code, ID, password, dateOfSignUp)"
+			String sql = "INSERT INTO users(ID, password, dateOfSignUp)"
 					+ " VALUES (?,?,?,?);";
 			st = con.prepareStatement(sql);
-			st.setInt(1, user.getCode());
-			st.setString(2, user.getID());
-			st.setString(3, user.getPassword());
-			st.setDate(4, new Date(user.getDateOfSignUp().getTime()));
+			st.setString(1, user.getID());
+			st.setString(2, user.getPassword());
+			st.setDate(3, new Date(user.getDateOfSignUp().getTime()));
 			int count = st.executeUpdate();
 			System.out.println("Add record: " + count);
 		} catch(Exception e) {
@@ -48,9 +47,8 @@ public class UserDaoImpl implements UserDao {
 			rs = st.executeQuery();
 			while(rs.next()) {
 				String password = rs.getString("password");
-				int code = rs.getInt("code");
 				Date dateOfSignUp = rs.getDate("dateOfSignUp");
-				User user = new User(ID, password, code, dateOfSignUp);
+				User user = new User(ID, password, dateOfSignUp);
 				return user;
 			}
 		} catch(Exception e) {
@@ -76,9 +74,8 @@ public class UserDaoImpl implements UserDao {
 			while(rs.next()) {
 				String ID = rs.getString("ID");
 				String password = rs.getString("password");
-				int code = rs.getInt("code");
 				Date dateOfSignUp = rs.getDate("dateOfSignUp");
-				User user = new User(ID, password, code, dateOfSignUp);
+				User user = new User(ID, password, dateOfSignUp);
 				users[i] = user;
 			}
 			return users;
@@ -95,13 +92,12 @@ public class UserDaoImpl implements UserDao {
 		PreparedStatement st = null;
 		try{
 			con = JdbcUtils.getConnection();
-			String sql = "UPDATE users SET ID = ?, password = ?, dateOfSignUp = ?"
-					+ " WHERE code = ?";
+			String sql = "UPDATE users SET password = ?, dateOfSignUp = ?"
+					+ " WHERE ID = ?";
 			st = con.prepareStatement(sql);
-			st.setString(1, user.getID());
-			st.setString(2, user.getPassword());
-			st.setDate(3, new Date(user.getDateOfSignUp().getTime()));
-			st.setInt(4, user.getCode());
+			st.setString(1, user.getPassword());
+			st.setDate(2, new Date(user.getDateOfSignUp().getTime()));
+			st.setString(3, user.getID());
 			int count = st.executeUpdate();
 			System.out.println("Update record: " + count);
 			return count;
@@ -118,9 +114,9 @@ public class UserDaoImpl implements UserDao {
 		PreparedStatement st = null;
 		try{
 			con = JdbcUtils.getConnection();
-			String sql = "DELETE FROM users WHERE code = ?";
+			String sql = "DELETE FROM users WHERE ID = ?";
 			st = con.prepareStatement(sql);
-			st.setInt(1, user.getCode());
+			st.setString(1, user.getID());
 			int count = st.executeUpdate();
 			System.out.println("Delete record: " + count);
 			return count;

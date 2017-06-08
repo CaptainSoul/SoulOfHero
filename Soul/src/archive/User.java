@@ -7,20 +7,17 @@ public class User {
 	private String password;
 	private Date dateOfSignUp;
 	private Archive[] archives;
-	private final int code;
 	private static int numUsers = 0;
 	
 	public User(String ID, String password) {
 		this.ID = ID;
 		this.password = password;
-		code = Code.getCode(this);
 		dateOfSignUp = new Date(System.currentTimeMillis());
 	}
 	
-	public User(String ID, String password, int code, Date dateOfSignUp) {
+	public User(String ID, String password, Date dateOfSignUp) {
 		this.ID = ID;
 		this.password = password;
-		this.code = code;
 		this.dateOfSignUp = dateOfSignUp;
 	}
 	
@@ -30,10 +27,6 @@ public class User {
 	
 	public static void setNumUsers(int numUsers) {
 		User.numUsers = numUsers;
-	}
-	
-	public int getCode() {
-		return code;
 	}
 	
 	public String getID() {
