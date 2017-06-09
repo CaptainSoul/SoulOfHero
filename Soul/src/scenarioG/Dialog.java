@@ -1,4 +1,4 @@
-package scenario;
+package scenarioG;
 
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -51,13 +51,13 @@ public class Dialog extends JDialog {
 		
 		head = new JLabel("");
 		head.setIcon(new ImageIcon(Dialog.class.getResource("/pic/head/o54tA.png")));
-		head.setBounds(14, 28, 180, 246);
+		head.setBounds(27, 28, 180, 246);
 		getContentPane().add(head);
 		
 		lblTxt = new JLabel("Welcome to Soul of Hero!!");	
 		lblTxt.setForeground(new Color(51, 51, 102));
 		lblTxt.setFont(new Font("Comic Sans MS", Font.BOLD, 28));
-		lblTxt.setBounds(165, 144, 1035, 130);
+		lblTxt.setBounds(218, 144, 982, 130);
 		getContentPane().add(lblTxt);
 		
 		lblBackground = new JLabel("");

@@ -1,4 +1,4 @@
-package scenario;
+package scenarioG;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -11,6 +11,8 @@ public class TaskController {
 	private static int start1A = 0;
 	private static int start1B = 0;
 	private static int start1C = 0;
+	private static int start2 = 0;
+	private static int start2A = 0;
 	private static boolean find = false;
 	public static void Check() {
 		if(progress == 0)
@@ -21,6 +23,10 @@ public class TaskController {
 			start1B();
 		else if(progress == 2 && find == true)
 			start1C();
+		else if(progress == 3 && find != true)
+			start2();
+		else if(progress == 3 && find == true)
+			start2A();
 		GamePanel.canComm = true;
 	}
 	
@@ -166,11 +172,80 @@ public class TaskController {
 		});
 	}
 	
-	public int getProgress() {
+	public static void start2() {
+		Dialog dialog = new Dialog();
+		dialog.setTxt("Well....");
+		dialog.setVisible(true);
+		dialog.requestFocus();
+		dialog.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(start2 == 0)
+					dialog.setTxt("Where is this?");
+				else if(start2 == 1)
+					dialog.setTxt("What happened??");
+				else if(start2 == 2)
+					dialog.setTxt("My head.....");
+				else if(start2 == 3) {
+					start2A();
+					dialog.dispose();
+				}
+				start2++;
+			}
+		});
+	}
+	
+	public static void start2A() {
+		Dialog dialog = new Dialog();
+		dialog.setTxt("..........");
+		dialog.setVisible(true);
+		dialog.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(start2A == 0) {
+					dialog.setHeadIcon("/pic/head/o40tA.png");
+					dialog.setTxt("Hello~~~~");
+				} else if(start2A == 1)
+					dialog.setTxt("How are you???");
+				else if(start2A == 2)
+						dialog.setCommonTxt("I'm .....");
+				else if(start2A == 3)
+					dialog.setTxt("........");
+				else if(start2A == 4)
+					dialog.setTxt("I'm Dec, where is here? What happened? Why I am here?");
+				else if(start2A == 5) {
+					dialog.setHeadIcon("/pic/head/o40tA.png");
+					dialog.setTxt("hahaha...");
+				} else if(start2A == 6)
+					dialog.setTxt("To find the TRUTH");
+				else if(start2A == 7)
+					dialog.setHintTxt("(To find the TRUTH??)");
+				else if(start2A == 8) {
+					dialog.setHeadIcon("/pic/head/o40tA.png");
+					dialog.setTxt("Come on~~~");
+				} else if(start2A == 9)
+					dialog.setCommonTxt("Ah...");
+				else if(start2A == 10)
+					dialog.setTxt("Wait!!");
+				else if(start2A == 11)
+					dialog.setTxt("Please tell me....");
+				else if(start2A == 12) {
+					dialog.setHeadIcon("/pic/head/o40tA.png");
+					dialog.setTxt("Go out~~~~~");
+				} else if(start2A == 13) {
+					progress++;
+					dialog.dispose();
+				}
+				start2A++;
+			}
+		});
+	}
+	
+	public static int getProgress() {
 		return progress;
 	}
 	
-	public void setProgress(int progress) {
+	public static void setProgress(int progress) {
 		TaskController.progress = progress;
 	}
 	

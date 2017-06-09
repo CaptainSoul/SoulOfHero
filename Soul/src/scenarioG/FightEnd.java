@@ -1,4 +1,4 @@
-package scenario;
+package scenarioG;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -38,7 +38,7 @@ public class FightEnd {
 				else if(count == 10)
 					dialog.setCommonTxt("Ahhhhhhhhhh!!!!!");
 				else if(count == 11) {
-					MainApp.mainView = true;
+					MainApp.secondView = true;
 					dialog.dispose();
 				}
 				count++;

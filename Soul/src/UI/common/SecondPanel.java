@@ -3,7 +3,6 @@ package UI.common;
 import UI.MainApp;
 import archive.Archive;
 import character.Sprite;
-import databaseService.ArchiveService;
 import javafx.event.EventHandler;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -15,10 +14,10 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import scenarioG.TaskController;
 
-public class GamePanel extends Parent {
+public class SecondPanel extends Parent {
     private SpriteUI spriteUI;
     private SpriteUI[] npcUI;
-    private MainCanvas canvas;
+    private SecondCanvas canvas;
     
     public Archive[] archive;
     public Sprite sprite = new Sprite("Dec");
@@ -31,21 +30,22 @@ public class GamePanel extends Parent {
 	public static final int SCENE_WIDTH = 1600;
 	public static final int SCENE_HEIGHT = 896;
     
-	public GamePanel() {
+	public SecondPanel() {
 	}
 
 	public void loadFirst(){
-		canvas = new MainCanvas(SCENE_WIDTH, SCENE_HEIGHT, sprite, spriteUI);
+		canvas = new SecondCanvas(SCENE_WIDTH, SCENE_HEIGHT, sprite, spriteUI);
 		getChildren().add(canvas);
-        spriteUI = new SpriteUI(30, 270, SPRITE_WIDTH, SPRITE_HEIGHT, "xpchar51.png");
+        spriteUI = new SpriteUI(1125, 259, SPRITE_WIDTH, SPRITE_HEIGHT, "xpchar51.png");
         npcUI = new SpriteUI[10];
-        npcUI[0] = new SpriteUI(420, 395, SPRITE_WIDTH, SPRITE_HEIGHT, "xpchar8.png");
+        npcUI[0] = new SpriteUI(1024, 340, SPRITE_WIDTH, SPRITE_HEIGHT, "xpchar40.png");
         getChildren().add(spriteUI);
         getChildren().add(npcUI[0]);
 
         if(firCheck && canComm) {
         	canComm = false;
         	firCheck = false;
+        	TaskController.setProgress(3);
         	TaskController.Check();
         }
         menuBar = new MenuBar(sprite);
@@ -96,14 +96,8 @@ public class GamePanel extends Parent {
 			menuBar.updateSprite(sprite);
 			menuBar.main();
 		}
-		if(TaskController.getFind() == false) {
-			if(spriteUI.getX() >= 221 && spriteUI.getX() <= 513
-					&& spriteUI.getY() >= 328 && spriteUI.getY() <= 454) {
-				TaskController.setFind(true);
-			} 
-		}
-		if(spriteUI.getY() <= 46) {
-			MainApp.fightView = true;
+		if(spriteUI.getY() >= 300) {
+			TaskController.setFind(true);
 		}
 	}
 	
@@ -114,7 +108,7 @@ public class GamePanel extends Parent {
 	
 	public static Stage MainStage() {
 		Stage stage = new Stage();
-		GamePanel gamePanel = new GamePanel();
+		SecondPanel gamePanel = new SecondPanel();
 		Scene scene = new Scene(gamePanel, SCENE_WIDTH, SCENE_HEIGHT);
 		gamePanel.loadFirst();
 		scene.setFill(Color.BLACK);
@@ -126,5 +120,4 @@ public class GamePanel extends Parent {
 		stage.setResizable(false);
 		return stage;
 	}
-
 }

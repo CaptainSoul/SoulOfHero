@@ -24,8 +24,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import map.Map;
-import scenario.FightEnd;
-import scenario.FightFrame;
+import scenarioG.FightEnd;
+import scenarioG.FightFrame;
 
 public class FightCanvas extends Canvas {
 	private static Stage stage;

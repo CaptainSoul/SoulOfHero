@@ -11,7 +11,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import map.Map;
 
-public class MainCanvas extends Canvas {
+public class SecondCanvas extends Canvas {
 	private SLinkedList<Map> layers;
 	private GraphicsContext gContext;
 	private Image imageMap;
@@ -57,13 +57,13 @@ public class MainCanvas extends Canvas {
 		
 	});
 	
-	public MainCanvas(double width, double height, Sprite sprite, SpriteUI spriteUI) {
+	public SecondCanvas(double width, double height, Sprite sprite, SpriteUI spriteUI) {
 		super(width, height);
-		imageMap = new Image(getClass().getResourceAsStream(mapRes1));
+		imageMap = new Image(getClass().getResourceAsStream(mapRes2));
 		gContext = getGraphicsContext2D();
 		layers = new SLinkedList<>();
-		addLayer(mapData1);
-		addLayer(mapData3);
+		addLayer(mapData4);
+		addLayer(mapData5);
 		propertyMenu = new PropertyMenu(120, 215);
 		propertyMenu.initPlayer(sprite);
 		thread.start();

@@ -1,4 +1,11 @@
 /UI/
+/background.png
+/bgm/
+/data/
+/databaseUtils/
+/pic/
+/utils/
+/Scenario/
 /archive/
 /character/
 /databaseAccess/
@@ -7,13 +14,10 @@
 /databaseImpl/
 /databaseMain/
 /databaseService/
-/databaseUtils/
 /dsa/
 /inventory/
 /io/
 /map/
-/scenario/
 /skill/
-/utils/
-/data/
-/pic/
+/scenario/
+/scenarioG/

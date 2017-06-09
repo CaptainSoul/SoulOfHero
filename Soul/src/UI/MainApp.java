@@ -1,6 +1,7 @@
 package UI;
 
 import UI.common.GamePanel;
+import UI.common.SecondPanel;
 import UI.fight.FightCanvas;
 import archive.User;
 import databaseService.ArmorService;
@@ -11,13 +12,15 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import scenario.FightEnd;
-import scenario.TaskController;
+import scenarioG.FightEnd;
+import scenarioG.TaskController;
 
 public class MainApp extends Application {
 	public static String mainViewID = "MainView";
-	public static String mainViewRes = "MainView.fxml";
 	public static boolean mainView = false;
+	
+	public static String secondViewID = "SecondView";
+	public static boolean secondView = false;
 	
 	public static String loginViewID = "LoginView";
 	public static String loginViewRes = "LoginView.fxml";
@@ -45,7 +48,7 @@ public class MainApp extends Application {
 	
 	public static User user;
 	
-	public TaskController taskController;
+	public TaskController taskController; 
 	
 	private BGM bgm;
 	
@@ -97,6 +100,11 @@ public class MainApp extends Application {
 			stageController.addStage(mainViewID, GamePanel.MainStage());
 			stageController.setStage(mainViewID);
 			mainView = false;
+		} else if(secondView) {
+			BGM.bgmMain = true;
+			stageController.addStage(secondViewID, SecondPanel.MainStage());
+			stageController.setStage(secondViewID);
+			secondView = false;
 		} else if(fightView) {
 			BGM.bgmBattleBoss = true;
 			stageController.addStage(fightViewID, FightCanvas.fightStage());
@@ -122,7 +130,7 @@ public class MainApp extends Application {
 			armorService=  new ArmorService();
 			skillBaseService = new SkillBaseService();
 			bgm = BGM.getBGM();
-			fightEndView = true; 
+			fightView = true; 
 
 			thread.start();	
 		} catch(Exception e) {
