@@ -33,6 +33,14 @@ public class SpriteUI extends Parent {
 		mImageView.setLayoutY(y);
 		getChildren().add(mImageView);
 	}
+	
+	public void setIcon(String url) {
+		Image actor = new Image(getClass().getResourceAsStream(url));
+		getChildren().remove(mImageView);
+		mImageView = new ImageView(actor);
+		mImageView.setViewport(new Rectangle2D(0, 0, width, height));
+		getChildren().add(mImageView);
+	}
 
 	public boolean isCollisionWith(double x, double y) {
 		if (x > getX() && y > getY() && x < getX() + getWidth() && y < getX() + getHeight()) {

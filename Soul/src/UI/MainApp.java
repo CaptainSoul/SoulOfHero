@@ -1,7 +1,6 @@
 package UI;
 
 import UI.common.GamePanel;
-import UI.common.SecondPanel;
 import UI.fight.FightCanvas;
 import archive.User;
 import databaseService.ArmorService;
@@ -18,10 +17,11 @@ import scenarioG.TaskController;
 public class MainApp extends Application {
 	public static String mainViewID = "MainView";
 	public static boolean mainView = false;
-	
-	public static String secondViewID = "SecondView";
-	public static boolean secondView = false;
-	
+	public static boolean loadMain = false;
+	public static boolean loadRoom = false;
+	public static boolean loadHeaven = false;
+	public static boolean loadCave = false;
+
 	public static String loginViewID = "LoginView";
 	public static String loginViewRes = "LoginView.fxml";
 	public static boolean loginView = false;
@@ -97,14 +97,22 @@ public class MainApp extends Application {
 			startView = false;
 		}  else if(mainView) {
 			BGM.bgmNervous = true;
-			stageController.addStage(mainViewID, GamePanel.MainStage());
+			if(stageController.getStage(mainViewID) == null)
+				stageController.addStage(mainViewID, GamePanel.MainStage());
 			stageController.setStage(mainViewID);
+			if(loadMain) {
+				GamePanel.loadMain();
+				loadMain = false;
+			} else if(loadRoom) {
+				GamePanel.loadRoom();
+				loadRoom = false;
+			} else if(loadHeaven) {
+				GamePanel.loadHeaven();
+				loadHeaven = false;
+			} else if(loadCave) {
+				
+			}
 			mainView = false;
-		} else if(secondView) {
-			BGM.bgmMain = true;
-			stageController.addStage(secondViewID, SecondPanel.MainStage());
-			stageController.setStage(secondViewID);
-			secondView = false;
 		} else if(fightView) {
 			BGM.bgmBattleBoss = true;
 			stageController.addStage(fightViewID, FightCanvas.fightStage());
@@ -130,7 +138,7 @@ public class MainApp extends Application {
 			armorService=  new ArmorService();
 			skillBaseService = new SkillBaseService();
 			bgm = BGM.getBGM();
-			fightView = true; 
+			loginView = true; 
 
 			thread.start();	
 		} catch(Exception e) {
