@@ -7,29 +7,32 @@ import UI.common.GamePanel;
 
 public class TaskController {
 	private static int progress = 0;
-	private static int start1 = 1;
-	private static int start1A = 1;
-	private static int start1B = 1;
-	private static int start1C = 1;
-	private static int start1D = 1;
-	private static int start2 = 1;
-	private static int start2A = 1;
+	private static int main1 = 1;
+	private static int main1A = 1;
+	private static int main1B = 1;
+	private static int main1C = 1;
+	private static int main1D = 1;
+	private static int room = 1;
+	private static int roomA = 1;
+	private static int heaven = 1;
 	private static boolean find = false;
 	public static void Check() {
 		if(progress == 0)
 			start();
 		else if(progress == 1)
-			start1A();
+			main1A();
 		else if(progress == 2 && find != true)
-			start1B();
+			main1B();
 		else if(progress == 2 && find == true)
-			start1C();
+			main1C();
 		else if(progress == 3)
-			start1D();
+			main1D();
 		else if(progress == 4 && find != true)
-			start2();
+			room();
 		else if(progress == 4 && find == true)
-			start2A();
+			roomA();
+		else if(progress == 5)
+			heaven();
 	}
 	
 	public static void start() {
@@ -41,32 +44,32 @@ public class TaskController {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if(e.getKeyCode() == KeyEvent.VK_SPACE) {
-					if(start1 == 1)
+					if(main1 == 1)
 						dialog.setTxt("Where is this?");
-					else if(start1 == 2)
+					else if(main1 == 2)
 						dialog.setTxt("Who am i?");
-					else if(start1 == 3)
+					else if(main1 == 3)
 						dialog.setTxt("Use UP, DOWN, LEFT, RIGHT to control character's move...");
-					else if(start1 == 4)
+					else if(main1 == 4)
 						dialog.setTxt("Esc invokes menu bar and o invokes status bar...");
-					else if(start1 == 5)
+					else if(main1 == 5)
 						dialog.setTxt("What did I say?");
-					else if(start1 == 6)
+					else if(main1 == 6)
 						dialog.setHintTxt("I should be taking my Software Enginering course!!");
-					else if(start1 == 7)
+					else if(main1 == 7)
 						dialog.setTxt("How odd!");
-					else if(start1 == 8) {
+					else if(main1 == 8) {
 						GamePanel.canComm = true;
 						progress++;
 						dialog.dispose();
 					}
-				start1++;
+				main1++;
 				}
 			}
 		});
 	}
 	
-	public static void start1A() {
+	public static void main1A() {
 		Dialog dialog = new Dialog();
 		dialog.setHeadIcon("/pic/head/o1tA.png");
 		dialog.setTxt("..........");
@@ -75,48 +78,48 @@ public class TaskController {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if(e.getKeyCode() == KeyEvent.VK_SPACE) {
-					if(start1A == 1)
+					if(main1A == 1)
 						dialog.setTxt("...");
-					else if(start1A == 2)
+					else if(main1A == 2)
 						dialog.setTxt(".....");
-					else if(start1A == 3)
+					else if(main1A == 3)
 						dialog.setTxt("Dec...");
-					else if(start1A == 4)
+					else if(main1A == 4)
 						dialog.setTxt("........");
-					else if(start1A == 5)
+					else if(main1A == 5)
 						dialog.setTxt("Dec............");
-					else if(start1A == 6)
+					else if(main1A == 6)
 						dialog.setTxt("................");
-					else if(start1A == 7)
+					else if(main1A == 7)
 						dialog.setTxt("I'm here....");
-					else if(start1A == 8)
+					else if(main1A == 8)
 						dialog.setTxt("............");
-					else if(start1A == 9)
+					else if(main1A == 9)
 						dialog.setTxt("I'm here.............");
-					else if(start1A == 10)
+					else if(main1A == 10)
 						dialog.setAsideTxt("(no voice yet)");
-					else if(start1A == 11)
+					else if(main1A == 11)
 						dialog.setCommonTxt("Who is here???");
-					else if(start1A == 12)
+					else if(main1A == 12)
 						dialog.setTxt("Hello??");
-					else if(start1A == 13)
+					else if(main1A == 13)
 						dialog.setHintTxt("(Maybe I should have a check)");
-					else if(start1A == 14)
+					else if(main1A == 14)
 						dialog.setAsideTxt("(Try to find the voice)");
-					else if(start1A == 15)
+					else if(main1A == 15)
 						dialog.setCommonTxt("...");
-					else if(start1A == 16) {
+					else if(main1A == 16) {
 						GamePanel.canComm = true;
 						progress++;
 						dialog.dispose();
 					}
-					start1A++;
+					main1A++;
 				}
 			}
 		});
 	}
 	
-	public static void start1B() {
+	public static void main1B() {
 		Dialog dialog = new Dialog();
 		dialog.setTxt("Who are you?");
 		dialog.setVisible(true);
@@ -124,24 +127,24 @@ public class TaskController {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if(e.getKeyCode() == KeyEvent.VK_SPACE) {
-					if(start1B == 1)
+					if(main1B == 1)
 						dialog.setTxt("Where are you?");
-					else if(start1B == 2)
+					else if(main1B == 2)
 						dialog.setTxt("What's the matter?");
-					else if(start1B == 3)
+					else if(main1B == 3)
 						dialog.setAsideTxt("(Try to find the man)");
-					else if(start1B == 4) {
+					else if(main1B == 4) {
 						GamePanel.canComm = true;
-						start1B = 0;
+						main1B = 0;
 						dialog.dispose();
 					}
-					start1B++;
+					main1B++;
 				}
 			}
 		});
 	}
 	
-	public static void start1C() {
+	public static void main1C() {
 		Dialog dialog = new Dialog();
 		dialog.setTxt("Did you call me?");
 		GamePanel.spriteUI.moveRight(GamePanel.canvas.iterator());
@@ -150,45 +153,45 @@ public class TaskController {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if(e.getKeyCode() == KeyEvent.VK_SPACE) {
-					if(start1C == 1) {
+					if(main1C == 1) {
 						dialog.setHeadIcon("/pic/head/o1tA.png");
 						GamePanel.npcUI[0].moveLeft(GamePanel.canvas.iterator());
 						dialog.setTxt("Yes, I called you");
-					} else if(start1C == 2)
+					} else if(main1C == 2)
 						dialog.setTxt("You are not this world's person!");
-					else if(start1C == 3)
+					else if(main1C == 3)
 						dialog.setTxt("Even not this universe!");
-					else if(start1C == 4)
+					else if(main1C == 4)
 						dialog.setTxt("The only way to get out of this world is ....");
-					else if(start1C == 5)
+					else if(main1C == 5)
 						dialog.setTxt("Kill the demon!");
-					else if(start1C == 6)
+					else if(main1C == 6)
 						dialog.setCommonTxt("WTF??");
-					else if(start1C == 7)
+					else if(main1C == 7)
 						dialog.setTxt("Okay, I am not know what I could do");
-					else if(start1C == 8)
+					else if(main1C == 8)
 						dialog.setTxt("But I know I have strong body and I do feel....");
-					else if(start1C == 9)
+					else if(main1C == 9)
 						dialog.setHintTxt("I am not a man in the world...");
-					else if(start1C == 10)
+					else if(main1C == 10)
 						dialog.setCommonTxt("So I would go to KILL DEMON and go back to my world....");
-					else if(start1C == 11) {
+					else if(main1C == 11) {
 						dialog.setHeadIcon("/pic/head/o1tA.png");
 						dialog.setTxt("Go up along the path and kill DEMON!! My hero!!!");
-					} else if(start1C == 12)
+					} else if(main1C == 12)
 						dialog.setAsideTxt("(Go UP and kill DEMON)");
-					else if(start1C == 13) {
+					else if(main1C == 13) {
 						find = false;
 						progress++;
 						dialog.dispose();
 					}
-					start1C++;
+					main1C++;
 				}
 			}
 		});
 	}
 	
-	public static void start1D() {
+	public static void main1D() {
 		Dialog dialog = new Dialog();
 		dialog.setTxt("I should kill demons....");
 		dialog.setVisible(true);
@@ -196,24 +199,25 @@ public class TaskController {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if(e.getKeyCode() == KeyEvent.VK_SPACE) {
-					if(start1D == 1)
+					if(main1D == 1)
 						dialog.setTxt("Where are demons?");
-					else if(start1D == 2) {
+					else if(main1D == 2) {
 						dialog.setHeadIcon("/pic/head/o1tA.png");
 						dialog.setTxt("What's the matter?");
-					} else if(start1D == 3)
+					} else if(main1D == 3)
 						dialog.setAsideTxt("Go up along the path and kill DEMON!! My hero!!!");
-					else if(start1D == 4) {
+					else if(main1D == 4) {
 						GamePanel.canComm = true;
-						start1D = 0;
+						main1D = 0;
 						dialog.dispose();
 					}
-					start1D++;
+					main1D++;
 				}
 			}
 		});
 	}
-	public static void start2() {
+	
+	public static void room() {
 		Dialog dialog = new Dialog();
 		dialog.setTxt("Well....");
 		dialog.setVisible(true);
@@ -222,22 +226,22 @@ public class TaskController {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if(e.getKeyCode() == KeyEvent.VK_SPACE) {
-					if(start2 == 1)
+					if(room == 1)
 						dialog.setTxt("Where is this?");
-					else if(start2 == 2)
+					else if(room == 2)
 						dialog.setTxt("What happened??");
-					else if(start2 == 3)
+					else if(room == 3)
 						dialog.setTxt("My head.....");
-					else if(start2 == 4) {
+					else if(room == 4) {
 						dialog.dispose();
 					}
-					start2++;
+					room++;
 				}
 			}
 		});
 	}
 	
-	public static void start2A() {
+	public static void roomA() {
 		Dialog dialog = new Dialog();
 		dialog.setTxt("..........");
 		dialog.setVisible(true);
@@ -245,47 +249,74 @@ public class TaskController {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if(e.getKeyCode() == KeyEvent.VK_SPACE) {
-					if(start2A == 1) {
+					if(roomA == 1) {
 						dialog.setHeadIcon("/pic/head/o40tA.png");
 						GamePanel.npcUI[0].moveRight(GamePanel.canvas.iterator());
 						dialog.setTxt("Hello~~~~");
-					} else if(start2A == 2) {
+					} else if(roomA == 2) {
 						GamePanel.spriteUI.moveLeft(GamePanel.canvas.iterator());
 						dialog.setTxt("How are you???");
-					} else if(start2A == 3)
+					} else if(roomA == 3)
 						dialog.setCommonTxt("I'm .....");
-					else if(start2A == 4)
+					else if(roomA == 4)
 						dialog.setTxt("........");
-					else if(start2A == 5)
+					else if(roomA == 5)
 						dialog.setTxt("I'm Dec, where is here? What happened? Why I am here?");
-					else if(start2A == 6) {
+					else if(roomA == 6) {
 						dialog.setHeadIcon("/pic/head/o40tA.png");
 						dialog.setTxt("hahaha...");
-					} else if(start2A == 7)
+					} else if(roomA == 7)
 						dialog.setTxt("To find the TRUTH");
-					else if(start2A == 8)
+					else if(roomA == 8)
 						dialog.setHintTxt("(To find the TRUTH??)");
-					else if(start2A == 9) {
+					else if(roomA == 9) {
 						dialog.setHeadIcon("/pic/head/o40tA.png");
 						dialog.setTxt("Come on~~~");
-					} else if(start2A == 10)
+					} else if(roomA == 10)
 						dialog.setCommonTxt("Ah...");
-					else if(start2A == 11)
+					else if(roomA == 11)
 						dialog.setTxt("Wait!!");
-					else if(start2A == 12)
+					else if(roomA == 12)
 						dialog.setTxt("Please tell me....");
-					else if(start2A == 13) {
+					else if(roomA == 13) {
 						dialog.setHeadIcon("/pic/head/o40tA.png");
 						dialog.setTxt("Go out and find the truth~~~~~");
 						GamePanel.npcUI[0].setX(1600);
 						GamePanel.npcUI[0].setY(900);
-					} else if(start2A == 14)
+					} else if(roomA == 14)
 						dialog.setCommonTxt("She is gone.....");
-					else if(start2A == 15) {
+					else if(roomA == 15) {
 						progress++;
 						dialog.dispose();
 					}
-					start2A++;
+					roomA++;
+				}
+			}
+		});
+	}
+	
+	public static void heaven() {
+		Dialog dialog = new Dialog();
+		dialog.setTxt("!!!!!");
+		dialog.setVisible(true);
+		dialog.requestFocus();
+		dialog.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode() == KeyEvent.VK_SPACE) {
+					if(heaven == 1)
+						dialog.setTxt("Where is this?");
+					else if(heaven == 2)
+						dialog.setTxt("I just walked out from a room");
+					else if(heaven == 3)
+						dialog.setTxt("What happened??");
+					else if(heaven == 4)
+						dialog.setTxt("How odd!!!");
+					else if(heaven == 5) {
+						progress++;
+						dialog.dispose();
+					}
+					heaven++;
 				}
 			}
 		});

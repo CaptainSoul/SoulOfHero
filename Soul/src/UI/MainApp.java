@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import scenarioG.FightEnd;
 import scenarioG.TaskController;
+import utils.BGM;
 
 public class MainApp extends Application {
 	public static String mainViewID = "MainView";
@@ -21,6 +22,7 @@ public class MainApp extends Application {
 	public static boolean loadRoom = false;
 	public static boolean loadHeaven = false;
 	public static boolean loadCave = false;
+	public static boolean loadChurch = false;
 
 	public static String loginViewID = "LoginView";
 	public static String loginViewRes = "LoginView.fxml";
@@ -96,21 +98,29 @@ public class MainApp extends Application {
 			startFrame.main();
 			startView = false;
 		}  else if(mainView) {
-			BGM.bgmNervous = true;
 			if(stageController.getStage(mainViewID) == null)
 				stageController.addStage(mainViewID, GamePanel.MainStage());
 			stageController.setStage(mainViewID);
 			if(loadMain) {
+				BGM.bgmNervous = true;
 				GamePanel.loadMain();
 				loadMain = false;
 			} else if(loadRoom) {
+				BGM.bgmHeaven = true;
 				GamePanel.loadRoom();
 				loadRoom = false;
 			} else if(loadHeaven) {
+				BGM.bgmHeaven = true;
 				GamePanel.loadHeaven();
 				loadHeaven = false;
 			} else if(loadCave) {
-				
+				BGM.bgmNervous = true;
+				GamePanel.loadCave();
+				loadCave = false;
+			} else if(loadChurch) {
+				BGM.bgmChurch = true;
+				GamePanel.loadChurch();
+				loadChurch = false;
 			}
 			mainView = false;
 		} else if(fightView) {
@@ -138,7 +148,8 @@ public class MainApp extends Application {
 			armorService=  new ArmorService();
 			skillBaseService = new SkillBaseService();
 			bgm = BGM.getBGM();
-			loginView = true; 
+			mainView = true;
+			loadHeaven = true;
 
 			thread.start();	
 		} catch(Exception e) {

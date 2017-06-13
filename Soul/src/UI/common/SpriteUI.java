@@ -17,9 +17,9 @@ public class SpriteUI extends Parent {
 	private int width;
 	private int height;
 	private int index = 0;
-	private int indexDiv = 5;
+	private int indexDiv = 3;
 	private ImageView mImageView;
-	private double speed = 8;
+	private double speed = 11;
 	private int column = 4;
 
 	
@@ -67,7 +67,7 @@ public class SpriteUI extends Parent {
 			int[][] index = layer.getMapIndex();
 			int xLeft = (int) ((getX() + speed) / (Map.tileWidth));
 			int xRight = (int) ((getX() + width - speed) / (Map.tileWidth));
-			int y = (int) ((getY() + height) / (Map.tileHeight));
+			int y = (int) ((getY() + height + 5) / (Map.tileHeight));
 			if((index[y][xLeft] != 0 || index[y][xRight] != 0))
 				canMove = false;
 		}

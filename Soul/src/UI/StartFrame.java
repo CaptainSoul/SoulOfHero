@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 import archive.Archive;
 import databaseService.ArchiveService;
 import scenarioG.WelcomeFrame;
+import utils.BGM;
 
 import javax.swing.ImageIcon;
 import java.awt.Window.Type;

@@ -13,6 +13,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import scenarioG.TaskController;
+import utils.BGM;
 
 public class GamePanel extends Parent {
     public static SpriteUI spriteUI;
@@ -30,7 +31,7 @@ public class GamePanel extends Parent {
     public static final int SPRITE_WIDTH = 32;
 	public static final int SPRITE_HEIGHT = 48;
 	public static final int SCENE_WIDTH = 1600;
-	public static final int SCENE_HEIGHT = 896;
+	public static final int SCENE_HEIGHT = 928;
 	public static EventHandler<MouseEvent> ehm;
 	public static EventHandler<KeyEvent> ehk;
     
@@ -60,11 +61,6 @@ public class GamePanel extends Parent {
 	}
 	
 	public static void loadRoom() {
-        if(firCheck && canComm) {
-        	canComm = false;
-        	firCheck = false;
-        	TaskController.Check();
-        }
 		canvas.loadLayerRoom();
 		spriteUI.setX(1125);
 		spriteUI.setY(259);
@@ -73,16 +69,54 @@ public class GamePanel extends Parent {
 		npcUI[0].setY(340);
 		panelIndex = 2;
         TaskController.setProgress(4);
+        canComm = false;
+    	firCheck = false;
         TaskController.Check();
 	}
 	
 	public static void loadHeaven() {
 		canvas.loadLayerHeaven();
+		spriteUI.setX(450);
+		spriteUI.setY(487);
 		panelIndex = 3;
+		BGM.bgmHeaven = true;
 	}
 	
 	public static void loadCave() {
-		
+		canvas.loadLayerCave();
+		spriteUI.setX(1353);
+		spriteUI.setY(780);
+		panelIndex = 4;
+		BGM.bgmNervous = true;
+	}
+	
+	public static void loadChurch() {
+		canvas.loadLayerChurch();
+		spriteUI.setX(768);
+		spriteUI.setY(733);
+		npcUI[0].setIcon("xpchar40.png");
+		npcUI[0].setX(709);
+		npcUI[0].setY(261);
+		npcUI[0].moveRight(canvas.iterator());
+		panelIndex = 5;
+		BGM.bgmChurch = true;
+	}
+	
+	public static void loadFort() {
+		canvas.loadLayerFort();
+		spriteUI.setX(500);
+		spriteUI.setY(60);
+		panelIndex = 6;
+		BGM.bgmStart = true;
+	}
+	
+	public static void loadTown() {
+		canvas.loadLayerTown();
+		spriteUI.setX(31);
+		spriteUI.setY(420);
+		spriteUI.moveLeft(canvas.iterator());
+		panelIndex = 7;
+		BGM.bgmStart = true;
 	}
 	
 	public void init() {
@@ -150,14 +184,65 @@ public class GamePanel extends Parent {
 				MainApp.fightView = true;
 			}
 		} else if(panelIndex == 2) {
-			if(spriteUI.getY() >= 339) {
-				GamePanel.canComm = true;
+			if(spriteUI.getY() >= 339 && TaskController.getProgress() == 4) {
+				canComm = false;
 				TaskController.setFind(true);
 				TaskController.Check();
+			} else if(spriteUI.getX() >= 600 && spriteUI.getX() <= 632 
+					&& spriteUI.getY() >= 680) {
+				canComm = false;
+				GamePanel.loadHeaven();
+				TaskController.Check();
+			}
+		} else if(panelIndex == 3) {
+			if(spriteUI.getX() >= 1440 && spriteUI.getX() <= 1472
+					&& spriteUI.getY() <= 128) {
+				canComm = false;
+				GamePanel.loadCave();
+			} else if(spriteUI.getX() >= 456 && spriteUI.getX() <= 503 
+					&& spriteUI.getY() <= 58) {
+				loadChurch();
+			} else if(spriteUI.getX() >= 433 && spriteUI.getX() <= 491 
+					&& spriteUI.getY() >= 750) {
+				canComm = false;
+				GamePanel.loadFort();
+			}
+		} else if(panelIndex == 4) {
+			if(spriteUI.getY() >= 840) {
+				canComm = false;
+				GamePanel.loadHeaven();
+				spriteUI.setX(1415);
+				spriteUI.setY(192);
+			}
+		} else if(panelIndex == 5) {
+			if(spriteUI.getY() >= 824) {
+				canComm = false;
+				GamePanel.loadHeaven();
+				spriteUI.setX(450);
+				spriteUI.setY(97);
+			}
+		} else if(panelIndex == 6) {
+			if(spriteUI.getX() >= 414 && spriteUI.getX() <= 671 
+					&& spriteUI.getY() <= 16) {
+				canComm = false;
+				loadHeaven();
+				spriteUI.setX(450);
+				spriteUI.setY(700);
+			} else if(spriteUI.getY() >= 275 && spriteUI.getY() <= 382 
+					&& spriteUI.getX() >= 1540) {
+				canComm = false;
+				loadTown();
+			}
+		} else if(panelIndex == 7) {
+			if(spriteUI.getY() >= 317 && spriteUI.getY() <= 604 
+					&& spriteUI.getX() <= 7) {
+				canComm = false;
+				loadFort();
+				spriteUI.setX(1500);
+				spriteUI.setY(320);
 			}
 		}
 	}
-	
 	
 	public void update(){
 

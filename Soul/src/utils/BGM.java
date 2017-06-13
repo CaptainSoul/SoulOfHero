@@ -1,11 +1,12 @@
-package UI;
+package utils;
 
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
 public class BGM {
 	private String bgmStartURL = "/bgm/MainTitle.mp3";
-	private String bgmMainURL = "/bgm/Theme1.mp3";
+	private String bgmHeavenURL = "/bgm/Theme1.mp3";
+	private String bgmChurchURL = "/bgm/CruellyEyes.mp3";
 	private String bgmNervousURL = "/bgm/Illusions.mp3";
 	private String bgmEpicURL = "/bgm/GameOfThrones.mp3";
 	private String bgmSoulURL = "/bgm/LastReunion.mp3";
@@ -14,7 +15,8 @@ public class BGM {
 	private String bgmBazaarURL = "/bgm/NassauShores.mp3";
 	
 	public static boolean bgmStart = false;
-	public static boolean bgmMain = false;
+	public static boolean bgmHeaven = false;
+	public static boolean bgmChurch = false;
 	public static boolean bgmNervous = false;
 	public static boolean bgmBattleBoss = false;
 	
@@ -33,9 +35,12 @@ public class BGM {
 		} else if(bgmBattleBoss) {
 			loadBgmBattle();
 			bgmBattleBoss = false;
-		} else if(bgmMain) {
-			loadBgmMain();
-			bgmMain = false;
+		} else if(bgmHeaven) {
+			loadBgmHeaven();
+			bgmHeaven = false;
+		} else if(bgmChurch) {
+			loadBgmChurch();
+			bgmChurch = false;
 		}
 	}
 	
@@ -43,8 +48,12 @@ public class BGM {
 		loadMusic(bgmStartURL);
 	}
 	
-	public void loadBgmMain() {
-		loadMusic(bgmMainURL);
+	public void loadBgmHeaven() {
+		loadMusic(bgmHeavenURL);
+	}
+	
+	public void loadBgmChurch() {
+		loadMusic(bgmChurchURL);
 	}
 	
 	public void loadBgmNervous() {
