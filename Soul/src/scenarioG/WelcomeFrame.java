@@ -15,19 +15,20 @@ public class WelcomeFrame {
 		dialog.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
+				System.out.println(1);
 				if(e.getKeyCode() == KeyEvent.VK_SPACE) {
 					if(count == 0)
-						dialog.setAsideTxt("This is a world you seems met it somewhere");
+						dialog.setTxt("This is a world you seems met it somewhere");
 					else if(count == 1)
-						dialog.setAsideTxt("Try to find truth!!");
+						dialog.setTxt("Try to find truth!!");
 					else if(count == 2)
-						dialog.setAsideTxt("(UP DOWN LEFT RIGHT could control sprite)");
+						dialog.setTxt("(UP DOWN LEFT RIGHT could control sprite)");
 					else if(count == 3)
-						dialog.setAsideTxt("(ESC invoke menu)");
+						dialog.setTxt("(ESC invoke menu)");
 					else if(count == 4)
-						dialog.setAsideTxt("(SPACE invoke communication)");
+						dialog.setTxt("(SPACE invoke communication)");
 					else if(count == 5)
-						dialog.setAsideTxt("Now! Have a good game!!!");
+						dialog.setTxt("Now! Have a good game!!!");
 					else if(count == 6) {
 						MainApp.mainView = true;
 						MainApp.loadMain = true;

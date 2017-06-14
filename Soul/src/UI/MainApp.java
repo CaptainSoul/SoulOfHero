@@ -148,8 +148,7 @@ public class MainApp extends Application {
 			armorService=  new ArmorService();
 			skillBaseService = new SkillBaseService();
 			bgm = BGM.getBGM();
-			mainView = true;
-			loadHeaven = true;
+			loginView = true;
 
 			thread.start();	
 		} catch(Exception e) {

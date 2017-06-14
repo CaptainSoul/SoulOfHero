@@ -28,15 +28,15 @@ public class FightEnd {
 					else if(count == 5)
 						dialog.setCommonTxt("I have a headache!!!!");
 					else if(count == 6)
-						dialog.setCommonTxt("Stop!!!");
+						dialog.setTxt("Stop!!!");
 					else if(count == 7)
-						dialog.setCommonTxt("Shut Up!!!!");
+						dialog.setTxt("Shut Up!!!!");
 					else if(count == 8)
 						dialog.setAsideTxt("%^#@%^#@&$(#$&#*");
 					else if(count == 9)
 						dialog.setCommonTxt("I have a headache!!!!");
 					else if(count == 10)
-						dialog.setCommonTxt("Ahhhhhhhhhh!!!!!");
+						dialog.setTxt("Ahhhhhhhhhh!!!!!");
 					else if(count == 11) {
 						MainApp.mainView = true;
 						MainApp.loadRoom = true;

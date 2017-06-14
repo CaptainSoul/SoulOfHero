@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 import archive.Archive;
 import databaseService.ArchiveService;
@@ -98,8 +99,13 @@ public class StartFrame {
 		btnStart.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Archive archive = new Archive("Default");
 				ArchiveService archiveService = new ArchiveService();
+				Archive[] archives = archiveService.getAll(MainApp.user);
+				if(archives != null) {
+					archiveService.delete(archives[0]);
+					System.out.println("delete " + archives[0].getCode());
+				}
+				Archive archive = new Archive("Default");
 				archiveService.add(archive);
 				WelcomeFrame.main(null);
 			}
@@ -117,8 +123,13 @@ public class StartFrame {
 		btnContinue.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				WelcomeFrame.main(null);
-				frmSoulOfHero.dispose();
+				ArchiveService archiveService = new ArchiveService();
+				Archive[] archives = archiveService.getAll(MainApp.user);
+				if(archives != null) {
+					WelcomeFrame.main(null);
+				} else {
+					JOptionPane.showMessageDialog(null, "No exist archive", "Soul Of Hero: HINT!!", JOptionPane.WARNING_MESSAGE);
+				}
 			}
 		});
 		btnContinue.addKeyListener(new KeyAdapter() {

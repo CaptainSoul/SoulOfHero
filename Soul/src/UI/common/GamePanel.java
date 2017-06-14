@@ -23,7 +23,7 @@ public class GamePanel extends Parent {
     public static int panelIndex = 0;
     
     public Archive[] archive;
-    public Sprite sprite = new Sprite("Dec");
+    public static Sprite sprite = new Sprite("Dec");
 
 	private MenuBar menuBar;
 	private static boolean firCheck = true;
@@ -69,8 +69,9 @@ public class GamePanel extends Parent {
 		npcUI[0].setY(340);
 		panelIndex = 2;
         TaskController.setProgress(4);
-        canComm = false;
-    	firCheck = false;
+        canComm = true;
+    	firCheck = true;
+    	TaskController.setFind(false);
         TaskController.Check();
 	}
 	
@@ -171,20 +172,27 @@ public class GamePanel extends Parent {
 			menuBar.main();
 		}
 		if(panelIndex == 1) {
-			if(TaskController.getFind() == false) {
+			if(TaskController.getFind() == false && canComm) {
 				if(spriteUI.getX() >= 221 && spriteUI.getX() <= 290
-					&& spriteUI.getY() >= 356) {
+					&& spriteUI.getY() >= 356 && TaskController.getProgress() == 2) {
 					canComm = false;
 					TaskController.setFind(true);
 					TaskController.Check();
+					canComm = true;
 				}
+			}
+			if(spriteUI.getX() <= 60 && TaskController.getProgress() == 1 && canComm) {
+				canComm = false;
+				TaskController.Check();
+				canComm = true;
 			}
 			if(spriteUI.getY() <= 46) {
 				clearEventHandler();
 				MainApp.fightView = true;
+				canComm = true;
 			}
 		} else if(panelIndex == 2) {
-			if(spriteUI.getY() >= 339 && TaskController.getProgress() == 4) {
+			if(spriteUI.getY() >= 339 && TaskController.getProgress() == 4 && canComm && firCheck) {
 				canComm = false;
 				TaskController.setFind(true);
 				TaskController.Check();
@@ -195,7 +203,7 @@ public class GamePanel extends Parent {
 				TaskController.Check();
 			}
 		} else if(panelIndex == 3) {
-			if(spriteUI.getX() >= 1440 && spriteUI.getX() <= 1472
+			if(spriteUI.getX() >= 1435 && spriteUI.getX() <= 1472
 					&& spriteUI.getY() <= 128) {
 				canComm = false;
 				GamePanel.loadCave();

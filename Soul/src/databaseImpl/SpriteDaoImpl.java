@@ -74,7 +74,7 @@ public class SpriteDaoImpl implements SpriteDao {
 				sprite.setGold(rs.getInt("gold"));
 				sprite.setMove(rs.getInt("move"));
 				//setGroup
-				if ( rs.getString("group").equals("PLAYER")){
+	/*			if ( rs.getString("group").equals("PLAYER")){
 					sprite.setGroup(Group.PLAYER);
 				}
 				else if (rs.getString("group").equals("COMMON")){
@@ -92,7 +92,7 @@ public class SpriteDaoImpl implements SpriteDao {
 				sprite.setArmor(armor);
 				sprite.setWeapon(weapon);
 				sprite.setInventory(inventory);
-				return sprite;
+	*/			return sprite;
 			}
 		} catch(Exception e) {
 			throw new DaoException(e.getMessage(), e);

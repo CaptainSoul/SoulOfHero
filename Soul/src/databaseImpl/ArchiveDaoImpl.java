@@ -78,6 +78,7 @@ public class ArchiveDaoImpl implements ArchiveDao {
 		try{
 			con = JdbcUtils.getConnection();
 			int count = getCount(user);
+			System.out.println(count);
 			Archive[] archives = new Archive[count];
 			String sql = "SELECT * FROM archives WHERE userID = ?";
 			st = con.prepareStatement(sql);
@@ -93,6 +94,7 @@ public class ArchiveDaoImpl implements ArchiveDao {
 					archive.setSprite(sprite);
 				archive.setTaskProgress(rs.getInt("taskProgress"));
 				archives[i] = archive;
+				i++;
 			}
 			return archives;
 		} catch(Exception e) {

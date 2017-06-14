@@ -92,7 +92,7 @@ public class SpriteUI extends Parent {
 		while(layers.hasNext()) {
 			Map layer = layers.next();
 			int[][] index = layer.getMapIndex();
-			int x = (int) (getX() / (Map.tileWidth));
+			int x = (int) ((getX() - 5) / (Map.tileWidth));
 			int y = (int) ((getY() + height - speed) / (Map.tileHeight));
 			if(index[y][x] != 0)
 				canMove = false;
