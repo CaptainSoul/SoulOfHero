@@ -2,6 +2,7 @@ package UI;
 
 import UI.common.GamePanel;
 import UI.fight.FightCanvas;
+import archive.Archive;
 import archive.User;
 import databaseService.ArmorService;
 import databaseService.InventoryService;
@@ -23,6 +24,8 @@ public class MainApp extends Application {
 	public static boolean loadHeaven = false;
 	public static boolean loadCave = false;
 	public static boolean loadChurch = false;
+	public static boolean firLoadRoom = true;
+	public static boolean firLoadHeaven = true;
 
 	public static String loginViewID = "LoginView";
 	public static String loginViewRes = "LoginView.fxml";
@@ -49,6 +52,7 @@ public class MainApp extends Application {
 	public static SkillBaseService skillBaseService;
 	
 	public static User user;
+	public static Archive archive;
 	
 	public TaskController taskController; 
 	
@@ -106,19 +110,21 @@ public class MainApp extends Application {
 				GamePanel.loadMain();
 				loadMain = false;
 			} else if(loadRoom) {
-				BGM.bgmHeaven = true;
+				BGM.bgmChurch = true;
 				GamePanel.loadRoom();
 				loadRoom = false;
+				firLoadRoom = false;
 			} else if(loadHeaven) {
-				BGM.bgmHeaven = true;
+				BGM.bgmChurch = true;
 				GamePanel.loadHeaven();
 				loadHeaven = false;
+				firLoadHeaven = false;
 			} else if(loadCave) {
 				BGM.bgmNervous = true;
 				GamePanel.loadCave();
 				loadCave = false;
 			} else if(loadChurch) {
-				BGM.bgmChurch = true;
+				BGM.bgmNervous2 = true;
 				GamePanel.loadChurch();
 				loadChurch = false;
 			}
@@ -148,7 +154,8 @@ public class MainApp extends Application {
 			armorService=  new ArmorService();
 			skillBaseService = new SkillBaseService();
 			bgm = BGM.getBGM();
-			loginView = true;
+			mainView = true;
+			loadRoom = true;
 
 			thread.start();	
 		} catch(Exception e) {

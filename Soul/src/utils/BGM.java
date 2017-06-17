@@ -8,6 +8,7 @@ public class BGM {
 	private String bgmHeavenURL = "/bgm/Theme1.mp3";
 	private String bgmChurchURL = "/bgm/CruellyEyes.mp3";
 	private String bgmNervousURL = "/bgm/Illusions.mp3";
+	private String bgmNervous2URL = "/bgm/HumanoidPavilion.mp3";
 	private String bgmEpicURL = "/bgm/GameOfThrones.mp3";
 	private String bgmSoulURL = "/bgm/LastReunion.mp3";
 	private String bgmBattleURL = "/bgm/Battle.mp3";
@@ -18,6 +19,7 @@ public class BGM {
 	public static boolean bgmHeaven = false;
 	public static boolean bgmChurch = false;
 	public static boolean bgmNervous = false;
+	public static boolean bgmNervous2 = false;
 	public static boolean bgmBattleBoss = false;
 	
 	private String url;
@@ -32,6 +34,9 @@ public class BGM {
 		} else if(bgmNervous) {
 			loadBgmNervous();
 			bgmNervous = false;
+		} else if(bgmNervous2) {
+			loadBgmNervous2();
+			bgmNervous2 = false;
 		} else if(bgmBattleBoss) {
 			loadBgmBattle();
 			bgmBattleBoss = false;
@@ -58,6 +63,10 @@ public class BGM {
 	
 	public void loadBgmNervous() {
 		loadMusic(bgmNervousURL);
+	}
+	
+	public void loadBgmNervous2() {
+		loadMusic(bgmNervous2URL);
 	}
 	
 	public void loadBgmEpic() {

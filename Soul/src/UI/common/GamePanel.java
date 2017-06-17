@@ -28,6 +28,7 @@ public class GamePanel extends Parent {
 	private MenuBar menuBar;
 	private static boolean firCheck = true;
 	public static boolean canComm = true;
+	public static boolean canMove = true;
     public static final int SPRITE_WIDTH = 32;
 	public static final int SPRITE_HEIGHT = 48;
 	public static final int SCENE_WIDTH = 1600;
@@ -45,8 +46,16 @@ public class GamePanel extends Parent {
         spriteUI = new SpriteUI(30, 270, SPRITE_WIDTH, SPRITE_HEIGHT, "xpchar51.png");
         npcUI = new SpriteUI[10];
         npcUI[0] = new SpriteUI(420, 395, SPRITE_WIDTH, SPRITE_HEIGHT, "xpchar8.png");
+        npcUI[1] = new SpriteUI(1600, 900, SPRITE_WIDTH, SPRITE_HEIGHT, "xpchar40.png");
+        npcUI[2] = new SpriteUI(1600, 900, SPRITE_WIDTH, SPRITE_HEIGHT, "xpchar2.png");
+        npcUI[3] = new SpriteUI(1600, 900, SPRITE_WIDTH, SPRITE_HEIGHT, "xpchar9.png");
+        npcUI[4] = new SpriteUI(1600, 900, SPRITE_WIDTH, SPRITE_HEIGHT, "xpchar1.png");
         getChildren().add(spriteUI);
         getChildren().add(npcUI[0]);
+        getChildren().add(npcUI[1]);
+        getChildren().add(npcUI[2]);
+        getChildren().add(npcUI[3]);
+        getChildren().add(npcUI[4]);
         init();
         canvas.start();
         panelIndex = 1;
@@ -64,11 +73,18 @@ public class GamePanel extends Parent {
 		canvas.loadLayerRoom();
 		spriteUI.setX(1125);
 		spriteUI.setY(259);
-		npcUI[0].setIcon("xpchar40.png");
-		npcUI[0].setX(1015);
-		npcUI[0].setY(340);
+		if(MainApp.firLoadRoom) {
+	        TaskController.setProgress(4);
+		}
+		for(int i = 0; i < npcUI.length; i++) {
+			if((i != 1) && npcUI[i] != null) {
+				npcUI[i].setX(1600);
+				npcUI[i].setY(900);
+			}
+		}
+		npcUI[1].setX(1015);
+		npcUI[1].setY(340);
 		panelIndex = 2;
-        TaskController.setProgress(4);
         canComm = true;
     	firCheck = true;
     	TaskController.setFind(false);
@@ -77,16 +93,37 @@ public class GamePanel extends Parent {
 	
 	public static void loadHeaven() {
 		canvas.loadLayerHeaven();
-		spriteUI.setX(450);
-		spriteUI.setY(487);
+		if(MainApp.firLoadHeaven) {
+
+		}
+		for(int i = 0; i < npcUI.length; i++) {
+			if((i != 2 || i != 3 || i != 4) && npcUI[i] != null) {
+				npcUI[i].setX(1600);
+				npcUI[i].setY(900);
+			}
+		}
+		spriteUI.setX(735);
+		spriteUI.setY(136);
+		npcUI[2].setX(91);
+		npcUI[2].setY(361);
+		npcUI[3].setX(630);
+		npcUI[3].setY(150);
+		npcUI[4].setX(453);
+		npcUI[4].setY(516);
+		npcUI[4].moveUp(canvas.iterator());
 		panelIndex = 3;
-		BGM.bgmHeaven = true;
 	}
 	
 	public static void loadCave() {
 		canvas.loadLayerCave();
 		spriteUI.setX(1353);
 		spriteUI.setY(780);
+		for(int i = 0; i < npcUI.length; i++) {
+			if(npcUI[i] != null) {
+				npcUI[i].setX(1600);
+				npcUI[i].setY(900);
+			}
+		}
 		panelIndex = 4;
 		BGM.bgmNervous = true;
 	}
@@ -95,18 +132,29 @@ public class GamePanel extends Parent {
 		canvas.loadLayerChurch();
 		spriteUI.setX(768);
 		spriteUI.setY(733);
-		npcUI[0].setIcon("xpchar40.png");
-		npcUI[0].setX(709);
-		npcUI[0].setY(261);
-		npcUI[0].moveRight(canvas.iterator());
+		for(int i = 0; i < npcUI.length; i++) {
+			if((i != 1) && npcUI[i] != null) {
+				npcUI[i].setX(1600);
+				npcUI[i].setY(900);
+			}
+		}
+		npcUI[1].setX(709);
+		npcUI[1].setY(261);
+		npcUI[1].moveRight(canvas.iterator());
 		panelIndex = 5;
-		BGM.bgmChurch = true;
+		BGM.bgmNervous2 = true;
 	}
 	
 	public static void loadFort() {
 		canvas.loadLayerFort();
 		spriteUI.setX(500);
 		spriteUI.setY(60);
+		for(int i = 0; i < npcUI.length; i++) {
+			if((i != 1) && npcUI[i] != null) {
+				npcUI[i].setX(1600);
+				npcUI[i].setY(900);
+			}
+		}
 		panelIndex = 6;
 		BGM.bgmStart = true;
 	}
@@ -116,6 +164,12 @@ public class GamePanel extends Parent {
 		spriteUI.setX(31);
 		spriteUI.setY(420);
 		spriteUI.moveLeft(canvas.iterator());
+		for(int i = 0; i < npcUI.length; i++) {
+			if((i != 1) && npcUI[i] != null) {
+				npcUI[i].setX(1600);
+				npcUI[i].setY(900);
+			}
+		}
 		panelIndex = 7;
 		BGM.bgmStart = true;
 	}
@@ -149,15 +203,18 @@ public class GamePanel extends Parent {
 	}
 	
 	public void onKeyPressed(KeyEvent event){
-		if(event.getCode() == KeyCode.LEFT){
-			spriteUI.moveLeft(canvas.iterator());
-		}else if(event.getCode() == KeyCode.RIGHT){
-			spriteUI.moveRight(canvas.iterator());
-		}else if(event.getCode() == KeyCode.UP){
-			spriteUI.moveUp(canvas.iterator());
-		}else if(event.getCode() == KeyCode.DOWN){
-			spriteUI.moveDown(canvas.iterator());
-		}else if(event.getCode() == KeyCode.ENTER) {
+		if(canMove) {
+			if(event.getCode() == KeyCode.LEFT){
+				spriteUI.moveLeft(canvas.iterator());
+			}else if(event.getCode() == KeyCode.RIGHT){
+				spriteUI.moveRight(canvas.iterator());
+			}else if(event.getCode() == KeyCode.UP){
+				spriteUI.moveUp(canvas.iterator());
+			}else if(event.getCode() == KeyCode.DOWN){
+				spriteUI.moveDown(canvas.iterator());
+			}
+		}
+		if(event.getCode() == KeyCode.ENTER) {
 			MainApp.fightView = true;
 		}else if(event.getCode() == KeyCode.O) {
 			if(canvas.setProperty == false)
@@ -165,7 +222,6 @@ public class GamePanel extends Parent {
 			else
 				canvas.setProperty = false;
 		} else if(event.getCode() == KeyCode.SPACE && canComm) {
-			canComm = false;
 			TaskController.Check();
 		} else if(event.getCode() == KeyCode.ESCAPE) {
 			menuBar.updateSprite(sprite);
@@ -198,18 +254,28 @@ public class GamePanel extends Parent {
 				TaskController.Check();
 			} else if(spriteUI.getX() >= 600 && spriteUI.getX() <= 632 
 					&& spriteUI.getY() >= 680) {
-				canComm = false;
 				GamePanel.loadHeaven();
 				TaskController.Check();
 			}
 		} else if(panelIndex == 3) {
+			if(spriteUI.getX() >= 700 && spriteUI.getX() <= 760 
+					&& spriteUI.getY() >= 130 && spriteUI.getY() <= 200
+					&& TaskController.getProgress() == 6) {
+				TaskController.Check();
+			} else if(spriteUI.getX() >= 384 && spriteUI.getX() <= 547 
+					&& spriteUI.getY() >= 472 && spriteUI.getY() <= 584
+					&& TaskController.getProgress() == 7) {
+				TaskController.Check();
+			}	
 			if(spriteUI.getX() >= 1435 && spriteUI.getX() <= 1472
 					&& spriteUI.getY() <= 128) {
 				canComm = false;
 				GamePanel.loadCave();
+				spriteUI.moveUp(canvas.iterator());
 			} else if(spriteUI.getX() >= 456 && spriteUI.getX() <= 503 
 					&& spriteUI.getY() <= 58) {
 				loadChurch();
+				spriteUI.moveUp(canvas.iterator());
 			} else if(spriteUI.getX() >= 433 && spriteUI.getX() <= 491 
 					&& spriteUI.getY() >= 750) {
 				canComm = false;
@@ -219,10 +285,16 @@ public class GamePanel extends Parent {
 			if(spriteUI.getY() >= 840) {
 				canComm = false;
 				GamePanel.loadHeaven();
+				BGM.bgmChurch = true;
 				spriteUI.setX(1415);
 				spriteUI.setY(192);
 			}
 		} else if(panelIndex == 5) {
+			if(spriteUI.getX() >= 640 && spriteUI.getX() <= 926 
+					&& spriteUI.getY() >= 318 && spriteUI.getY() <= 414
+					&& TaskController.getProgress() == 8) {
+				TaskController.Check();
+			}
 			if(spriteUI.getY() >= 824) {
 				canComm = false;
 				GamePanel.loadHeaven();
@@ -234,6 +306,7 @@ public class GamePanel extends Parent {
 					&& spriteUI.getY() <= 16) {
 				canComm = false;
 				loadHeaven();
+				BGM.bgmChurch = true;
 				spriteUI.setX(450);
 				spriteUI.setY(700);
 			} else if(spriteUI.getY() >= 275 && spriteUI.getY() <= 382 

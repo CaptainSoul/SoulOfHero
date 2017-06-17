@@ -31,11 +31,11 @@ public class Code {
 		ResultSet rs = null;
 		try{
 			con = JdbcUtils.getConnection();
-			String sql = "SELECT * FROM sprite ORDER BY code DESC LIMIT 1";
+			String sql = "SELECT MAX(code) FROM sprite";
 			st = con.createStatement();
 			rs = st.executeQuery(sql);
 			while(rs.next()) {
-				int num = (rs.getInt("code") - addedItem - shift) / scalar;
+				int num = (rs.getInt("MAX(code)") - addedItem - shift) / scalar;
 				Sprite.setNumCharacters(num + 1);
 			}
 			return Sprite.getNumCharacters() * scalar + shift + addedItem;
@@ -161,11 +161,11 @@ public class Code {
 		ResultSet rs = null;
 		try{
 			con = JdbcUtils.getConnection();
-			String sql = "SELECT * FROM archives ORDER BY code DESC LIMIT 1";
+			String sql = "SELECT MAX(code) FROM archives";
 			st = con.createStatement();
 			rs = st.executeQuery(sql);
 			while(rs.next()) {
-				int num = (rs.getInt("code") - addedArchive - shift) / scalar;
+				int num = (rs.getInt("MAX(code)") - addedArchive - shift) / scalar;
 				Archive.setNumArchives(num + 1);
 			}
 			return Archive.getNumArchives() * scalar + shift + addedArchive;
