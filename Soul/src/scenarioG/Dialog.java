@@ -70,7 +70,7 @@ public class Dialog extends JDialog {
 		getContentPane().add(label);
 		
 		head = new JLabel("");
-		head.setIcon(new ImageIcon(Dialog.class.getResource("/pic/head/o54t.png")));
+		head.setIcon(new ImageIcon(Dialog.class.getResource("/pic/head/o39t.png")));
 		head.setBounds(66, 13, 312, 478);
 		getContentPane().add(head);
 		
@@ -132,13 +132,13 @@ public class Dialog extends JDialog {
 	}
 	
 	public void setHintTxt(String text) {
-		head.setIcon(new ImageIcon(Dialog.class.getResource("/pic/head/o54t.png")));
+		head.setIcon(new ImageIcon(Dialog.class.getResource("/pic/head/o39t.png")));
 		txt.setFont(new Font("Comic Sans MS", Font.BOLD, 35));
 		setTxt(text);
 	}
 	
 	public void setCommonTxt(String text) {
-		head.setIcon(new ImageIcon(Dialog.class.getResource("/pic/head/o54t.png")));
+		head.setIcon(new ImageIcon(Dialog.class.getResource("/pic/head/o39t.png")));
 		setPlayerDialog();
 		txt.setFont(new Font("Comic Sans MS", Font.PLAIN, 32));
 		setTxt(text);

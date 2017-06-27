@@ -3,6 +3,7 @@ package scenarioG;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+import UI.MainApp;
 import UI.common.GamePanel;
 
 public class TaskController {
@@ -18,6 +19,11 @@ public class TaskController {
 	private static int heavenA = 1;
 	private static int heavenB = 1;
 	private static int church = 1;
+	private static int cave = 1;
+	private static int caveA = 1;
+	private static int caveB = 1;
+	private static int caveC = 1;
+	private static int caveD = 1;
 	private static boolean find = false;
 	public static boolean onCom = false;
 	public static void Check() {
@@ -46,6 +52,16 @@ public class TaskController {
 				heavenB();
 			else if(progress == 8)
 				church();
+			else if(progress == 9)
+				cave();
+			else if(progress == 10)
+				caveA();
+			else if(progress == 11)
+				caveB();
+			else if(progress == 12)
+				caveC();
+			else if(progress == 13)
+				caveD();
 		}
 	}
 	
@@ -503,7 +519,8 @@ public class TaskController {
 					} else if(church == 12) {
 						dialog.setCommonTxt("Earth!!");
 					} else if(church == 13) {
-						dialog.setTxt("That's right. Find it and go back here");
+						dialog.setHeadIcon("/pic/head/o40t.png");
+						dialog.setNpcTxt("That's right. Find it and go back here");
 					} else if(church == 14) {
 						dialog.setTxt("I will help you");
 					} else if(church == 15) {
@@ -517,6 +534,159 @@ public class TaskController {
 						dialog.dispose();
 					}
 					church++;
+				}
+			}
+		});
+	}
+	
+	public static void cave() {
+		Dialog dialog = new Dialog();
+		dialog.setCommonTxt("Black..");
+		dialog.setVisible(true);
+		dialog.requestFocus();
+		dialog.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode() == KeyEvent.VK_SPACE) {
+					if(cave == 1) {
+						dialog.setTxt("Where I could awake the power?");
+					} else if(cave == 2) {
+						dialog.setTxt("Firstly");
+					} else if(cave == 3) {
+						dialog.setTxt("Try to look around..");
+					} else if(cave == 4) {
+						GamePanel.canComm = true;
+						GamePanel.canMove = true;
+						onCom = false;
+						progress++;
+						dialog.dispose();
+					}
+				cave++;
+				}
+			}
+		});
+	}
+	
+	public static void caveA() {
+		Dialog dialog = new Dialog();
+		dialog.setHeadIcon("/pic/head/vx034.png");
+		dialog.setNpcTxt("...");
+		dialog.setVisible(true);
+		dialog.requestFocus();
+		dialog.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode() == KeyEvent.VK_SPACE) {
+					if(caveA == 1) {
+						dialog.setTxt("You are ...");
+					} else if(caveA == 2) {
+						dialog.setTxt("Go to hell!!!!");
+					} else if(cave == 3) {
+						dialog.setCommonTxt("??!!");
+					} else if(caveA == 4) {
+						GamePanel.canComm = true;
+						GamePanel.canMove = true;
+						onCom = false;
+						progress++;
+						MainApp.fightView = true;
+						dialog.dispose();
+					}
+				caveA++;
+				}
+			}
+		});
+	}
+	
+	public static void caveB() {
+		Dialog dialog = new Dialog();
+		dialog.setHeadIcon("/pic/head/vx034.png");
+		dialog.setNpcTxt("...");
+		dialog.setVisible(true);
+		dialog.requestFocus();
+		dialog.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode() == KeyEvent.VK_SPACE) {
+					if(caveB == 1) {
+						dialog.setTxt("You must go out!!");
+					} else if(caveB == 2) {
+						dialog.setCommonTxt("What did you said?");
+					} else if(caveB == 3) {
+						dialog.setTxt("Wait!!");
+					} else if(caveB == 4) {
+						dialog.setAsideTxt("Soud of wind passed from the end of path....");
+					} else if(caveB == 5) {
+						GamePanel.canMove = true;
+						onCom = false;
+						progress++;
+						dialog.dispose();
+					}
+				caveB++;
+				}
+			}
+		});
+	}
+	
+	public static void caveC() {
+		Dialog dialog = new Dialog();
+		dialog.setCommonTxt("Here..");
+		dialog.setVisible(true);
+		dialog.requestFocus();
+		dialog.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode() == KeyEvent.VK_SPACE) {
+					if(caveC == 1) {
+						dialog.setTxt("It's my class!!");
+					} else if(caveC == 2) {
+						dialog.setTxt("I just had a dream??");
+					} else if(caveC == 3) {
+						dialog.setTxt("Ahhhh!!!!");
+					} else if(caveC == 4) {
+						dialog.setAsideTxt("I get a headache again!!!!");
+					} else if(caveC == 5) {
+						dialog.setTxt("Ahhhh!!!!");
+					} else if(caveC == 6) {
+						GamePanel.canComm = true;
+						GamePanel.canMove = true;
+						GamePanel.loadCave();
+						onCom = false;
+						progress++;
+						dialog.dispose();
+					}
+				caveC++;
+				}
+			}
+		});
+	}
+
+	public static void caveD() {
+		Dialog dialog = new Dialog();
+		dialog.setCommonTxt("My head....");
+		dialog.setVisible(true);
+		dialog.requestFocus();
+		dialog.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode() == KeyEvent.VK_SPACE) {
+					if(caveD == 1) {
+						dialog.setTxt("My head don't feel pain now...");
+					} else if(caveD == 2) {
+						dialog.setTxt("All of these are illusions of my prospection???");
+					} else if(caveD == 3) {
+						dialog.setTxt("I feel power in my body....");
+					} else if(caveD == 4) {
+						dialog.setAsideTxt("Maybe I have been awaken...");
+					} else if(caveD == 5) {
+						dialog.setTxt("I should go back to the church and ask that girl now..");
+					} else if(caveD == 6) {
+						GamePanel.canComm = true;
+						GamePanel.canMove = true;
+						onCom = false;
+						progress++;
+						dialog.dispose();
+					}
+				caveD++;
 				}
 			}
 		});

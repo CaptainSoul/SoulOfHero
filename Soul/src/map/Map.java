@@ -18,6 +18,7 @@ public class Map {
 	private int cols;
 	private Image image;
 	private int[][] mapIndex = new int[HEIGHT][WIDTH];
+	private boolean isPic = false;
 	
 	public Map(int tileWidth, int tileHeight, Image image, int numExit) {
 		Map.tileWidth = tileWidth;
@@ -40,9 +41,16 @@ public class Map {
 		this(tileWidth, tileHeight, image, url, 4);
 	}
 	
+	public boolean isPic() {
+		return isPic;
+	}
+	
+	public void setPic(boolean boo) {
+		isPic = boo;
+	}
+	
 	public void drawMap(GraphicsContext gc) {
 		gc.drawImage(image, 0, 0, 800, 600);
-		gc.drawImage(image, 50, 550, 32, 32);
 	}
 	
 	public void drawMapMain(GraphicsContext gc) {

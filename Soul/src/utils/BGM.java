@@ -20,6 +20,7 @@ public class BGM {
 	public static boolean bgmChurch = false;
 	public static boolean bgmNervous = false;
 	public static boolean bgmNervous2 = false;
+	public static boolean bgmBattle = false;
 	public static boolean bgmBattleBoss = false;
 	
 	private String url;
@@ -37,8 +38,11 @@ public class BGM {
 		} else if(bgmNervous2) {
 			loadBgmNervous2();
 			bgmNervous2 = false;
-		} else if(bgmBattleBoss) {
+		} else if(bgmBattle) {
 			loadBgmBattle();
+			bgmBattle = false;
+		} else if(bgmBattleBoss) {
+			loadBgmBattleBoss();
 			bgmBattleBoss = false;
 		} else if(bgmHeaven) {
 			loadBgmHeaven();

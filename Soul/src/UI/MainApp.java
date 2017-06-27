@@ -24,6 +24,19 @@ public class MainApp extends Application {
 	public static boolean loadHeaven = false;
 	public static boolean loadCave = false;
 	public static boolean loadChurch = false;
+	public static boolean loadFort = false;
+	public static boolean loadTown = false;
+	public static boolean loadBeach = false;
+	public static boolean loadGardon = false;
+	public static boolean loadMazeFir = false;
+	public static boolean loadMazeSec = false;
+	public static boolean loadMazeThi = false;
+	public static boolean loadFire = false;
+	public static boolean loadWater = false;
+	public static boolean loadWind = false;
+	public static boolean loadEarth = false;
+	public static boolean loadElement = false;
+	public static boolean loadBoss = false;
 	public static boolean firLoadRoom = true;
 	public static boolean firLoadHeaven = true;
 
@@ -41,6 +54,7 @@ public class MainApp extends Application {
 	
 	public static String fightViewID = "fightView";
 	public static boolean fightView = false;
+	public static boolean fightCave = false;
 	
 	public static String fightEndID = "fightEndView";
 	public static boolean fightEndView = false;
@@ -104,7 +118,6 @@ public class MainApp extends Application {
 		}  else if(mainView) {
 			if(stageController.getStage(mainViewID) == null)
 				stageController.addStage(mainViewID, GamePanel.MainStage());
-			stageController.setStage(mainViewID);
 			if(loadMain) {
 				BGM.bgmNervous = true;
 				GamePanel.loadMain();
@@ -127,11 +140,61 @@ public class MainApp extends Application {
 				BGM.bgmNervous2 = true;
 				GamePanel.loadChurch();
 				loadChurch = false;
+			} else if(loadBeach) {
+				BGM.bgmNervous2 = true;
+				GamePanel.loadBeach();
+				loadBeach = false;
+			} else if(loadGardon) {
+				BGM.bgmNervous2 = true;
+				GamePanel.loadGardon();
+				loadGardon = false;
+			} else if(loadMazeFir) {
+				BGM.bgmNervous2 = true;
+				GamePanel.loadMaze1();
+				loadMazeFir = false;
+			} else if(loadMazeSec) {
+				BGM.bgmNervous2 = true;
+				GamePanel.loadMaze2();
+				loadMazeSec = false;
+			} else if(loadMazeThi) {
+				BGM.bgmNervous2 = true;
+				GamePanel.loadMaze3();
+				loadMazeThi = false;
+			} else if(loadElement) {
+				BGM.bgmNervous2 = true;
+				GamePanel.loadElement();
+				loadElement = false;
+			} else if(loadEarth) {
+				BGM.bgmNervous2 = true;
+				GamePanel.loadEarth();
+				loadEarth = false;
+			} else if(loadFire) {
+				BGM.bgmNervous2 = true;
+				GamePanel.loadFire();
+				loadFire = false;
+			} else if(loadWater) {
+				BGM.bgmNervous2 = true;
+				GamePanel.loadWater();
+				loadWater = false;
+			} else if(loadWind) {
+				BGM.bgmNervous2 = true;
+				GamePanel.loadWind();
+				loadWind = false;
+			} else if(loadBoss) {
+				BGM.bgmNervous2 = true;
+				GamePanel.loadBoss();
+				loadBoss = false;
 			}
+			stageController.setStage(mainViewID);
 			mainView = false;
 		} else if(fightView) {
 			BGM.bgmBattleBoss = true;
-			stageController.addStage(fightViewID, FightCanvas.fightStage());
+			if(stageController.getStage(fightViewID) == null)
+				stageController.addStage(fightViewID, FightCanvas.fightStage());
+			if(fightCave) {
+				BGM.bgmBattle = true;
+				FightCanvas.setCaveEnemy();
+			}
 			stageController.setStage(fightViewID);
 			fightView = false;
 		} else if(fightEndView) {
@@ -140,6 +203,7 @@ public class MainApp extends Application {
 			fightEnd.main();
 			fightEndView = false;
 		}
+		
 		bgm.checkBgm();
 	}
 	
@@ -154,8 +218,8 @@ public class MainApp extends Application {
 			armorService=  new ArmorService();
 			skillBaseService = new SkillBaseService();
 			bgm = BGM.getBGM();
-			mainView = true;
-			loadRoom = true;
+			fightView = true;
+			fightCave = true;
 
 			thread.start();	
 		} catch(Exception e) {

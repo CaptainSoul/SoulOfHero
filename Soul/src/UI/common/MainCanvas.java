@@ -33,13 +33,40 @@ public class MainCanvas extends Canvas {
 	private String mapChurch = "./resource/data/map/mapChurch.txt";
 	private String mapFort1 = "./resource/data/map/mapFort.txt";
 	private String mapTown1 = "./resource/data/map/mapTown.txt";
+	private String mapBeach1 = "./resource/data/map/mapBeach1.txt";
+	private String mapBeach2 = "./resource/data/map/mapBeach2.txt";
+	private String mapGardon1 = "./resource/data/map/mapGardon1.txt";
+	private String mapGardon2 = "./resource/data/map/mapGardon2.txt";
+	private String mapMaze1 = "./resource/data/map/mapMaze1.txt";
+	private String mapMaze2 = "./resource/data/map/mapMaze2.txt";
+	private String mapMaze3 = "./resource/data/map/mapMaze3.txt";
+	private String mapMaze4 = "./resource/data/map/mapMaze4.txt";
+	private String mapElement1 = "./resource/data/map/mapElement1.txt";
+	private String mapElement2 = "./resource/data/map/mapElement2.txt";
+	private String mapEarth1 = "./resource/data/map/mapEarth1.txt";
+	private String mapEarth2 = "./resource/data/map/mapEarth2.txt";
+	private String mapFire1 = "./resource/data/map/mapFire1.txt";
+	private String mapFire2 = "./resource/data/map/mapFire2.txt";
+	private String mapWater1 = "./resource/data/map/mapWater1.txt";
+	private String mapWater2 = "./resource/data/map/mapWater2.txt";
+	private String mapWind1 = "./resource/data/map/mapWind1.txt";
+	private String mapWind2 = "./resource/data/map/mapWind2.txt";
+	private String mapBoss1 = "./resource/data/map/mapBoss1.txt";
+	private String mapBoss2 = "./resource/data/map/mapBoss2.txt";
 	
-	private String mapResCave1 = "/pic/map/043-Cave01.png";
+	private String mapResCave = "/pic/map/043-Cave01.png";
 	private String mapResTown1 = "/pic/map/014-PostTown02.png";
 	private String mapResHeaven1 = "/pic/map/032-Heaven01.png";
 	private String mapResChurch = "/pic/map/029-Church02.png";
+	private String mapResClass = "/pic/map/Class.jpg";
 	private String mapResFort = "/pic/map/037-Fort01.png";
 	private String mapResTown = "/pic/map/015-ForestTown01.png";
+	private String mapResGardon = "/pic/map/Gardon.png";
+	private String mapResMaze = "/pic/map/Maze.png";
+	private String mapResEvilCastle = "/pic/map/042-EvilCastle02.png";
+	private String mapResBoss = "/pic/map/Boss.png";
+	
+	
 	
 	private Thread thread = new Thread(new Runnable() {
 
@@ -75,7 +102,7 @@ public class MainCanvas extends Canvas {
 	
 	public void loadLayerMain() {
 		clearLayer();
-		imageMap = new Image(getClass().getResourceAsStream(mapResCave1));
+		imageMap = new Image(getClass().getResourceAsStream(mapResCave));
 		addLayer(mapEmpty);
 		addLayer(mapMain);
 	}
@@ -96,9 +123,17 @@ public class MainCanvas extends Canvas {
 	
 	public void loadLayerCave() {
 		clearLayer();
-		imageMap = new Image(getClass().getResourceAsStream(mapResCave1));
+		imageMap = new Image(getClass().getResourceAsStream(mapResCave));
 		addLayer(mapEmpty);
 		addLayer(mapCave1);
+	}
+	
+	public void loadLayerClass() {
+		clearLayer();
+		imageMap = new Image(getClass().getResourceAsStream(mapResClass));
+		Map map = new Map(tileWidth, tileHeight, imageMap);
+		map.setPic(true);
+		addLayer(map);
 	}
 	
 	public void loadLayerChurch() {
@@ -120,6 +155,83 @@ public class MainCanvas extends Canvas {
 		imageMap = new Image(getClass().getResourceAsStream(mapResTown));
 		addLayer(mapEmpty);
 		addLayer(mapTown1);
+	}
+	
+	public void loadLayerBeach() {
+		clearLayer();
+		imageMap = new Image(getClass().getResourceAsStream(mapResGardon));
+		addLayer(mapBeach1);
+		addLayer(mapBeach2);
+	}
+	
+	public void loadLayerGardon() {
+		clearLayer();
+		imageMap = new Image(getClass().getResourceAsStream(mapResGardon));
+		addLayer(mapGardon1);
+		addLayer(mapGardon2);
+	}
+	
+	public void loadLayerMazeFirst() {
+		clearLayer();
+		imageMap = new Image(getClass().getResourceAsStream(mapResMaze));
+		addLayer(mapMaze1);
+		addLayer(mapMaze2);
+	}
+	
+	public void loadLayerMazeSecond() {
+		clearLayer();
+		imageMap = new Image(getClass().getResourceAsStream(mapResMaze));
+		addLayer(mapMaze1);
+		addLayer(mapMaze3);
+	}
+	
+	public void loadLayerMazeThird() {
+		clearLayer();
+		imageMap = new Image(getClass().getResourceAsStream(mapResMaze));
+		addLayer(mapMaze1);
+		addLayer(mapMaze4);
+	}
+	
+	public void loadLayerElement() {
+		clearLayer();
+		imageMap = new Image(getClass().getResourceAsStream(mapResEvilCastle));
+		addLayer(mapElement1);
+		addLayer(mapElement2);
+	}
+	
+	public void loadLayerEarth() {
+		clearLayer();
+		imageMap = new Image(getClass().getResourceAsStream(mapResCave));
+		addLayer(mapEarth1);
+		addLayer(mapEarth2);
+	}
+	
+	public void loadLayerFire() {
+		clearLayer();
+		imageMap = new Image(getClass().getResourceAsStream(mapResCave));
+		addLayer(mapFire1);
+		addLayer(mapFire2);
+	}
+	
+	public void loadLayerWater() {
+		clearLayer();
+		imageMap = new Image(getClass().getResourceAsStream(mapResCave));
+		addLayer(mapWater1);
+		addLayer(mapWater2);
+	}
+	
+	public void loadLayerWind() {
+		clearLayer();
+		imageMap = new Image(getClass().getResourceAsStream(mapResCave));
+		addLayer(mapWind1);
+		addLayer(mapWind2);
+	}
+	
+	public void loadLayerBoss() {
+		clearLayer();
+		imageMap = new Image(getClass().getResourceAsStream(mapResBoss));
+		addLayer(mapBoss1);
+		addLayer(mapBoss2);
 	}
 	
 	public void clearLayer() {
@@ -181,12 +293,17 @@ public class MainCanvas extends Canvas {
 	
 	public void draw() {
 		IIterator<Map> iterator = iterator();
-		iterator.next().drawMapMain(gContext);
-		while(iterator.hasNext()) {
-			iterator.next().drawMapLayer(gContext);
+		Map map = iterator.next();
+		if(map.isPic()) {
+			map.drawMap(gContext);
+		} else {
+			map.drawMapMain(gContext);
+			while(iterator.hasNext()) {
+				iterator.next().drawMapLayer(gContext);
+			}
+			if(setProperty)
+				propertyMenu.draw(gContext);
 		}
-		if(setProperty)
-			propertyMenu.draw(gContext);
 	}
 	
 	public void update() {

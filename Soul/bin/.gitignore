@@ -1,11 +1,10 @@
 /UI/
 /background.png
 /bgm/
-/data/
 /databaseUtils/
-/pic/
 /utils/
-/Scenario/
+/data/
+/pic/
 /archive/
 /character/
 /databaseAccess/
@@ -18,6 +17,5 @@
 /inventory/
 /io/
 /map/
-/skill/
-/scenario/
 /scenarioG/
+/skill/

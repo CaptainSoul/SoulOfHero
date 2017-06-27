@@ -126,6 +126,17 @@ public class GamePanel extends Parent {
 		}
 		panelIndex = 4;
 		BGM.bgmNervous = true;
+		if(TaskController.getProgress() == 11) {
+			spriteUI.setX(694);
+			spriteUI.setY(650);
+			spriteUI.moveRight(canvas.iterator());
+			TaskController.Check();
+		} else if(TaskController.getProgress() == 13) {
+			spriteUI.setX(1300);
+			spriteUI.setY(140);
+			spriteUI.moveUp(canvas.iterator());
+			TaskController.Check();
+		}
 	}
 	
 	public static void loadChurch() {
@@ -143,6 +154,18 @@ public class GamePanel extends Parent {
 		npcUI[1].moveRight(canvas.iterator());
 		panelIndex = 5;
 		BGM.bgmNervous2 = true;
+	}
+	
+	public static void loadLayerClass() {
+		canvas.loadLayerClass();
+		spriteUI.setX(1600);
+		spriteUI.setY(900);
+		for(int i = 0; i < npcUI.length; i++) {
+			if(npcUI[i] != null) {
+				npcUI[i].setX(1600);
+				npcUI[i].setY(900);
+			}
+		}
 	}
 	
 	public static void loadFort() {
@@ -171,6 +194,171 @@ public class GamePanel extends Parent {
 			}
 		}
 		panelIndex = 7;
+		BGM.bgmStart = true;
+	}
+	
+	public static void loadBeach() {
+		canvas.loadLayerBeach();
+		spriteUI.setX(31);
+		spriteUI.setY(420);
+		spriteUI.moveLeft(canvas.iterator());
+		for(int i = 0; i < npcUI.length; i++) {
+			if((i != 1) && npcUI[i] != null) {
+				npcUI[i].setX(1600);
+				npcUI[i].setY(900);
+			}
+		}
+		panelIndex = 8;
+		BGM.bgmStart = true;
+	}
+	
+	public static void loadGardon() {
+		canvas.loadLayerGardon();
+		spriteUI.setX(31);
+		spriteUI.setY(420);
+		spriteUI.moveLeft(canvas.iterator());
+		for(int i = 0; i < npcUI.length; i++) {
+			if((i != 1) && npcUI[i] != null) {
+				npcUI[i].setX(1600);
+				npcUI[i].setY(900);
+			}
+		}
+		panelIndex = 9;
+		BGM.bgmStart = true;
+	}
+	
+	public static void loadMaze1() {
+		canvas.loadLayerMazeFirst();
+		spriteUI.setX(31);
+		spriteUI.setY(420);
+		spriteUI.moveLeft(canvas.iterator());
+		for(int i = 0; i < npcUI.length; i++) {
+			if((i != 1) && npcUI[i] != null) {
+				npcUI[i].setX(1600);
+				npcUI[i].setY(900);
+			}
+		}
+		panelIndex = 10;
+		BGM.bgmStart = true;
+	}
+	
+	public static void loadMaze2() {
+		canvas.loadLayerMazeSecond();
+		spriteUI.setX(31);
+		spriteUI.setY(420);
+		spriteUI.moveLeft(canvas.iterator());
+		for(int i = 0; i < npcUI.length; i++) {
+			if((i != 1) && npcUI[i] != null) {
+				npcUI[i].setX(1600);
+				npcUI[i].setY(900);
+			}
+		}
+		panelIndex = 11;
+		BGM.bgmStart = true;
+	}
+	
+	public static void loadMaze3() {
+		canvas.loadLayerMazeThird();
+		spriteUI.setX(31);
+		spriteUI.setY(420);
+		spriteUI.moveLeft(canvas.iterator());
+		for(int i = 0; i < npcUI.length; i++) {
+			if((i != 1) && npcUI[i] != null) {
+				npcUI[i].setX(1600);
+				npcUI[i].setY(900);
+			}
+		}
+		panelIndex = 12;
+		BGM.bgmStart = true;
+	}
+	
+	public static void loadElement() {
+		canvas.loadLayerElement();
+		spriteUI.setX(805);
+		spriteUI.setY(805);
+		spriteUI.moveUp(canvas.iterator());
+		for(int i = 0; i < npcUI.length; i++) {
+			if((i != 1) && npcUI[i] != null) {
+				npcUI[i].setX(1600);
+				npcUI[i].setY(900);
+			}
+		}
+		panelIndex = 13;
+		BGM.bgmStart = true;
+	}
+	
+	public static void loadEarth() {
+		canvas.loadLayerEarth();
+		spriteUI.setX(32);
+		spriteUI.setY(356);
+		spriteUI.moveRight(canvas.iterator());
+		for(int i = 0; i < npcUI.length; i++) {
+			if((i != 1) && npcUI[i] != null) {
+				npcUI[i].setX(1600);
+				npcUI[i].setY(900);
+			}
+		}
+		panelIndex = 14;
+		BGM.bgmStart = true;
+	}
+	
+	public static void loadFire() {
+		canvas.loadLayerFire();
+		spriteUI.setX(805);
+		spriteUI.setY(813);
+		spriteUI.moveUp(canvas.iterator());
+		for(int i = 0; i < npcUI.length; i++) {
+			if((i != 1) && npcUI[i] != null) {
+				npcUI[i].setX(1600);
+				npcUI[i].setY(900);
+			}
+		}
+		panelIndex = 15;
+		BGM.bgmStart = true;
+	}
+	
+	public static void loadWater() {
+		canvas.loadLayerWater();
+		spriteUI.setX(799);
+		spriteUI.setY(16);
+		spriteUI.moveDown(canvas.iterator());
+		for(int i = 0; i < npcUI.length; i++) {
+			if((i != 1) && npcUI[i] != null) {
+				npcUI[i].setX(1600);
+				npcUI[i].setY(900);
+			}
+		}
+		panelIndex = 16;
+		BGM.bgmStart = true;
+	}
+	
+	public static void loadWind() {
+		canvas.loadLayerWind();
+		spriteUI.setX(1544);
+		spriteUI.setY(355);
+		spriteUI.moveLeft(canvas.iterator());
+		for(int i = 0; i < npcUI.length; i++) {
+			if((i != 1) && npcUI[i] != null) {
+				npcUI[i].setX(1600);
+				npcUI[i].setY(900);
+			}
+		}
+		panelIndex = 17;
+		BGM.bgmStart = true;
+	}
+	
+	public static void loadBoss() {
+		canvas.loadLayerBoss();
+		spriteUI.setX(770);
+		spriteUI.setY(691);
+		spriteUI.moveUp(canvas.iterator());
+		for(int i = 0; i < npcUI.length; i++) {
+			if((i != 1) && npcUI[i] != null) {
+				npcUI[i].setX(1600);
+				npcUI[i].setY(900);
+			}
+		}
+		panelIndex = 18;
 		BGM.bgmStart = true;
 	}
 	
@@ -221,8 +409,6 @@ public class GamePanel extends Parent {
 				canvas.setProperty = true;
 			else
 				canvas.setProperty = false;
-		} else if(event.getCode() == KeyCode.SPACE && canComm) {
-			TaskController.Check();
 		} else if(event.getCode() == KeyCode.ESCAPE) {
 			menuBar.updateSprite(sprite);
 			menuBar.main();
@@ -288,6 +474,14 @@ public class GamePanel extends Parent {
 				BGM.bgmChurch = true;
 				spriteUI.setX(1415);
 				spriteUI.setY(192);
+			}
+			if(spriteUI.getY() >= 678 && TaskController.getProgress() == 9) {
+				TaskController.Check();
+			} else if(spriteUI.getX() <= 740 && TaskController.getProgress() == 10) {
+				TaskController.Check();
+			} else if(spriteUI.getY() <= 140 && TaskController.getProgress() == 12) {
+				loadLayerClass();
+				TaskController.Check();
 			}
 		} else if(panelIndex == 5) {
 			if(spriteUI.getX() >= 640 && spriteUI.getX() <= 926 

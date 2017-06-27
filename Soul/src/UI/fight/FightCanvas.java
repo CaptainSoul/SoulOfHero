@@ -26,6 +26,7 @@ import javafx.stage.Stage;
 import map.Map;
 import scenarioG.FightEnd;
 import scenarioG.FightFrame;
+import scenarioG.TaskController;
 
 public class FightCanvas extends Canvas {
 	private static Stage stage;
@@ -46,7 +47,7 @@ public class FightCanvas extends Canvas {
 	public static final int tileHeight = 32;
 	
 	private List<Sprite> players = new ArrayList<>();
-	private List<Sprite> enemys = new ArrayList<>();
+	private static List<Sprite> enemys = new ArrayList<>();
 	private boolean isRunning = true;
 	private long sleep = 100;
 	
@@ -58,7 +59,6 @@ public class FightCanvas extends Canvas {
 	private int moveToX, moveToY;
 	private boolean isCanMove = false;
 	private WPath path;
-	private boolean firFight = true;
 	
 	private Thread thread = new Thread(new Runnable() {
 
@@ -87,9 +87,8 @@ public class FightCanvas extends Canvas {
 	
 	public FightCanvas(double width, double height) {
 		super(width, height);
-		if(firFight) {
+		if(TaskController.getProgress() == 3) {
 			FightFrame.main(null);
-			firFight = false;
 		}
 		imageMap = new Image(getClass().getResourceAsStream("fight2.jpg"));
 		gContext = getGraphicsContext2D();
@@ -317,10 +316,20 @@ public class FightCanvas extends Canvas {
 					}
 					break;
 				case GAME_WIN:
-					MainApp.fightEndView = true;
+					if(TaskController.getProgress() == 3) {
+						MainApp.fightEndView = true;
+					} else if(TaskController.getProgress() == 11) {
+						MainApp.mainView = true;
+						MainApp.loadCave = true;
+					}
 					break;
 				case GAME_OVER:
-					MainApp.fightEndView = true;
+					if(TaskController.getProgress() == 3) {
+						MainApp.fightEndView = true;
+					} else if(TaskController.getProgress() == 11) {
+						MainApp.mainView = true;
+						MainApp.loadCave = true;
+					}
 					break;
 				default:
 					break;
@@ -351,17 +360,6 @@ public class FightCanvas extends Canvas {
 		player1.setImage(player1Image);
 		player1.putExp(150);
 		player1.setXY(12 * tileWidth, 8 * tileHeight);
-
-		Image player2Image = new Image(getClass().getResourceAsStream("vx02.png"));
-		Sprite player2 = new Sprite("Dong");
-		player2.setImage(player2Image);
-		player2.setXY(18 * tileWidth, 12 * tileHeight);
-
-		Image player3Image = new Image(getClass().getResourceAsStream("vx033.png"));
-		Sprite player3 = new Sprite("Chen");
-		player3.setImage(player3Image);
-		player3.setXY(15 * tileWidth, 15 * tileHeight);
-
 		players.add(player1);
 	}
 
@@ -390,8 +388,26 @@ public class FightCanvas extends Canvas {
 	private void initEnemy() {
 		Image orc = new Image(getClass().getResourceAsStream("vx05.png"));
 		int[][] locations = { { 7, 3 }, { 7, 5 }, { 9, 3 } };
-		for (int i = 0; i < 3; i++) {
+		for (int i = 0; i < locations.length; i++) {
 			Sprite enemy = new Sprite("Enemy");
+			enemy.setImage(orc);
+			enemy.setGroup(Group.ENEMY);
+			enemy.setHp(75);
+			enemy.setMove(3);
+			enemy.setMaxHp(75);
+			enemy.putExp(50);
+			enemy.setXY(locations[i][0] * tileWidth, locations[i][1] * tileHeight);
+			enemys.add(enemy);
+		}
+	}
+	
+	public static void setCaveEnemy() {
+		Image orc = new Image(FightCanvas.class.getResourceAsStream("/pic/head/vx034.png"));
+		enemys.clear();
+		TaskController.setProgress(11);
+		int[][] locations = { { 9, 5 }, { 9, 6 }, { 9, 7 } };
+		for (int i = 0; i < locations.length; i++) {
+			Sprite enemy = new Sprite("???");
 			enemy.setImage(orc);
 			enemy.setGroup(Group.ENEMY);
 			enemy.setHp(75);
