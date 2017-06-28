@@ -65,6 +65,8 @@ public class MainCanvas extends Canvas {
 	private String mapResMaze = "/pic/map/Maze.png";
 	private String mapResEvilCastle = "/pic/map/042-EvilCastle02.png";
 	private String mapResBoss = "/pic/map/Boss.png";
+	private String mapResOver = "/pic/common/GameOver.jpg";
+	private String mapResEnd = "/pic/common/End.jpg";
 	
 	
 	
@@ -132,8 +134,11 @@ public class MainCanvas extends Canvas {
 		clearLayer();
 		imageMap = new Image(getClass().getResourceAsStream(mapResClass));
 		Map map = new Map(tileWidth, tileHeight, imageMap);
+		Map map2 = new Map(tileWidth, tileHeight, imageMap);
 		map.setPic(true);
+		map2.setPic(true);
 		addLayer(map);
+		addLayer(map2);
 	}
 	
 	public void loadLayerChurch() {
@@ -234,11 +239,33 @@ public class MainCanvas extends Canvas {
 		addLayer(mapBoss2);
 	}
 	
+	public void loadLayerOver() {
+		clearLayer();
+		imageMap = new Image(getClass().getResourceAsStream(mapResOver));
+		Map map = new Map(tileWidth, tileHeight, imageMap);
+		Map map2 = new Map(tileWidth, tileHeight, imageMap);
+		map.setPic(true);
+		map2.setPic(true);
+		addLayer(map);
+		addLayer(map2);
+	}
+	
+	public void loadLayerEnd() {
+		clearLayer();
+		imageMap = new Image(getClass().getResourceAsStream(mapResEnd));
+		Map map = new Map(tileWidth, tileHeight, imageMap);
+		Map map2 = new Map(tileWidth, tileHeight, imageMap);
+		map.setPic(true);
+		map2.setPic(true);
+		addLayer(map);
+		addLayer(map2);
+	}
+	
 	public void clearLayer() {
 		if(layers == null)
 			layers = new SLinkedList<>();
 		else {
-			while(layers.first() != null) {
+			while(layers.size() != 0) {
 				layers.remove(layers.first());
 			}
 		}
@@ -257,10 +284,7 @@ public class MainCanvas extends Canvas {
 	}
 	
 	public void addLayer(Map map) {
-		if(layers.first() == null)
-			layers.insertLast(map);
-		else
-			layers.insertAfter(layers.last(), map);
+		layers.insertLast(map);
 	}
 	
 	public void addLayer(String mapData) {

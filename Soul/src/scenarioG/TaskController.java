@@ -24,6 +24,11 @@ public class TaskController {
 	private static int caveB = 1;
 	private static int caveC = 1;
 	private static int caveD = 1;
+	private static int churchA = 1;
+	private static int fort = 1;
+	private static int woodenTown = 1;
+	private static int woodenTownA = 1;
+	private static int boss = 1;
 	private static boolean find = false;
 	public static boolean onCom = false;
 	public static void Check() {
@@ -62,6 +67,16 @@ public class TaskController {
 				caveC();
 			else if(progress == 13)
 				caveD();
+			else if(progress == 14)
+				churchA();
+			else if(progress == 15)
+				fort();
+			else if(progress == 16)
+				woodenTown();
+			else if(progress == 17)
+				woodenTownA();
+			else if(progress == 29)
+				boss();
 		}
 	}
 	
@@ -302,7 +317,7 @@ public class TaskController {
 					else if(roomA == 4)
 						dialog.setTxt("........");
 					else if(roomA == 5)
-						dialog.setTxt("I'm Dec, where is here? What happened? Why I am here?");
+						dialog.setTxt("I'm " + GamePanel.sprite.getName() + ", where is here? What happened? Why I am here?");
 					else if(roomA == 6) {
 						dialog.setHeadIcon("/pic/head/o40t.png");
 						dialog.setNpcTxt("hahaha...");
@@ -589,6 +604,7 @@ public class TaskController {
 						onCom = false;
 						progress++;
 						MainApp.fightView = true;
+						MainApp.fightCave = true;
 						dialog.dispose();
 					}
 				caveA++;
@@ -649,9 +665,9 @@ public class TaskController {
 					} else if(caveC == 6) {
 						GamePanel.canComm = true;
 						GamePanel.canMove = true;
-						GamePanel.loadCave();
 						onCom = false;
 						progress++;
+						GamePanel.loadCave();
 						dialog.dispose();
 					}
 				caveC++;
@@ -687,6 +703,283 @@ public class TaskController {
 						dialog.dispose();
 					}
 				caveD++;
+				}
+			}
+		});
+	}
+	
+	public static void churchA() {
+		Dialog dialog = new Dialog();
+		dialog.setCommonTxt("Hello..");
+		dialog.setVisible(true);
+		dialog.requestFocus();
+		dialog.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode() == KeyEvent.VK_SPACE) {
+					if(churchA == 1) {
+						GamePanel.npcUI[1].moveDown(GamePanel.canvas.iterator());
+						dialog.setHeadIcon("/pic/head/o40t.png");
+						dialog.setNpcTxt("I see the power with you");
+					} else if(churchA == 2) {
+						dialog.setCommonTxt("That's right, I do feel something different");
+					} else if(churchA == 3) {
+						dialog.setHeadIcon("/pic/head/o40t.png");
+						dialog.setNpcTxt("Now, please find Mr.Chen in Wooden Town");
+					} else if(churchA == 4) {
+						dialog.setTxt("This man will direct you");
+					} else if(churchA == 5) {
+						dialog.setCommonTxt("Okay, and...");
+					} else if(churchA == 6) {
+						dialog.setTxt("Could you tell me your name??");
+					} else if(churchA == 7) {
+						dialog.setTxt("I still don't know your name..");
+					} else if(churchA == 8) {
+						dialog.setHeadIcon("/pic/head/o40t.png");
+						dialog.setNpcTxt("Diana!! Call me Diana!!");
+						dialog.setName("Diana");
+					} else if(churchA == 9) {
+						dialog.setCommonTxt("Diana...");
+					} else if(churchA == 10) {
+						dialog.setTxt("Thank you, Diana..");
+					} else if(churchA == 11) {
+						dialog.setHeadIcon("/pic/head/o40t.png");
+						dialog.setNpcTxt("Go down to the fort and go right you can arrive the Wooden Town");
+						dialog.setName("Diana");
+					} else if(churchA == 12) {
+						GamePanel.canComm = true;
+						GamePanel.canMove = true;
+						onCom = false;
+						progress++;
+						dialog.dispose();
+					}
+				churchA++;
+				}
+			}
+		});
+	}
+	
+	public static void fort() {
+		Dialog dialog = new Dialog();
+		dialog.setCommonTxt("Em...");
+		dialog.setVisible(true);
+		dialog.requestFocus();
+		dialog.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode() == KeyEvent.VK_SPACE) {
+					if(fort == 1) {
+						dialog.setTxt("Go right arrive the Wooden Town....");
+					} else if(fort == 2) {
+						GamePanel.canComm = true;
+						GamePanel.canMove = true;
+						fort = 0;
+						onCom = false;
+						dialog.dispose();
+					}
+				fort++;
+				}
+			}
+		});
+	}
+	
+	public static void woodenTown() {
+		Dialog dialog = new Dialog();
+		dialog.setCommonTxt("Em...");
+		dialog.setVisible(true);
+		dialog.requestFocus();
+		dialog.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode() == KeyEvent.VK_SPACE) {
+					if(woodenTown == 1) {
+						dialog.setTxt("Find Mr.Chen");
+					} else if(woodenTown == 2) {
+						GamePanel.canComm = true;
+						GamePanel.canMove = true;
+						woodenTown = 0;
+						onCom = false;
+						dialog.dispose();
+					}
+					woodenTown++;
+				}
+			}
+		});
+	}
+	
+	public static void woodenTownA() {
+		Dialog dialog = new Dialog();
+		dialog.setNpcTxt(GamePanel.sprite.getName() + "!!");
+		dialog.setHeadIcon("/pic/head/l2t.png");
+		GamePanel.npcUI[5].moveLeft(GamePanel.canvas.iterator());
+		dialog.setVisible(true);
+		dialog.requestFocus();
+		dialog.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode() == KeyEvent.VK_SPACE) {
+					if(woodenTownA == 1) {
+						dialog.setCommonTxt("You are Mr.Chen??");
+					} else if(woodenTownA == 2) {
+						dialog.setNpcTxt("I am");
+						dialog.setHeadIcon("/pic/head/l2t.png");
+						dialog.setName("Mr.Chen");
+					} else if(woodenTownA == 3) {
+						dialog.setNpcTxt("I will tell you a secret..");
+						dialog.setName("Mr.Chen");
+					} else if(woodenTownA == 4) {
+						GamePanel.canComm = true;
+						GamePanel.canMove = true;
+						onCom = false;
+						dialog.dispose();
+					}
+					woodenTownA++;
+				}
+			}
+		});
+	}
+	
+	public static void boss() {
+		Dialog dialog = new Dialog();
+		dialog.setNpcTxt(GamePanel.sprite.getName() + "!!");
+		dialog.setHeadIcon("/pic/head/bearSet.png");
+		dialog.setName("Mr.BEAR");
+		dialog.setVisible(true);
+		dialog.requestFocus();
+		dialog.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode() == KeyEvent.VK_SPACE) {
+					if(boss == 1) {
+						dialog.setNpcTxt("You're finally here..");
+						dialog.setName("Mr.BEAR");
+					} else if(boss == 2) {
+						dialog.setNpcTxt("My master....");
+						dialog.setName("Mr.BEAR");
+					} else if(boss == 3) {
+						dialog.setCommonTxt("...");
+					} else if(boss == 4) {
+						dialog.setTxt("I am coming for you..");
+					} else if(boss == 5) {
+						dialog.setNpcTxt("Shut up!!");
+						dialog.setHeadIcon("/pic/head/bearSet.png");
+						dialog.setName("Mr.BEAR");
+					} else if(boss == 6) {
+						dialog.setNpcTxt("My master...");
+						dialog.setName("Mr.BEAR");
+					} else if(boss == 7) {
+						dialog.setNpcTxt("I miss the time we played together fourteen years ago...");
+						dialog.setName("Mr.BEAR");
+					} else if(boss == 8) {
+						dialog.setNpcTxt("At that time, you haven't left me...");
+						dialog.setName("Mr.BEAR");
+					} else if(boss == 9) {
+						dialog.setNpcTxt("You are so cute and clever..");
+						dialog.setName("Mr.BEAR");
+					} else if(boss == 10) {
+						dialog.setNpcTxt("And also...");
+						dialog.setName("Mr.BEAR");
+					} else if(boss == 11) {
+						dialog.setNpcTxt("I still remember...");
+						dialog.setName("Mr.BEAR");
+					} else if(boss == 12) {
+						dialog.setCommonTxt("Em...");
+					} else if(boss == 13) {
+						dialog.setNpcTxt("My master....");
+						dialog.setName("Mr.BEAR");
+						dialog.setHeadIcon("/pic/head/bearSet.png");
+					} else if(boss == 14) {
+						dialog.setNpcTxt("You didn't forget me in that fire...");
+						dialog.setName("Mr.BEAR");
+					} else if(boss == 15) {
+						dialog.setNpcTxt("Although you have escaped...");
+						dialog.setName("Mr.BEAR");
+					} else if(boss == 16) {
+						dialog.setNpcTxt("You run back in a panic...");
+						dialog.setName("Mr.BEAR");
+					} else if(boss == 17) {
+						dialog.setNpcTxt("You rummaged, rummaged and rummaged...");
+						dialog.setName("Mr.BEAR");
+					} else if(boss == 18) {
+						dialog.setNpcTxt("From living room to kitchen....");
+						dialog.setName("Mr.BEAR");
+					} else if(boss == 19) {
+						dialog.setNpcTxt("From kitchen to bedroom...");
+						dialog.setName("Mr.BEAR");
+					} else if(boss == 20) {
+						dialog.setNpcTxt("From bedroom to....");
+						dialog.setName("Mr.BEAR");
+					} else if(boss == 21) {
+						dialog.setNpcTxt("Finally, you found me...");
+						dialog.setName("Mr.BEAR");
+					} else if(boss == 22) {
+						dialog.setNpcTxt("Fire stronger...");
+						dialog.setName("Mr.BEAR");
+					} else if(boss == 23) {
+						dialog.setNpcTxt("You also stronger in my mind...");
+						dialog.setName("Mr.BEAR");
+					} else if(boss == 24) {
+						dialog.setNpcTxt("BUT!!!!!!!!");
+						dialog.setName("Mr.BEAR");
+					} else if(boss == 25) {
+						dialog.setNpcTxt("You forgot me!!!!!");
+						dialog.setName("Mr.BEAR");
+					} else if(boss == 26) {
+						dialog.setNpcTxt("I was always long for you...");
+						dialog.setName("Mr.BEAR");
+					} else if(boss == 27) {
+						dialog.setNpcTxt("I lost hope over and over in the carton...");
+						dialog.setName("Mr.BEAR");
+					} else if(boss == 28) {
+						dialog.setNpcTxt("You was really forgot me!!!!!");
+						dialog.setName("Mr.BEAR");
+					} else if(boss == 29) {
+						dialog.setNpcTxt("Slowly despair...");
+						dialog.setName("Mr.BEAR");
+					} else if(boss == 30) {
+						dialog.setCommonTxt("Little bear, I am not...");
+					} else if(boss == 31) {
+						dialog.setTxt("I just");
+					} else if(boss == 32) {
+						dialog.setNpcTxt("My master....");
+						dialog.setName("Mr.BEAR");
+						dialog.setHeadIcon("/pic/head/bearSet.png");
+					} else if(boss == 33) {
+						dialog.setNpcTxt("Stay with me forever!!");
+						dialog.setName("Mr.BEAR");
+					} else if(boss == 34) {
+						dialog.setCommonTxt("...");
+					} else if(boss == 35) {
+						dialog.setNpcTxt("Answer me!!!");
+						dialog.setName("Mr.BEAR");
+						dialog.setHeadIcon("/pic/head/bearSet.png");
+					} else if(boss == 36) {
+						dialog.setNpcTxt("You do!!!");
+						dialog.setName("Mr.BEAR");
+					} else if(boss == 37) {
+						dialog.setCommonTxt("Little bear...");
+					} else if(boss == 38) {
+						dialog.setTxt("I cannot..");
+					} else if(boss == 39) {
+						dialog.setTxt("You have impacted so many people...");
+					} else if(boss == 40) {
+						dialog.setTxt("Make every thing return to normal...");
+					} else if(boss == 41) {
+						dialog.setNpcTxt("My master!!!");
+						dialog.setName("Mr.BEAR");
+						dialog.setHeadIcon("/pic/head/bearSet.png");
+					} else if(boss == 42) {
+						dialog.setNpcTxt("Coming to me!!!!");
+						dialog.setName("Mr.BEAR");
+					} else if(boss == 43) {
+						GamePanel.canComm = true;
+						GamePanel.canMove = true;
+						onCom = false;
+						MainApp.fightView = true;
+						MainApp.fightBoss = true;
+						dialog.dispose();
+					}
+					boss++;
 				}
 			}
 		});

@@ -14,6 +14,8 @@ public class BGM {
 	private String bgmBattleURL = "/bgm/Battle.mp3";
 	private String bgmBattleBossURL = "/bgm/BattleBoss.mp3";
 	private String bgmBazaarURL = "/bgm/NassauShores.mp3";
+	private String bgmFailureURL = "/bgm/Failure.mp3";
+	private String bgmEndURL = "/bgm/End.mp3";
 	
 	public static boolean bgmStart = false;
 	public static boolean bgmHeaven = false;
@@ -22,6 +24,8 @@ public class BGM {
 	public static boolean bgmNervous2 = false;
 	public static boolean bgmBattle = false;
 	public static boolean bgmBattleBoss = false;
+	public static boolean bgmFailure = false;
+	public static boolean bgmEnd = false;
 	
 	private String url;
 	private Media media;
@@ -50,6 +54,12 @@ public class BGM {
 		} else if(bgmChurch) {
 			loadBgmChurch();
 			bgmChurch = false;
+		} else if(bgmFailure) {
+			loadBgmFailure();
+			bgmFailure = false;
+		} else if(bgmEnd) {
+			loadBgmEnd();
+			bgmEnd = false;
 		}
 	}
 	
@@ -91,6 +101,14 @@ public class BGM {
 	
 	public void loadBgmBattleBoss() {
 		loadMusic(bgmBattleBossURL);
+	}
+	
+	public void loadBgmFailure() {
+		loadMusic(bgmFailureURL);
+	}
+	
+	public void loadBgmEnd() {
+		loadMusic(bgmEndURL);
 	}
 	
 	private BGM() {

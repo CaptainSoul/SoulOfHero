@@ -7,6 +7,7 @@ import java.io.IOException;
 import archive.Code;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import scenarioG.TaskController;
 
 public class Map {
 	private final int code;
@@ -50,7 +51,10 @@ public class Map {
 	}
 	
 	public void drawMap(GraphicsContext gc) {
-		gc.drawImage(image, 0, 0, 800, 600);
+	//	if(TaskController.getProgress() == 12 || TaskController.getProgress() == 13)
+			gc.drawImage(image, 0, 0, 1600, 892);
+	//	else
+	//		gc.drawImage(image, 0, 0, 800, 600);
 	}
 	
 	public void drawMapMain(GraphicsContext gc) {

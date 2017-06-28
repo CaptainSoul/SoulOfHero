@@ -38,15 +38,15 @@ public class FightCanvas extends Canvas {
 	}
 	private Status nowStatus = Status.NONE;
 	private GameTurn nowTurn = GameTurn.PLAYER;
-	private Map map;
+	private static Map map;
 	private GraphicsContext gContext;
-	private Image imageMap;
+	private static Image imageMap;
 	private ActionMenu actionMenu;
 	private PropertyMenu propertyMenu;
 	public static final int tileWidth = 32;
 	public static final int tileHeight = 32;
 	
-	private List<Sprite> players = new ArrayList<>();
+	private static List<Sprite> players = new ArrayList<>();
 	private static List<Sprite> enemys = new ArrayList<>();
 	private boolean isRunning = true;
 	private long sleep = 100;
@@ -321,6 +321,9 @@ public class FightCanvas extends Canvas {
 					} else if(TaskController.getProgress() == 11) {
 						MainApp.mainView = true;
 						MainApp.loadCave = true;
+					} else {
+						MainApp.mainView = true;
+						MainApp.loadEnd = true;
 					}
 					break;
 				case GAME_OVER:
@@ -329,6 +332,9 @@ public class FightCanvas extends Canvas {
 					} else if(TaskController.getProgress() == 11) {
 						MainApp.mainView = true;
 						MainApp.loadCave = true;
+					} else {
+						MainApp.mainView = true;
+						MainApp.loadOver = true;
 					}
 					break;
 				default:
@@ -419,6 +425,38 @@ public class FightCanvas extends Canvas {
 		}
 	}
 	
+	public static void setBossPlayer() {
+		Image player1Image = new Image(FightCanvas.class.getResourceAsStream("/pic/head/vx013.png"));
+		players.clear();
+		Sprite player1 = new Sprite("Dec");
+		player1.setImage(player1Image);
+		player1.setHp(1000);
+		player1.setMaxHp(1000);
+		player1.putExp(150);
+		player1.setXY(12 * tileWidth, 8 * tileHeight);
+		players.add(player1);
+		imageMap = new Image(FightCanvas.class.getResourceAsStream("BossBack.png"));
+		map = new Map(tileWidth, tileHeight, imageMap);
+	}
+	
+	public static void setBossEnemy() {
+		Image orc = new Image(FightCanvas.class.getResourceAsStream("/pic/head/bearHead.png"));
+		enemys.clear();
+		TaskController.setProgress(30);
+		int[][] locations = { { 11, 5 }, { 10, 6}, { 13, 5 }, { 14, 6 }, { 11, 11}, { 13, 11 } };
+		for (int i = 0; i < locations.length; i++) {
+			Sprite enemy = new Sprite("Mr.BEAR");
+			enemy.setImage(orc);
+			enemy.setGroup(Group.ENEMY);
+			enemy.setHp(120);
+			enemy.setMove(3);
+			enemy.setMaxHp(120);
+			enemy.putExp(50);
+			enemy.setXY(locations[i][0] * tileWidth, locations[i][1] * tileHeight);
+			enemys.add(enemy);
+		}
+	}
+	
 	public void draw() {
 		map.drawMap(gContext);
 		drawPlayer();
@@ -435,14 +473,22 @@ public class FightCanvas extends Canvas {
 		case PREPARE_MOVE:
 			break;
 		case GAME_WIN:
-			gContext.setFont(Font.font(18));
-			gContext.setFill(Color.WHITE);
-			gContext.fillText("Victory!", 250, 150);
+			if(TaskController.getProgress() == 30) {
+				
+			} else {
+				gContext.setFont(Font.font(18));
+				gContext.setFill(Color.WHITE);
+				gContext.fillText("Victory!", 250, 150);
+			}
 			break;
 		case GAME_OVER:
-			gContext.setFont(Font.font(18));
-			gContext.setFill(Color.RED);
-			gContext.fillText("Failure!", 250, 150);
+			if(TaskController.getProgress() == 30) {
+				
+			} else {
+				gContext.setFont(Font.font(18));
+				gContext.setFill(Color.RED);
+				gContext.fillText("Failure!", 250, 150);
+			}
 			break;
 		default:
 			break;
@@ -514,12 +560,12 @@ public class FightCanvas extends Canvas {
 	public static Stage fightStage() {
 		stage = new Stage();
 		AnchorPane root = new AnchorPane();
-		Scene scene = new Scene(root, 800, 600);
-		FightCanvas mapCanvas = new FightCanvas(800, 600);
+		Scene scene = new Scene(root, 1600, 892);
+		FightCanvas mapCanvas = new FightCanvas(1600, 892);
 		root.getChildren().add(mapCanvas);
 		stage.setScene(scene);
-		stage.setWidth(800);
-		stage.setHeight(600);
+		stage.setWidth(1600);
+		stage.setHeight(892);
 		stage.setResizable(false);
 		return stage;
 	}

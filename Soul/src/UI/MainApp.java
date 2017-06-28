@@ -37,6 +37,8 @@ public class MainApp extends Application {
 	public static boolean loadEarth = false;
 	public static boolean loadElement = false;
 	public static boolean loadBoss = false;
+	public static boolean loadOver = false;
+	public static boolean loadEnd = false;
 	public static boolean firLoadRoom = true;
 	public static boolean firLoadHeaven = true;
 
@@ -55,6 +57,7 @@ public class MainApp extends Application {
 	public static String fightViewID = "fightView";
 	public static boolean fightView = false;
 	public static boolean fightCave = false;
+	public static boolean fightBoss = false;
 	
 	public static String fightEndID = "fightEndView";
 	public static boolean fightEndView = false;
@@ -140,6 +143,10 @@ public class MainApp extends Application {
 				BGM.bgmNervous2 = true;
 				GamePanel.loadChurch();
 				loadChurch = false;
+			} else if(loadTown) {
+				BGM.bgmNervous2 = true;
+				GamePanel.loadTown();
+				loadTown = false;
 			} else if(loadBeach) {
 				BGM.bgmNervous2 = true;
 				GamePanel.loadBeach();
@@ -184,6 +191,14 @@ public class MainApp extends Application {
 				BGM.bgmNervous2 = true;
 				GamePanel.loadBoss();
 				loadBoss = false;
+			} else if(loadOver) {
+				BGM.bgmFailure = true;
+				GamePanel.loadOver();
+				loadOver = false;
+			} else if(loadEnd) {
+				BGM.bgmEnd = true;
+				GamePanel.loadEnd();
+				loadEnd = false;
 			}
 			stageController.setStage(mainViewID);
 			mainView = false;
@@ -194,6 +209,10 @@ public class MainApp extends Application {
 			if(fightCave) {
 				BGM.bgmBattle = true;
 				FightCanvas.setCaveEnemy();
+			} else if(fightBoss) {
+				BGM.bgmBattleBoss = true;
+				FightCanvas.setBossPlayer();
+				FightCanvas.setBossEnemy();
 			}
 			stageController.setStage(fightViewID);
 			fightView = false;
@@ -218,8 +237,7 @@ public class MainApp extends Application {
 			armorService=  new ArmorService();
 			skillBaseService = new SkillBaseService();
 			bgm = BGM.getBGM();
-			fightView = true;
-			fightCave = true;
+			loginView = true;
 
 			thread.start();	
 		} catch(Exception e) {
