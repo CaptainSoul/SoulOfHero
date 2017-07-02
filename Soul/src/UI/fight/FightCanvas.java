@@ -24,7 +24,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import map.Map;
-import scenarioG.FightEnd;
 import scenarioG.FightFrame;
 import scenarioG.TaskController;
 
@@ -433,7 +432,7 @@ public class FightCanvas extends Canvas {
 		player1.setHp(1000);
 		player1.setMaxHp(1000);
 		player1.putExp(150);
-		player1.setXY(12 * tileWidth, 8 * tileHeight);
+		player1.setXY(24 * tileWidth, 13 * tileHeight);
 		players.add(player1);
 		imageMap = new Image(FightCanvas.class.getResourceAsStream("BossBack.png"));
 		map = new Map(tileWidth, tileHeight, imageMap);
@@ -443,14 +442,14 @@ public class FightCanvas extends Canvas {
 		Image orc = new Image(FightCanvas.class.getResourceAsStream("/pic/head/bearHead.png"));
 		enemys.clear();
 		TaskController.setProgress(30);
-		int[][] locations = { { 11, 5 }, { 10, 6}, { 13, 5 }, { 14, 6 }, { 11, 11}, { 13, 11 } };
+		int[][] locations = { { 23, 10 }, { 22, 11}, { 25, 10 }, { 26, 11 }, { 23, 16}, { 25, 16 } };
 		for (int i = 0; i < locations.length; i++) {
 			Sprite enemy = new Sprite("Mr.BEAR");
 			enemy.setImage(orc);
 			enemy.setGroup(Group.ENEMY);
-			enemy.setHp(120);
+			enemy.setHp(75);
 			enemy.setMove(3);
-			enemy.setMaxHp(120);
+			enemy.setMaxHp(75);
 			enemy.putExp(50);
 			enemy.setXY(locations[i][0] * tileWidth, locations[i][1] * tileHeight);
 			enemys.add(enemy);

@@ -238,7 +238,7 @@ public class MainApp extends Application {
 			skillBaseService = new SkillBaseService();
 			bgm = BGM.getBGM();
 			loginView = true;
-
+	
 			thread.start();	
 		} catch(Exception e) {
 			e.printStackTrace();

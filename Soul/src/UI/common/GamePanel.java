@@ -235,8 +235,8 @@ public class GamePanel extends Parent {
 	
 	public static void loadMaze1() {
 		canvas.loadLayerMazeFirst();
-		spriteUI.setX(31);
-		spriteUI.setY(420);
+		spriteUI.setX(37);
+		spriteUI.setY(100);
 		spriteUI.moveLeft(canvas.iterator());
 		for(int i = 0; i < npcUI.length; i++) {
 			if((i != 1) && npcUI[i] != null) {
@@ -250,8 +250,8 @@ public class GamePanel extends Parent {
 	
 	public static void loadMaze2() {
 		canvas.loadLayerMazeSecond();
-		spriteUI.setX(31);
-		spriteUI.setY(420);
+		spriteUI.setX(37);
+		spriteUI.setY(100);
 		spriteUI.moveLeft(canvas.iterator());
 		for(int i = 0; i < npcUI.length; i++) {
 			if((i != 1) && npcUI[i] != null) {
@@ -265,8 +265,8 @@ public class GamePanel extends Parent {
 	
 	public static void loadMaze3() {
 		canvas.loadLayerMazeThird();
-		spriteUI.setX(31);
-		spriteUI.setY(420);
+		spriteUI.setX(37);
+		spriteUI.setY(100);
 		spriteUI.moveLeft(canvas.iterator());
 		for(int i = 0; i < npcUI.length; i++) {
 			if((i != 1) && npcUI[i] != null) {
@@ -581,8 +581,8 @@ public class GamePanel extends Parent {
 			} else if(spriteUI.getX() >= 1242 && spriteUI.getX() <= 1279
 					&& spriteUI.getY() <= 333) {
 				loadMaze3();
-				spriteUI.setX(770);
-				spriteUI.setY(200);
+				spriteUI.setX(34);
+				spriteUI.setY(100);
 				spriteUI.moveDown(canvas.iterator());
 			}
 		} else if(panelIndex == 12) {
@@ -602,10 +602,17 @@ public class GamePanel extends Parent {
 				loadWater();
 			} else if(spriteUI.getY() <= 30) {
 				loadFire();
+				spriteUI.setX(805);
+				spriteUI.setY(795);
+				spriteUI.moveUp(canvas.iterator());
 			}
 			if(spriteUI.getX() >= 800 && spriteUI.getX() <= 832
 					&& spriteUI.getY() >= 350 && spriteUI.getY() <= 380 && event.getCode() == KeyCode.SPACE) {
 				loadBoss();
+			}
+		} else if(panelIndex == 15) {
+			if(spriteUI.getY() >= 830) {
+				loadElement();
 			}
 		} else if(panelIndex == 18) {
 			if(spriteUI.getY() <= 420) {

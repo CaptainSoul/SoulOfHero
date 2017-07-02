@@ -63,6 +63,9 @@ public class MainCanvas extends Canvas {
 	private String mapResTown = "/pic/map/015-ForestTown01.png";
 	private String mapResGardon = "/pic/map/Gardon.png";
 	private String mapResMaze = "/pic/map/Maze.png";
+	private String mapResWind = "/pic/map/046-Cave04.png";
+	private String mapResWater = "/pic/map/045-Cave03.png";
+	private String mapResFire = "/pic/map/044-Cave02.png";
 	private String mapResEvilCastle = "/pic/map/042-EvilCastle02.png";
 	private String mapResBoss = "/pic/map/Boss.png";
 	private String mapResOver = "/pic/common/GameOver.jpg";
@@ -213,21 +216,21 @@ public class MainCanvas extends Canvas {
 	
 	public void loadLayerFire() {
 		clearLayer();
-		imageMap = new Image(getClass().getResourceAsStream(mapResCave));
+		imageMap = new Image(getClass().getResourceAsStream(mapResFire));
 		addLayer(mapFire1);
 		addLayer(mapFire2);
 	}
 	
 	public void loadLayerWater() {
 		clearLayer();
-		imageMap = new Image(getClass().getResourceAsStream(mapResCave));
+		imageMap = new Image(getClass().getResourceAsStream(mapResWater));
 		addLayer(mapWater1);
 		addLayer(mapWater2);
 	}
 	
 	public void loadLayerWind() {
 		clearLayer();
-		imageMap = new Image(getClass().getResourceAsStream(mapResCave));
+		imageMap = new Image(getClass().getResourceAsStream(mapResWind));
 		addLayer(mapWind1);
 		addLayer(mapWind2);
 	}
